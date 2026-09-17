@@ -1,0 +1,33 @@
+{
+  "name": "copper-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Global Copper Deposits Atlas — 全球铜矿床图谱",
+  "license": "MIT",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "cd apps/web && npx next build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "typecheck": "turbo typecheck",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "clean": "turbo clean && rm -rf node_modules",
+    "docker:up": "docker compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f docker/docker-compose.yml down",
+    "docker:logs": "docker compose -f docker/docker-compose.yml logs -f",
+    "db:migrate": "cd apps/api && alembic upgrade head",
+    "db:rollback": "cd apps/api && alembic downgrade -1",
+    "db:seed": "python data/import_scripts/seed_all.py",
+    "setup": "pnpm install && pnpm docker:up && pnpm db:migrate && pnpm db:seed",
+    "generate:api-client": "openapi-typescript apps/api/openapi.json -o packages/api-client/src/index.ts"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

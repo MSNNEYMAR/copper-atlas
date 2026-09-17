@@ -1,0 +1,191 @@
+# ============================================================================
+# Copper Atlas — Development Docker Compose
+# 全局铜矿床图谱 — 开发环境 Docker 编排
+# ============================================================================
+# Services:
+#   postgres  — PostgreSQL 16 + PostGIS 3.4 (port 5432)
+#   martin    — Vector tile server (port 3000)
+#   redis     — Cache + background task queue (port 6379)
+#   api       — FastAPI backend (port 8000)
+#   web       — Next.js frontend (port 3001)
+#   caddy     — Reverse proxy + auto-TLS (ports 80, 443)
+# ============================================================================
+
+version: "3.9"
+
+services:
+  # ==========================================================================
+  # PostgreSQL 16 + PostGIS 3.4
+  # ==========================================================================
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: copper-atlas-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: copper_atlas
+      POSTGRES_USER: atlas
+      POSTGRES_PASSWORD: atlas_dev
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U atlas -d copper_atlas"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command: >
+      postgres
+      -c shared_buffers=512MB
+      -c effective_cache_size=2GB
+      -c work_mem=64MB
+      -c maintenance_work_mem=256MB
+      -c random_page_cost=1.1
+      -c max_connections=100
+      -c shared_preload_libraries=pg_stat_statements
+    networks:
+      - atlas-network
+
+  # ==========================================================================
+  # Martin — MapLibre Vector Tile Server (Rust)
+  # ==========================================================================
+  martin:
+    image: ghcr.io/maplibre/martin:v0.15.3
+    container_name: copper-atlas-martin
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://atlas:atlas_dev@postgres:5432/copper_atlas
+      MARTIN_DEFAULT_SRID: "4326"
+      MARTIN_WORKERS: "4"
+      MARTIN_MAX_FEATURE_COUNT: "5000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./martin/config.yaml:/etc/martin/config.yaml:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - atlas-network
+
+  # ==========================================================================
+  # Redis — Cache + Background Task Queue
+  # ==========================================================================
+  redis:
+    image: redis:7.4-alpine
+    container_name: copper-atlas-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - atlas-network
+
+  # ==========================================================================
+  # FastAPI Backend
+  # ==========================================================================
+  api:
+    build:
+      context: ../apps/api
+      dockerfile: ../../docker/Dockerfile.api
+      target: development
+    container_name: copper-atlas-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://atlas:atlas_dev@postgres:5432/copper_atlas
+      DATABASE_URL_SYNC: postgresql://atlas:atlas_dev@postgres:5432/copper_atlas
+      REDIS_URL: redis://redis:6379/0
+      MARTIN_URL: http://martin:3000
+      LOG_LEVEL: DEBUG
+      ENVIRONMENT: development
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../apps/api:/app:delegated
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000 --log-level debug
+    networks:
+      - atlas-network
+
+  # ==========================================================================
+  # Next.js Frontend
+  # ==========================================================================
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: ../../docker/Dockerfile.web
+      target: development
+    container_name: copper-atlas-web
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+      NEXT_PUBLIC_MARTIN_URL: http://localhost:3000
+    ports:
+      - "3001:3000"
+    volumes:
+      - ../apps/web:/app:delegated
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - api
+      - martin
+    command: pnpm dev
+    networks:
+      - atlas-network
+
+  # ==========================================================================
+  # Caddy — Reverse Proxy
+  # ==========================================================================
+  caddy:
+    image: caddy:2.8-alpine
+    container_name: copper-atlas-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+      - api
+      - martin
+    networks:
+      - atlas-network
+
+# ==========================================================================
+# Volumes
+# ==========================================================================
+volumes:
+  postgres_data:
+    name: copper-atlas-postgres-data
+  redis_data:
+    name: copper-atlas-redis-data
+  caddy_data:
+    name: copper-atlas-caddy-data
+  caddy_config:
+    name: copper-atlas-caddy-config
+
+# ==========================================================================
+# Network
+# ==========================================================================
+networks:
+  atlas-network:
+    name: copper-atlas-network
+    driver: bridge

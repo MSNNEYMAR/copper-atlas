@@ -1,0 +1,307 @@
+/**
+ * Copper Atlas — Map Container
+ * 全局铜矿床图谱 — 地图容器
+ *
+ * Loads ALL deposits from /api/v1/deposits as GeoJSON.
+ * Renders as clustered circles with MapLibre GL JS.
+ * ALL data comes from the API. No hardcoded data. No mock data.
+ *
+ * Data flow: DB → API → fetch() → source.setData() → WebGL circles
+ * Filter flow: filterStore change → buildApiUrl rebuilds → re-fetch → source.setData()
+ * Click flow: click circle → selectDeposit(id) → detail panel opens → API detail fetch
+ */
+'use client';
+
+import { useEffect, useRef, useCallback, useState } from 'react';
+import { useTranslations } from '@/lib/i18n';
+import maplibregl from 'maplibre-gl';
+import { useFilterStore } from '@/stores/filterStore';
+import { useMapStore } from '@/stores/mapStore';
+import { useUIStore } from '@/stores/uiStore';
+import type { Map, GeoJSONSource } from 'maplibre-gl';
+
+const API_BASE = '/api/v1';
+
+export function MapContainer() {
+  const mapRef = useRef<Map | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations('map');
+  const [mapReady, setMapReady] = useState(false);
+  const bboxRef = useRef<[number,number,number,number] | null>(null);
+  const lastFetchRef = useRef<string>('');
+
+  const filters = useFilterStore();
+  const { setBbox, setViewport, selectDeposit, setMapLoaded, setMapError, basemap } =
+    useMapStore();
+  const { openDetailPanel } = useUIStore();
+
+  // Build API URL — includes current viewport bbox for spatial filtering
+  const buildApiUrl = useCallback(() => {
+    const params = new URLSearchParams();
+    params.set('mineral', filters.mineral);
+    params.set('size', '200');
+    // 🔑 Viewport-bounded query — only fetch what's visible
+    if (bboxRef.current) {
+      const b = bboxRef.current;
+      params.set('bbox', `${b[0]},${b[1]},${b[2]},${b[3]}`);
+    }
+    if (filters.countryIsos.length) params.set('country', filters.countryIsos.join(','));
+    if (filters.statuses.length) params.set('status', filters.statuses.join(','));
+    if (filters.tonnageRange[0] > 0) params.set('min_tonnage', String(filters.tonnageRange[0]));
+    if (filters.tonnageRange[1] < 200) params.set('max_tonnage', String(filters.tonnageRange[1]));
+    if (filters.gradeRange[0] > 0) params.set('min_grade', String(filters.gradeRange[0]));
+    if (filters.gradeRange[1] < 5) params.set('max_grade', String(filters.gradeRange[1]));
+    if (filters.searchQuery) params.set('search', filters.searchQuery);
+    return `${API_BASE}/deposits?${params.toString()}`;
+  }, [filters]);
+
+  // Fetch deposits from API — viewport-bounded, skip if URL unchanged
+  const loadDeposits = useCallback(async () => {
+    if (!mapRef.current) return;
+    const src = mapRef.current.getSource('copper-deposits-geojson') as GeoJSONSource | undefined;
+    if (!src) return;
+    const url = buildApiUrl();
+    if (url === lastFetchRef.current) return; // same viewport + filters = skip
+    lastFetchRef.current = url;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`API ${res.status}`);
+      const data = await res.json();
+      const fc: GeoJSON.FeatureCollection = {
+        type: 'FeatureCollection',
+        features: (data.features || []).filter(
+          (f: any) => f.geometry && f.geometry.coordinates,
+        ),
+      };
+      src.setData(fc);
+    } catch (err) {
+      console.error('Failed to load deposits:', err);
+    }
+  }, [buildApiUrl]);
+
+  // Initialize map (runs once)
+  useEffect(() => {
+    if (!containerRef.current) return;
+    let map: Map | null = null;
+
+    const init = async () => {
+      try {
+        map = new maplibregl.Map({
+          container: containerRef.current!,
+          style: getBasemapStyle(basemap),
+          center: [0, 20],
+          zoom: 2.5,
+          minZoom: 1,
+          maxZoom: 18,
+          attributionControl: false,
+          maxTileCacheSize: 200,
+          fadeDuration: 100,
+        });
+
+        map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'top-right');
+        map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
+        map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+
+        map.on('load', () => {
+          // GeoJSON source with clustering
+          map!.addSource('copper-deposits-geojson', {
+            type: 'geojson',
+            data: { type: 'FeatureCollection', features: [] },
+            cluster: true,
+            clusterMaxZoom: 10,
+            clusterRadius: 50,
+          });
+
+          // Cluster circles
+          map!.addLayer({
+            id: 'copper-clusters',
+            type: 'circle',
+            source: 'copper-deposits-geojson',
+            filter: ['has', 'point_count'],
+            paint: {
+              'circle-radius': ['step', ['get', 'point_count'], 14, 10, 22, 50, 30],
+              'circle-color': '#E74C3C',
+              'circle-opacity': 0.7,
+              'circle-stroke-width': 2,
+              'circle-stroke-color': '#ffffff',
+            },
+          });
+
+          // Cluster count labels
+          map!.addLayer({
+            id: 'copper-cluster-count',
+            type: 'symbol',
+            source: 'copper-deposits-geojson',
+            filter: ['has', 'point_count'],
+            layout: {
+              'text-field': '{point_count_abbreviated}',
+              'text-font': ['Arial Unicode MS Bold'],
+              'text-size': 13,
+            },
+            paint: { 'text-color': '#ffffff' },
+          });
+
+          // Individual deposit circles
+          map!.addLayer({
+            id: 'copper-deposits-circle',
+            type: 'circle',
+            source: 'copper-deposits-geojson',
+            filter: ['!', ['has', 'point_count']],
+            paint: {
+              'circle-radius': [
+                'interpolate', ['linear'], ['zoom'],
+                2, ['case', ['>', ['get', 'tonnage_mt'], 50], 6, ['>', ['get', 'tonnage_mt'], 10], 4, 2.5],
+                8, ['case', ['>', ['get', 'tonnage_mt'], 50], 12, ['>', ['get', 'tonnage_mt'], 10], 8, 5],
+                16, ['case', ['>', ['get', 'tonnage_mt'], 50], 20, ['>', ['get', 'tonnage_mt'], 10], 14, 10],
+              ],
+              'circle-color': [
+                'match', ['get', 'deposit_type_code'],
+                'POR','#E74C3C','POR_CUMO','#E74C3C','POR_CUAU','#C0392B','POR_AU','#C0392B',
+                'SED','#3498DB','SED_SSC','#2980B9','SED_SEDEX','#2980B9',
+                'VMS','#9B59B6','VMS_BM','#9B59B6','VMS_BF','#9B59B6','VMS_PM','#9B59B6',
+                'IOCG','#E67E22','IOCG_HEM','#D35400','IOCG_MAG','#D35400',
+                'SKN','#2ECC71','SKN_CALC','#27AE60','SKN_MAG','#27AE60',
+                'EPI','#F39C12','EPI_HS','#E67E22','EPI_LS','#F1C40F','EPI_IS','#F39C12',
+                'MAG','#1ABC9C',
+                '#95A5A6',
+              ],
+              'circle-opacity': 0.85,
+              'circle-stroke-width': 1.5,
+              'circle-stroke-color': '#ffffff',
+            },
+          });
+
+          // Deposit name labels at higher zoom
+          map!.addLayer({
+            id: 'copper-deposit-labels',
+            type: 'symbol',
+            source: 'copper-deposits-geojson',
+            filter: ['!', ['has', 'point_count']],
+            minzoom: 5,
+            layout: {
+              'text-field': ['get', 'name'],
+              'text-font': ['Arial Unicode MS Regular'],
+              'text-size': 10,
+              'text-offset': [0, 1.5],
+              'text-anchor': 'top',
+            },
+            paint: { 'text-color': '#333', 'text-halo-color': '#fff', 'text-halo-width': 2 },
+          });
+
+          setMapReady(true);
+          setMapLoaded(true);
+        });
+
+        // Track viewport — update bbox ref, trigger viewport-bounded reload
+        let lastZoom = map!.getZoom();
+        map.on('moveend', () => {
+          const b = map!.getBounds();
+          const newBbox: [number,number,number,number] = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+          const newZoom = map!.getZoom();
+
+          bboxRef.current = newBbox;
+          setBbox(newBbox);
+          setViewport({
+            center: [map!.getCenter().lng, map!.getCenter().lat],
+            zoom: newZoom,
+            bearing: map!.getBearing(),
+            pitch: map!.getPitch(),
+          });
+
+          // Only refetch on significant zoom change (>= 1 level) or initial load
+          if (Math.abs(newZoom - lastZoom) >= 0.8) {
+            lastZoom = newZoom;
+            loadDeposits();
+          }
+        });
+
+        // loadDeposits on first pan after init (once map is idle, not during fly-to)
+        map.once('idle', () => { loadDeposits(); });
+
+        // Click deposit → open detail panel
+        map.on('click', 'copper-deposits-circle', (e) => {
+          if (e.features?.[0]?.properties?.id) {
+            selectDeposit(e.features[0].properties.id);
+            openDetailPanel();
+          }
+        });
+
+        // Click cluster → zoom in
+        map.on('click', 'copper-clusters', (e) => {
+          const feature = e.features?.[0];
+          if (!feature) return;
+          const clusterId = feature.properties?.cluster_id;
+          if (!clusterId) return;
+          const src = map!.getSource('copper-deposits-geojson') as any;
+          src.getClusterExpansionZoom(clusterId, (_err: any, zoom: number) => {
+            map!.flyTo({ center: (feature.geometry as any).coordinates, zoom: Math.min(zoom, 16), duration: 500 });
+          });
+        });
+
+        // Cursor
+        for (const layer of ['copper-deposits-circle', 'copper-clusters']) {
+          map!.on('mouseenter', layer, () => { map!.getCanvas().style.cursor = 'pointer'; });
+          map!.on('mouseleave', layer, () => { map!.getCanvas().style.cursor = ''; });
+        }
+
+        mapRef.current = map;
+      } catch (error) {
+        console.error('MapLibre init failed:', error);
+        setMapError(true);
+      }
+    };
+
+    init();
+    return () => { if (map) { map.remove(); mapRef.current = null; } };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Load deposits when map is ready
+  useEffect(() => {
+    if (mapReady) loadDeposits();
+  }, [mapReady, loadDeposits]);
+
+  // Switch basemap — re-add layers, reload viewport data
+  useEffect(() => {
+    const m = mapRef.current;
+    if (!m || !mapReady) return;
+    lastFetchRef.current = ''; // force reload on basemap switch
+    m.setStyle(getBasemapStyle(basemap));
+    m.once('style.load', () => {
+      if (!m.getSource('copper-deposits-geojson')) {
+        m.addSource('copper-deposits-geojson', {
+          type: 'geojson',
+          data: { type: 'FeatureCollection', features: [] },
+          cluster: true, clusterMaxZoom: 10, clusterRadius: 50,
+        });
+      }
+      loadDeposits();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [basemap]);
+
+  // Reload deposits when filters change — force skip current URL cache
+  useEffect(() => {
+    if (mapReady) {
+      lastFetchRef.current = '';
+      loadDeposits();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 h-full w-full"
+      role="application" aria-label={t('mapApplication')} />
+  );
+}
+
+// ============================================================================
+/**
+ * Basemap styles.
+ * OSM/terrain/dark → Vector tiles (PBF) — crisp at any zoom.
+ * Satellite → Raster tiles (JPG) — no free high-res vector satellite.
+ *
+ * OpenFreeMap: free OpenStreetMap vector tiles, no API key required.
+ * Style docs: https://openfreemap.org/
+ */
+function getBasemapStyle(basemap: string): maplibregl.StyleSpecification {

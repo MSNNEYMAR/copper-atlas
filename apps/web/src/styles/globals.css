@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MapLibre GL JS styles (vendor) */
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+/* ============================================================================
+   Copper Atlas — Global Styles
+   全局铜矿床图谱 — 全局样式
+   ============================================================================ */
+
+/* Base layer — accessibility and performance */
+@layer base {
+  :root {
+    --color-brand: #e74c3c;
+    --color-brand-dark: #c0392b;
+    --focus-ring: 0 0 0 2px rgba(231, 76, 60, 0.4);
+  }
+
+  /* Focus visible styles for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Skip to content link (visible on focus) */
+  .skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+    background: var(--color-brand);
+    color: white;
+    font-weight: 600;
+    transition: top 0.2s;
+  }
+  .skip-to-content:focus {
+    top: 0;
+  }
+}
+
+/* Component layer — shared patterns */
+@layer components {
+  /* MapLibre overrides for better integration */
+  .maplibregl-ctrl-group {
+    border-radius: 6px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  .maplibregl-ctrl-group button {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Popup styles */
+  .maplibregl-popup-content {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    padding: 0 !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  /* Custom scrollbar for panels */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+}
+
+/* Dark mode override for MapLibre controls (future) */
+@media (prefers-color-scheme: dark) {
+  .maplibregl-ctrl-group {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+  .maplibregl-ctrl-group button span {
+    filter: invert(1);
+  }
+}

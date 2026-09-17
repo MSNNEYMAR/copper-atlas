@@ -1,0 +1,77 @@
+# ============================================================================
+# Copper Atlas — FastAPI Backend Dockerfile
+# 全局铜矿床图谱 — API 后端容器
+# ============================================================================
+# Multi-stage build optimized for development and production.
+
+# === DEVELOPMENT STAGE ===
+FROM python:3.12-slim-bookworm AS development
+
+WORKDIR /app
+
+# Install system dependencies for GIS libraries
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gdal-bin \
+    libgdal-dev \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set GDAL environment
+ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+ENV C_INCLUDE_PATH=/usr/include/gdal
+
+# Install Python dependencies
+COPY pyproject.toml .
+RUN pip install --no-cache-dir -e ".[dev]"
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 8000
+
+# Development: hot-reload via uvicorn --reload
+CMD ["uvicorn", "src.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+
+
+# === PRODUCTION BUILD STAGE ===
+FROM python:3.12-slim-bookworm AS builder
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gdal-bin libgdal-dev gcc g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+ENV C_INCLUDE_PATH=/usr/include/gdal
+
+COPY pyproject.toml .
+RUN pip install --no-cache-dir --user .
+
+
+# === PRODUCTION RUNTIME STAGE ===
+FROM python:3.12-slim-bookworm AS production
+
+WORKDIR /app
+
+# Install runtime GIS dependencies only (no dev headers)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gdal-bin libgdal34 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy installed packages from builder
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
+
+# Copy application code
+COPY . .
+
+# Production: gunicorn + uvicorn workers
+CMD ["gunicorn", "src.main:app", \
+     "--workers", "4", \
+     "--worker-class", "uvicorn.workers.UvicornWorker", \
+     "--bind", "0.0.0.0:8000", \
+     "--access-logfile", "-", \
+     "--error-logfile", "-"]

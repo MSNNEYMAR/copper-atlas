@@ -1,0 +1,46 @@
+# ============================================================================
+# Copper Atlas — Caddy Reverse Proxy Configuration
+# 全局铜矿床图谱 — Caddy 反向代理配置
+# ============================================================================
+
+# Development: proxy all services on localhost
+localhost:80 {
+    # Map tile server (Martin)
+    handle /tiles/* {
+        reverse_proxy martin:3000
+    }
+
+    # FastAPI backend
+    handle /api/* {
+        reverse_proxy api:8000
+    }
+
+    # OpenAPI docs
+    handle /docs* {
+        reverse_proxy api:8000
+    }
+    handle /redoc* {
+        reverse_proxy api:8000
+    }
+    handle /openapi.json* {
+        reverse_proxy api:8000
+    }
+
+    # Next.js frontend (everything else)
+    handle {
+        reverse_proxy web:3000
+    }
+
+    # Logging
+    log {
+        output stdout
+        format json
+    }
+
+    # Security headers
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+}

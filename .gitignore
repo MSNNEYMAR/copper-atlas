@@ -1,0 +1,58 @@
+# Copper Atlas — Global Copper Deposits Atlas
+# 全球铜矿床图谱
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+.next/
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker/postgres/data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Test
+coverage/
+.coverage
+.playwright/
+
+# Logs
+*.log
+
+# Temporary
+tmp/
+temp/
+
+.vercel
+
+# Local Supabase metadata
+apps/api/supabase/.temp/
+
+
+data/tmp_gh/

@@ -1,0 +1,74 @@
+# ============================================================================
+# Copper Atlas — Martin Tile Server Configuration
+# 全局铜矿床图谱 — Martin 瓦片服务器配置
+# ============================================================================
+# Martin is a Rust-based Mapbox Vector Tile (MVT) server that connects
+# directly to PostGIS and executes SQL functions to generate tiles on-the-fly.
+#
+# Documentation: https://martin.maplibre.org/
+# ============================================================================
+
+# PostgreSQL connection
+# Override via DATABASE_URL environment variable in production
+connection_string: ${DATABASE_URL:-postgresql://atlas:atlas_dev@localhost:5432/copper_atlas}
+
+# Default SRID for tile generation
+default_srid: 4326
+
+# Auto-discover PostgreSQL functions with these prefixes
+auto_functions:
+  - martin_tile_
+
+# Expose auto-discovered functions as tile sources
+auto_publish:
+  from_schemas: true
+  tables: false  # Only expose functions, not raw tables
+  functions: true
+
+# Cache configuration (in-memory, per-process)
+cache_size_mb: 512
+
+# Worker threads for tile generation
+workers: 4
+
+# Maximum features per tile (prevents oversized tile payloads)
+max_feature_count: 5000
+
+# Tile set configuration for registered function sources
+# Martin auto-discovers martin_tile_* functions, but explicit config
+# allows per-source tuning.
+tile_sets:
+  # Copper deposits — Individual points (z >= 7)
+  copper_deposits:
+    function: martin_tile_copper_deposits
+    minzoom: 7
+    maxzoom: 18
+    buffer: 128
+    extent: 4096
+
+  # Copper deposits — Clustered markers (z 5-9)
+  copper_clustered:
+    function: martin_tile_copper_clustered
+    minzoom: 5
+    maxzoom: 9
+    buffer: 256
+    extent: 4096
+
+  # Copper deposits — Heatmap density (z 0-4)
+  copper_heatmap:
+    function: martin_tile_copper_heatmap
+    minzoom: 0
+    maxzoom: 4
+    buffer: 0
+    extent: 4096
+
+  # Country boundaries — Reference overlay
+  countries:
+    function: martin_tile_countries
+    minzoom: 0
+    maxzoom: 10
+    buffer: 0
+    extent: 4096
+
+# TileJSON metadata (served at /catalog)
+# Martin auto-generates TileJSON from function signatures and metadata comments
