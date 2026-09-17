@@ -171,7 +171,6 @@ class DepositRepository:
                 Country.iso_code.label("country_iso"),
                 Country.name_en.label("country_name_en"),
                 Country.name_zh.label("country_name_zh"),
-                Country.state_province,
                 DepositClassification,
             )
             .join(Country, Deposit.country_id == Country.id)

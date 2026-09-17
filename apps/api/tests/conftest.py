@@ -10,15 +10,14 @@ Provides:
 
 from __future__ import annotations
 
-import asyncio
 import os
 from collections.abc import AsyncGenerator
 
-import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.pool import NullPool
 
 # Use a test database (defaults to copper_atlas_test)
 TEST_DATABASE_URL = os.getenv(
@@ -26,39 +25,23 @@ TEST_DATABASE_URL = os.getenv(
     "postgresql+asyncpg://atlas:atlas_dev@localhost:5432/copper_atlas_test",
 )
 
-# Create async engine for test database
-test_engine = create_async_engine(
-    TEST_DATABASE_URL,
-    echo=False,
-    pool_size=5,
-    max_overflow=5,
-)
-TestSessionFactory = async_sessionmaker(
-    test_engine,
-    class_=AsyncSession,
-    expire_on_commit=False,
-)
-
-
-@pytest.fixture(scope="session")
-def event_loop():
-    """Create a single event loop for the test session."""
-    loop = asyncio.new_event_loop()
-    yield loop
-    loop.close()
-
-
 @pytest_asyncio.fixture
 async def session() -> AsyncGenerator[AsyncSession, None]:
     """
-    Provide a test database session with automatic rollback.
+    Provide a per-test database session with automatic rollback.
 
-    Each test gets a clean session. Transactions are rolled back
-    after each test, ensuring no cross-test data pollution.
+    A NullPool engine is created for each test so asyncpg connections never
+    cross pytest-asyncio event loops. The surrounding transaction is rolled
+    back after each test, keeping test data isolated.
     """
-    async with TestSessionFactory() as session, session.begin():
-        yield session
-        await session.rollback()
+    engine = create_async_engine(TEST_DATABASE_URL, echo=False, poolclass=NullPool)
+    factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    try:
+        async with factory() as session, session.begin():
+            yield session
+            await session.rollback()
+    finally:
+        await engine.dispose()
 
 
 @pytest_asyncio.fixture
@@ -94,7 +77,7 @@ async def test_country(session: AsyncSession) -> str:
     result = await session.execute(
         text("""
             INSERT INTO countries (id, iso_code, iso_code_3, name_en, name_zh, continent, centroid)
-            VALUES (gen_random_uuid(), 'TS', 'TST', 'Testland', '测试国', 'Test Continent',
+            VALUES (uuid_generate_v4(), 'TS', 'TST', 'Testland', '测试国', 'Test Continent',
                     ST_SetSRID(ST_MakePoint(0, 0), 4326))
             RETURNING id
         """)
@@ -108,7 +91,7 @@ async def test_classification(session: AsyncSession) -> str:
     result = await session.execute(
         text("""
             INSERT INTO deposit_classification (id, code, path, name_en, name_zh, depth)
-            VALUES (gen_random_uuid(), 'TEST_TYPE', 'test', 'Test Type', '测试类型', 1)
+            VALUES (uuid_generate_v4(), 'TEST_TYPE', 'test', 'Test Type', '测试类型', 1)
             RETURNING id
         """)
     )
@@ -130,7 +113,7 @@ async def test_deposit(
                 is_featured, is_public, is_active
             )
             VALUES (
-                gen_random_uuid(), 'test-deposit', 'Test Deposit', 'copper',
+                uuid_generate_v4(), 'test-deposit', 'Test Deposit', 'copper',
                 :classification_id, :country_id,
                 ST_SetSRID(ST_MakePoint(10.0, 20.0), 4326),
                 'production', 5.0, 1.2, true, true, true
