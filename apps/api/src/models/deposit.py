@@ -98,7 +98,7 @@ class DepositClassification(Base):
     deposits: Mapped[list[Deposit]] = relationship(back_populates="classification", lazy="selectin")
 
     __table_args__ = (
-        Index("idx_classification_path_gist", "path", postgresql_using="gist"),
+        Index("idx_classification_path", "path"),
     )
 
     def __repr__(self) -> str:
@@ -134,7 +134,7 @@ class GeologicalTimeScale(Base):
     )
 
     __table_args__ = (
-        Index("idx_geotime_path_gist", "path", postgresql_using="gist"),
+        Index("idx_geotime_path", "path"),
         UniqueConstraint("name_en", "rank_en"),
     )
 

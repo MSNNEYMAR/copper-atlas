@@ -56,15 +56,15 @@ def upgrade() -> None:
         "deposit_classification",
         sa.Column("id", postgresql.UUID(as_uuid=True), primary_key=True, server_default=sa.text("uuid_generate_v4()")),
         sa.Column("code", sa.String(50), unique=True, nullable=False),
-        sa.Column("path", postgresql.LTREE(), nullable=False),
+        sa.Column("path", sa.String(), nullable=False),
         sa.Column("name_en", sa.String(200), nullable=False),
         sa.Column("name_zh", sa.String(200), nullable=False),
         sa.Column("parent_code", sa.String(50)),
         sa.Column("depth", sa.SmallInteger(), nullable=False, server_default="1"),
         sa.Column("description_en", sa.Text()),
         sa.Column("description_zh", sa.Text()),
-        sa.Column("typical_grade_range", postgresql.NUMRANGE()),
-        sa.Column("typical_tonnage_range", postgresql.NUMRANGE()),
+        sa.Column("typical_grade_range", sa.String()),
+        sa.Column("typical_tonnage_range", sa.String()),
         sa.Column("tectonic_setting", sa.String(300)),
         sa.Column("associated_rocks", postgresql.ARRAY(sa.Text())),
         sa.Column("associated_alteration", postgresql.ARRAY(sa.Text())),
@@ -75,7 +75,7 @@ def upgrade() -> None:
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
         sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
     )
-    op.create_index("idx_classification_path", "deposit_classification", ["path"], postgresql_using="gist")
+    op.create_index("idx_classification_path", "deposit_classification", ["path"])
     op.create_index("idx_classification_code", "deposit_classification", ["code"])
 
     # === Geological Time Scale ===
@@ -89,7 +89,7 @@ def upgrade() -> None:
         sa.Column("base_age_ma", sa.Numeric(8, 3), nullable=False),
         sa.Column("top_age_ma", sa.Numeric(8, 3), nullable=False),
         sa.Column("age_uncertainty_ma", sa.Numeric(5, 3)),
-        sa.Column("path", postgresql.LTREE(), nullable=False),
+        sa.Column("path", sa.String(), nullable=False),
         sa.Column("parent_id", postgresql.UUID(as_uuid=True)),
         sa.Column("gssp_location", sa.String(500)),
         sa.Column("gssp_latitude", sa.Numeric()),
@@ -101,7 +101,7 @@ def upgrade() -> None:
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
         sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
     )
-    op.create_index("idx_geotime_path", "geological_time_scale", ["path"], postgresql_using="gist")
+    op.create_index("idx_geotime_path", "geological_time_scale", ["path"])
     op.create_index("idx_geotime_parent", "geological_time_scale", ["parent_id"])
 
     # === Alteration Type ===
