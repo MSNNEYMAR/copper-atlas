@@ -48,8 +48,6 @@ def upgrade() -> None:
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
         sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
     )
-    op.create_index("idx_countries_geom", "countries", ["geom"], postgresql_using="gist")
-    op.create_index("idx_countries_centroid", "countries", ["centroid"], postgresql_using="gist")
     op.create_index("idx_countries_name_en", "countries", ["name_en"], postgresql_using="gist", postgresql_ops={"name_en": "gist_trgm_ops"})
     op.create_index("idx_countries_iso", "countries", ["iso_code"])
 
@@ -206,8 +204,6 @@ def upgrade() -> None:
         sa.Column("updated_by", sa.String(100)),
     )
     # Critical spatial indexes
-    op.create_index("idx_deposits_location", "deposits", ["location"], postgresql_using="gist")
-    op.create_index("idx_deposits_location_approx", "deposits", ["location_approx"], postgresql_using="gist")
     # Query indexes
     op.create_index("idx_deposits_primary_mineral", "deposits", ["primary_mineral"])
     op.create_index("idx_deposits_status", "deposits", ["status"])
