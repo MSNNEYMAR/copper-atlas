@@ -30,7 +30,7 @@ router = APIRouter()
 async def list_minerals(session: DBSession) -> list[dict]:
     query = select(
         func.distinct(Deposit.primary_mineral).label("mineral_code"),
-    ).where(Deposit.is_active == True)
+    ).where(Deposit.is_active.is_(True))
 
     result = await session.execute(query)
     minerals = [r.mineral_code for r in result.all()]
@@ -76,7 +76,7 @@ async def list_countries(
         )
         .join(Deposit, Deposit.country_id == Country.id)
         .where(Deposit.primary_mineral == mineral)
-        .where(Deposit.is_active == True)
+        .where(Deposit.is_active.is_(True))
         .group_by(Country.iso_code, Country.iso_code_3, Country.name_en, Country.name_zh, Country.continent)
         .order_by(func.count(Deposit.id).desc())
     )
@@ -105,7 +105,7 @@ async def list_countries(
 async def list_deposit_types(session: DBSession) -> list[dict]:
     query = (
         select(DepositClassification)
-        .where(DepositClassification.is_active == True)
+        .where(DepositClassification.is_active.is_(True))
         .order_by(DepositClassification.sort_order, DepositClassification.depth)
     )
 
@@ -139,7 +139,7 @@ async def list_time_scale(session: DBSession) -> list[dict]:
 
     query = (
         select(GeologicalTimeScale)
-        .where(GeologicalTimeScale.is_active == True)
+        .where(GeologicalTimeScale.is_active.is_(True))
         .order_by(GeologicalTimeScale.sort_order, GeologicalTimeScale.base_age_ma.desc())
     )
 

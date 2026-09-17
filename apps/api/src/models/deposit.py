@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import uuid
 from datetime import date, datetime
-from typing import Optional
 
 from geoalchemy2 import Geometry
 from sqlalchemy import (
@@ -42,25 +41,25 @@ class Country(Base):
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     iso_code: Mapped[str] = mapped_column(String(2), unique=True, nullable=False, index=True)
     iso_code_3: Mapped[str] = mapped_column(String(3), unique=True, nullable=False)
-    iso_numeric: Mapped[Optional[int]] = mapped_column(SmallInteger)
+    iso_numeric: Mapped[int | None] = mapped_column(SmallInteger)
     name_en: Mapped[str] = mapped_column(String(100), nullable=False)
     name_zh: Mapped[str] = mapped_column(String(100), nullable=False)
-    continent: Mapped[Optional[str]] = mapped_column(String(20))
-    subregion: Mapped[Optional[str]] = mapped_column(String(50))
-    geom: Mapped[Optional[Geometry]] = mapped_column(
+    continent: Mapped[str | None] = mapped_column(String(20))
+    subregion: Mapped[str | None] = mapped_column(String(50))
+    geom: Mapped[Geometry | None] = mapped_column(
         Geometry("MULTIPOLYGON", srid=4326, spatial_index=True)
     )
-    centroid: Mapped[Optional[Geometry]] = mapped_column(
+    centroid: Mapped[Geometry | None] = mapped_column(
         Geometry("POINT", srid=4326, spatial_index=True)
     )
-    mineral_rank_copper: Mapped[Optional[int]] = mapped_column(SmallInteger)
+    mineral_rank_copper: Mapped[int | None] = mapped_column(SmallInteger)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=func.now(), onupdate=func.now()
     )
 
     # Relationships
-    deposits: Mapped[list["Deposit"]] = relationship(back_populates="country", lazy="selectin")
+    deposits: Mapped[list[Deposit]] = relationship(back_populates="country", lazy="selectin")
 
     def __repr__(self) -> str:
         return f"<Country {self.iso_code} — {self.name_en}>"
@@ -76,18 +75,18 @@ class DepositClassification(Base):
     path: Mapped[str] = mapped_column(String, nullable=False)  # ltree type
     name_en: Mapped[str] = mapped_column(String(200), nullable=False)
     name_zh: Mapped[str] = mapped_column(String(200), nullable=False)
-    parent_code: Mapped[Optional[str]] = mapped_column(
+    parent_code: Mapped[str | None] = mapped_column(
         String(50), ForeignKey("deposit_classification.code"), index=True
     )
     depth: Mapped[int] = mapped_column(SmallInteger, default=1)
-    description_en: Mapped[Optional[str]] = mapped_column(Text)
-    description_zh: Mapped[Optional[str]] = mapped_column(Text)
-    typical_grade_range: Mapped[Optional[str]] = mapped_column(String)  # NUMRANGE
-    typical_tonnage_range: Mapped[Optional[str]] = mapped_column(String)  # NUMRANGE
-    tectonic_setting: Mapped[Optional[str]] = mapped_column(String(300))
-    associated_rocks: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    associated_alteration: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    key_references: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
+    description_en: Mapped[str | None] = mapped_column(Text)
+    description_zh: Mapped[str | None] = mapped_column(Text)
+    typical_grade_range: Mapped[str | None] = mapped_column(String)  # NUMRANGE
+    typical_tonnage_range: Mapped[str | None] = mapped_column(String)  # NUMRANGE
+    tectonic_setting: Mapped[str | None] = mapped_column(String(300))
+    associated_rocks: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    associated_alteration: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    key_references: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     sort_order: Mapped[int] = mapped_column(SmallInteger, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
@@ -96,7 +95,7 @@ class DepositClassification(Base):
     )
 
     # Relationships
-    deposits: Mapped[list["Deposit"]] = relationship(back_populates="classification", lazy="selectin")
+    deposits: Mapped[list[Deposit]] = relationship(back_populates="classification", lazy="selectin")
 
     __table_args__ = (
         Index("idx_classification_path_gist", "path", postgresql_using="gist"),
@@ -118,15 +117,15 @@ class GeologicalTimeScale(Base):
     rank_zh: Mapped[str] = mapped_column(String(50), nullable=False)
     base_age_ma: Mapped[float] = mapped_column(Numeric(8, 3), nullable=False)
     top_age_ma: Mapped[float] = mapped_column(Numeric(8, 3), nullable=False)
-    age_uncertainty_ma: Mapped[Optional[float]] = mapped_column(Numeric(5, 3))
+    age_uncertainty_ma: Mapped[float | None] = mapped_column(Numeric(5, 3))
     path: Mapped[str] = mapped_column(String, nullable=False)  # ltree
-    parent_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+    parent_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("geological_time_scale.id"), index=True
     )
-    gssp_location: Mapped[Optional[str]] = mapped_column(String(500))
-    gssp_latitude: Mapped[Optional[float]] = mapped_column(Numeric)
-    gssp_longitude: Mapped[Optional[float]] = mapped_column(Numeric)
-    color_hex: Mapped[Optional[str]] = mapped_column(String(7))
+    gssp_location: Mapped[str | None] = mapped_column(String(500))
+    gssp_latitude: Mapped[float | None] = mapped_column(Numeric)
+    gssp_longitude: Mapped[float | None] = mapped_column(Numeric)
+    color_hex: Mapped[str | None] = mapped_column(String(7))
     sort_order: Mapped[int] = mapped_column(SmallInteger, default=0)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
@@ -149,12 +148,12 @@ class Deposit(Base):
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     slug: Mapped[str] = mapped_column(String(300), unique=True, nullable=False, index=True)
     name: Mapped[str] = mapped_column(String(500), nullable=False)
-    name_zh: Mapped[Optional[str]] = mapped_column(String(500))
-    alternative_names: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
+    name_zh: Mapped[str | None] = mapped_column(String(500))
+    alternative_names: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
 
     # === MINERAL CLASSIFICATION ===
     primary_mineral: Mapped[str] = mapped_column(String(30), nullable=False, default="copper", index=True)
-    secondary_minerals: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
+    secondary_minerals: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
     deposit_classification_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), ForeignKey("deposit_classification.id"), nullable=False, index=True
     )
@@ -163,78 +162,78 @@ class Deposit(Base):
     country_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), ForeignKey("countries.id"), nullable=False, index=True
     )
-    state_province: Mapped[Optional[str]] = mapped_column(String(200))
+    state_province: Mapped[str | None] = mapped_column(String(200))
     location: Mapped[Geometry] = mapped_column(
         Geometry("POINT", srid=4326, spatial_index=True), nullable=False
     )
-    location_approx: Mapped[Optional[Geometry]] = mapped_column(
+    location_approx: Mapped[Geometry | None] = mapped_column(
         Geometry("POINT", srid=4326, spatial_index=True)
     )
-    location_source: Mapped[Optional[Geometry]] = mapped_column(Geometry("POINT"))
+    location_source: Mapped[Geometry | None] = mapped_column(Geometry("POINT"))
     source_srid: Mapped[int] = mapped_column(Integer, default=4326)
-    location_precision_m: Mapped[Optional[float]] = mapped_column(Numeric(8, 1))
-    elevation_m: Mapped[Optional[float]] = mapped_column(Numeric(8, 1))
+    location_precision_m: Mapped[float | None] = mapped_column(Numeric(8, 1))
+    elevation_m: Mapped[float | None] = mapped_column(Numeric(8, 1))
 
     # === RESOURCE ESTIMATES ===
-    tonnage_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    tonnage_mt_low: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    tonnage_mt_high: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    tonnage_grade_pct: Mapped[Optional[float]] = mapped_column(Numeric(6, 3))
-    tonnage_cutoff_pct: Mapped[Optional[float]] = mapped_column(Numeric(6, 3))
-    tonnage_confidence: Mapped[Optional[str]] = mapped_column(String(50))
-    proven_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    probable_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    measured_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    indicated_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    inferred_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
+    tonnage_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    tonnage_mt_low: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    tonnage_mt_high: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    tonnage_grade_pct: Mapped[float | None] = mapped_column(Numeric(6, 3))
+    tonnage_cutoff_pct: Mapped[float | None] = mapped_column(Numeric(6, 3))
+    tonnage_confidence: Mapped[str | None] = mapped_column(String(50))
+    proven_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    probable_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    measured_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    indicated_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    inferred_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
 
     # === OPERATIONAL ===
     status: Mapped[str] = mapped_column(String(30), nullable=False, default="unknown", index=True)
-    discovery_year: Mapped[Optional[int]] = mapped_column(SmallInteger)
-    production_start_year: Mapped[Optional[int]] = mapped_column(SmallInteger)
-    production_end_year: Mapped[Optional[int]] = mapped_column(SmallInteger)
-    operator_company: Mapped[Optional[str]] = mapped_column(String(300))
-    owner_companies: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    mining_method: Mapped[Optional[str]] = mapped_column(String(200))
+    discovery_year: Mapped[int | None] = mapped_column(SmallInteger)
+    production_start_year: Mapped[int | None] = mapped_column(SmallInteger)
+    production_end_year: Mapped[int | None] = mapped_column(SmallInteger)
+    operator_company: Mapped[str | None] = mapped_column(String(300))
+    owner_companies: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    mining_method: Mapped[str | None] = mapped_column(String(200))
 
     # === GEOLOGICAL CONTEXT ===
-    host_rock_age_min_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+    host_rock_age_min_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("geological_time_scale.id"), index=True
     )
-    host_rock_age_max_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+    host_rock_age_max_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("geological_time_scale.id"), index=True
     )
-    mineralization_age_min_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+    mineralization_age_min_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("geological_time_scale.id"), index=True
     )
-    mineralization_age_max_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+    mineralization_age_max_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("geological_time_scale.id"), index=True
     )
-    mineralization_age_method: Mapped[Optional[str]] = mapped_column(String(50))
-    mineralization_age_ma: Mapped[Optional[float]] = mapped_column(Numeric(7, 3))
-    mineralization_age_error_ma: Mapped[Optional[float]] = mapped_column(Numeric(5, 3))
-    host_rock_type: Mapped[Optional[str]] = mapped_column(String(300))
-    host_rock_age_text: Mapped[Optional[str]] = mapped_column(String(200))
-    tectonic_setting: Mapped[Optional[str]] = mapped_column(String(300))
-    geological_province: Mapped[Optional[str]] = mapped_column(String(300))
-    metallogenic_belt: Mapped[Optional[str]] = mapped_column(String(300))
+    mineralization_age_method: Mapped[str | None] = mapped_column(String(50))
+    mineralization_age_ma: Mapped[float | None] = mapped_column(Numeric(7, 3))
+    mineralization_age_error_ma: Mapped[float | None] = mapped_column(Numeric(5, 3))
+    host_rock_type: Mapped[str | None] = mapped_column(String(300))
+    host_rock_age_text: Mapped[str | None] = mapped_column(String(200))
+    tectonic_setting: Mapped[str | None] = mapped_column(String(300))
+    geological_province: Mapped[str | None] = mapped_column(String(300))
+    metallogenic_belt: Mapped[str | None] = mapped_column(String(300))
 
     # === DESCRIPTION ===
-    summary_en: Mapped[Optional[str]] = mapped_column(Text)
-    summary_zh: Mapped[Optional[str]] = mapped_column(Text)
-    geology_en: Mapped[Optional[str]] = mapped_column(Text)
-    geology_zh: Mapped[Optional[str]] = mapped_column(Text)
+    summary_en: Mapped[str | None] = mapped_column(Text)
+    summary_zh: Mapped[str | None] = mapped_column(Text)
+    geology_en: Mapped[str | None] = mapped_column(Text)
+    geology_zh: Mapped[str | None] = mapped_column(Text)
 
     # === PROVENANCE ===
-    data_source: Mapped[Optional[str]] = mapped_column(String(500))
-    data_source_url: Mapped[Optional[str]] = mapped_column(Text)
-    reference_dois: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    last_verified_date: Mapped[Optional[date]] = mapped_column(Date)
-    data_quality_score: Mapped[Optional[int]] = mapped_column(SmallInteger)
+    data_source: Mapped[str | None] = mapped_column(String(500))
+    data_source_url: Mapped[str | None] = mapped_column(Text)
+    reference_dois: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    last_verified_date: Mapped[date | None] = mapped_column(Date)
+    data_quality_score: Mapped[int | None] = mapped_column(SmallInteger)
 
     # === MEDIA ===
-    images: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    documents: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
+    images: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    documents: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
 
     # === EXTENSIBLE PROPERTIES ===
     properties: Mapped[dict] = mapped_column(JSONB, default=dict)
@@ -243,35 +242,35 @@ class Deposit(Base):
     is_featured: Mapped[bool] = mapped_column(Boolean, default=False)
     is_public: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
-    tags: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
+    tags: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=func.now(), onupdate=func.now()
     )
-    created_by: Mapped[Optional[str]] = mapped_column(String(100))
-    updated_by: Mapped[Optional[str]] = mapped_column(String(100))
+    created_by: Mapped[str | None] = mapped_column(String(100))
+    updated_by: Mapped[str | None] = mapped_column(String(100))
 
     # === RELATIONSHIPS ===
-    country: Mapped["Country"] = relationship(back_populates="deposits", lazy="selectin")
-    classification: Mapped["DepositClassification"] = relationship(
+    country: Mapped[Country] = relationship(back_populates="deposits", lazy="selectin")
+    classification: Mapped[DepositClassification] = relationship(
         back_populates="deposits", lazy="selectin"
     )
-    host_rock_age_min: Mapped[Optional["GeologicalTimeScale"]] = relationship(
+    host_rock_age_min: Mapped[GeologicalTimeScale | None] = relationship(
         foreign_keys=[host_rock_age_min_id], lazy="selectin"
     )
-    host_rock_age_max: Mapped[Optional["GeologicalTimeScale"]] = relationship(
+    host_rock_age_max: Mapped[GeologicalTimeScale | None] = relationship(
         foreign_keys=[host_rock_age_max_id], lazy="selectin"
     )
-    mineralization_age_min: Mapped[Optional["GeologicalTimeScale"]] = relationship(
+    mineralization_age_min: Mapped[GeologicalTimeScale | None] = relationship(
         foreign_keys=[mineralization_age_min_id], lazy="selectin"
     )
-    mineralization_age_max: Mapped[Optional["GeologicalTimeScale"]] = relationship(
+    mineralization_age_max: Mapped[GeologicalTimeScale | None] = relationship(
         foreign_keys=[mineralization_age_max_id], lazy="selectin"
     )
-    alterations: Mapped[list["DepositAlteration"]] = relationship(back_populates="deposit", lazy="selectin")
-    paragenesis: Mapped[list["MineralParagenesis"]] = relationship(back_populates="deposit", lazy="selectin")
-    resource_estimates: Mapped[list["ResourceEstimate"]] = relationship(back_populates="deposit", lazy="selectin")
-    production_history: Mapped[list["ProductionHistory"]] = relationship(back_populates="deposit", lazy="selectin")
+    alterations: Mapped[list[DepositAlteration]] = relationship(back_populates="deposit", lazy="selectin")
+    paragenesis: Mapped[list[MineralParagenesis]] = relationship(back_populates="deposit", lazy="selectin")
+    resource_estimates: Mapped[list[ResourceEstimate]] = relationship(back_populates="deposit", lazy="selectin")
+    production_history: Mapped[list[ProductionHistory]] = relationship(back_populates="deposit", lazy="selectin")
 
     __table_args__ = (
         CheckConstraint("data_quality_score BETWEEN 1 AND 5", name="ck_data_quality_score"),
@@ -294,12 +293,12 @@ class AlterationType(Base):
     code: Mapped[str] = mapped_column(String(30), unique=True, nullable=False, index=True)
     name_en: Mapped[str] = mapped_column(String(100), nullable=False)
     name_zh: Mapped[str] = mapped_column(String(100), nullable=False)
-    description_en: Mapped[Optional[str]] = mapped_column(Text)
-    description_zh: Mapped[Optional[str]] = mapped_column(Text)
-    typical_minerals: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    typical_zone: Mapped[Optional[str]] = mapped_column(String(50))
-    associated_deposit_types: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))
-    temperature_range: Mapped[Optional[str]] = mapped_column(String)
+    description_en: Mapped[str | None] = mapped_column(Text)
+    description_zh: Mapped[str | None] = mapped_column(Text)
+    typical_minerals: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    typical_zone: Mapped[str | None] = mapped_column(String(50))
+    associated_deposit_types: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    temperature_range: Mapped[str | None] = mapped_column(String)
     sort_order: Mapped[int] = mapped_column(SmallInteger, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
 
@@ -315,13 +314,13 @@ class DepositAlteration(Base):
     alteration_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), ForeignKey("alteration_type.id", ondelete="CASCADE"), primary_key=True
     )
-    intensity: Mapped[Optional[int]] = mapped_column(SmallInteger)
-    spatial_extent: Mapped[Optional[str]] = mapped_column(String(100))
-    description: Mapped[Optional[str]] = mapped_column(Text)
+    intensity: Mapped[int | None] = mapped_column(SmallInteger)
+    spatial_extent: Mapped[str | None] = mapped_column(String(100))
+    description: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
 
-    deposit: Mapped["Deposit"] = relationship(back_populates="alterations")
-    alteration: Mapped["AlterationType"] = relationship()
+    deposit: Mapped[Deposit] = relationship(back_populates="alterations")
+    alteration: Mapped[AlterationType] = relationship()
 
 
 class MineralParagenesis(Base):
@@ -334,15 +333,15 @@ class MineralParagenesis(Base):
         UUID(as_uuid=True), ForeignKey("deposits.id", ondelete="CASCADE"), nullable=False, index=True
     )
     mineral_name: Mapped[str] = mapped_column(String(200), nullable=False)
-    mineral_formula: Mapped[Optional[str]] = mapped_column(String(200))
-    stage: Mapped[Optional[str]] = mapped_column(String(50))
-    occurrence: Mapped[Optional[str]] = mapped_column(String(200))
-    relative_timing: Mapped[Optional[int]] = mapped_column(SmallInteger)
-    abundance: Mapped[Optional[str]] = mapped_column(String(50))
-    description: Mapped[Optional[str]] = mapped_column(Text)
+    mineral_formula: Mapped[str | None] = mapped_column(String(200))
+    stage: Mapped[str | None] = mapped_column(String(50))
+    occurrence: Mapped[str | None] = mapped_column(String(200))
+    relative_timing: Mapped[int | None] = mapped_column(SmallInteger)
+    abundance: Mapped[str | None] = mapped_column(String(50))
+    description: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
 
-    deposit: Mapped["Deposit"] = relationship(back_populates="paragenesis")
+    deposit: Mapped[Deposit] = relationship(back_populates="paragenesis")
 
 
 class ResourceEstimate(Base):
@@ -359,20 +358,20 @@ class ResourceEstimate(Base):
     classification: Mapped[str] = mapped_column(String(50), nullable=False)
     normalized_confidence: Mapped[str] = mapped_column(String(20), nullable=False)
     tonnage_mt: Mapped[float] = mapped_column(Numeric(12, 3), nullable=False)
-    tonnage_ore_mt: Mapped[Optional[float]] = mapped_column(Numeric(12, 3))
-    grade_pct: Mapped[Optional[float]] = mapped_column(Numeric(6, 3))
-    cutoff_grade_pct: Mapped[Optional[float]] = mapped_column(Numeric(6, 3))
+    tonnage_ore_mt: Mapped[float | None] = mapped_column(Numeric(12, 3))
+    grade_pct: Mapped[float | None] = mapped_column(Numeric(6, 3))
+    cutoff_grade_pct: Mapped[float | None] = mapped_column(Numeric(6, 3))
     report_date: Mapped[date] = mapped_column(Date, nullable=False, index=True)
-    effective_date: Mapped[Optional[date]] = mapped_column(Date)
-    report_source: Mapped[Optional[str]] = mapped_column(String(300))
-    report_title: Mapped[Optional[str]] = mapped_column(String(500))
-    report_url: Mapped[Optional[str]] = mapped_column(Text)
-    report_doi: Mapped[Optional[str]] = mapped_column(Text)
-    notes: Mapped[Optional[str]] = mapped_column(Text)
+    effective_date: Mapped[date | None] = mapped_column(Date)
+    report_source: Mapped[str | None] = mapped_column(String(300))
+    report_title: Mapped[str | None] = mapped_column(String(500))
+    report_url: Mapped[str | None] = mapped_column(Text)
+    report_doi: Mapped[str | None] = mapped_column(Text)
+    notes: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
-    created_by: Mapped[Optional[str]] = mapped_column(String(100))
+    created_by: Mapped[str | None] = mapped_column(String(100))
 
-    deposit: Mapped["Deposit"] = relationship(back_populates="resource_estimates")
+    deposit: Mapped[Deposit] = relationship(back_populates="resource_estimates")
 
 
 class ProductionHistory(Base):
@@ -385,14 +384,14 @@ class ProductionHistory(Base):
         UUID(as_uuid=True), ForeignKey("deposits.id", ondelete="CASCADE"), nullable=False, index=True
     )
     year: Mapped[int] = mapped_column(SmallInteger, nullable=False, index=True)
-    ore_tonnes_mt: Mapped[Optional[float]] = mapped_column(Numeric(10, 3))
-    metal_tonnes: Mapped[Optional[float]] = mapped_column(Numeric(10, 3))
-    grade_pct: Mapped[Optional[float]] = mapped_column(Numeric(6, 3))
-    recovery_pct: Mapped[Optional[float]] = mapped_column(Numeric(5, 2))
-    source: Mapped[Optional[str]] = mapped_column(String(300))
+    ore_tonnes_mt: Mapped[float | None] = mapped_column(Numeric(10, 3))
+    metal_tonnes: Mapped[float | None] = mapped_column(Numeric(10, 3))
+    grade_pct: Mapped[float | None] = mapped_column(Numeric(6, 3))
+    recovery_pct: Mapped[float | None] = mapped_column(Numeric(5, 2))
+    source: Mapped[str | None] = mapped_column(String(300))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
 
-    deposit: Mapped["Deposit"] = relationship(back_populates="production_history")
+    deposit: Mapped[Deposit] = relationship(back_populates="production_history")
 
     __table_args__ = (
         UniqueConstraint("deposit_id", "year"),

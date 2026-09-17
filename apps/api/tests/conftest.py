@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import asyncio
 import os
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
 import pytest
 import pytest_asyncio
@@ -56,10 +56,9 @@ async def session() -> AsyncGenerator[AsyncSession, None]:
     Each test gets a clean session. Transactions are rolled back
     after each test, ensuring no cross-test data pollution.
     """
-    async with TestSessionFactory() as session:
-        async with session.begin():
-            yield session
-            await session.rollback()
+    async with TestSessionFactory() as session, session.begin():
+        yield session
+        await session.rollback()
 
 
 @pytest_asyncio.fixture

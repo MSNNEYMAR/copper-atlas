@@ -9,7 +9,6 @@ and orchestration of multi-repository queries.
 
 from __future__ import annotations
 
-from typing import Optional
 from uuid import UUID
 
 from pyproj import Transformer
@@ -34,15 +33,15 @@ class DepositService:
         self,
         *,
         mineral: str = "copper",
-        bbox: Optional[str] = None,
-        country: Optional[str] = None,
-        deposit_type: Optional[str] = None,
-        status: Optional[str] = None,
-        min_tonnage: Optional[float] = None,
-        max_tonnage: Optional[float] = None,
-        min_grade: Optional[float] = None,
-        max_grade: Optional[float] = None,
-        search: Optional[str] = None,
+        bbox: str | None = None,
+        country: str | None = None,
+        deposit_type: str | None = None,
+        status: str | None = None,
+        min_tonnage: float | None = None,
+        max_tonnage: float | None = None,
+        min_grade: float | None = None,
+        max_grade: float | None = None,
+        search: str | None = None,
         page: int = 1,
         size: int = 50,
         sort: str = "tonnage_mt",
@@ -114,7 +113,7 @@ class DepositService:
         self,
         deposit_id: UUID,
         radius_km: float = 50.0,
-        mineral: Optional[str] = None,
+        mineral: str | None = None,
         limit: int = 10,
     ) -> dict:
         """Find deposits near a given deposit."""
@@ -234,7 +233,7 @@ class DepositService:
             raise InvalidSRIDError(
                 f"Coordinate transformation failed: {e}",
                 details={"from_srid": from_srid, "to_srid": to_srid},
-            )
+            ) from e
 
     # ==========================================================================
     # GEOJSON HELPERS
@@ -286,9 +285,9 @@ class DepositService:
             parts = [float(p.strip()) for p in bbox_str.split(",")]
         except ValueError:
             raise InvalidBboxError(
-                f"Bbox must be comma-separated numbers: minLon,minLat,maxLon,maxLat",
+                "Bbox must be comma-separated numbers: minLon,minLat,maxLon,maxLat",
                 details={"bbox": bbox_str},
-            )
+            ) from None
 
         if len(parts) != 4:
             raise InvalidBboxError(

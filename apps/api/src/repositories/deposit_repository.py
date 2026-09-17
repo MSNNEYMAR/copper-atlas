@@ -14,15 +14,13 @@ Query patterns:
 
 from __future__ import annotations
 
-from typing import Optional
 from uuid import UUID
 
-from geoalchemy2 import Geography, Geometry
-from geoalchemy2.functions import ST_AsGeoJSON
-from sqlalchemy import Select, func, select, text
+from geoalchemy2 import Geography
+from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..models.deposit import Deposit, DepositClassification, Country
+from ..models.deposit import Country, Deposit, DepositClassification
 
 
 class DepositRepository:
@@ -40,16 +38,16 @@ class DepositRepository:
         bbox: tuple[float, float, float, float],
         *,
         mineral: str = "copper",
-        country_isos: Optional[list[str]] = None,
-        deposit_type_path: Optional[str] = None,
-        statuses: Optional[list[str]] = None,
-        min_tonnage: Optional[float] = None,
-        max_tonnage: Optional[float] = None,
-        min_grade: Optional[float] = None,
-        max_grade: Optional[float] = None,
-        min_age_ma: Optional[float] = None,
-        max_age_ma: Optional[float] = None,
-        search: Optional[str] = None,
+        country_isos: list[str] | None = None,
+        deposit_type_path: str | None = None,
+        statuses: list[str] | None = None,
+        min_tonnage: float | None = None,
+        max_tonnage: float | None = None,
+        min_grade: float | None = None,
+        max_grade: float | None = None,
+        min_age_ma: float | None = None,
+        max_age_ma: float | None = None,
+        search: str | None = None,
         page: int = 1,
         size: int = 50,
         sort: str = "tonnage_mt",
@@ -96,8 +94,8 @@ class DepositRepository:
             .join(Country, Deposit.country_id == Country.id)
             .join(DepositClassification, Deposit.deposit_classification_id == DepositClassification.id)
             .where(Deposit.primary_mineral == mineral)
-            .where(Deposit.is_public == True)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_public.is_(True))
+            .where(Deposit.is_active.is_(True))
             .where(func.ST_Intersects(Deposit.location, envelope))
         )
 
@@ -165,7 +163,7 @@ class DepositRepository:
 
         return deposits, total
 
-    async def find_by_id(self, deposit_id: UUID) -> Optional[dict]:
+    async def find_by_id(self, deposit_id: UUID) -> dict | None:
         """Get a single deposit by UUID with full detail."""
         query = (
             select(
@@ -179,7 +177,7 @@ class DepositRepository:
             .join(Country, Deposit.country_id == Country.id)
             .join(DepositClassification, Deposit.deposit_classification_id == DepositClassification.id)
             .where(Deposit.id == deposit_id)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
         )
 
         result = await self.session.execute(query)
@@ -190,12 +188,12 @@ class DepositRepository:
 
         return self._row_to_detail_dict(row)
 
-    async def find_by_slug(self, slug: str) -> Optional[dict]:
+    async def find_by_slug(self, slug: str) -> dict | None:
         """Get a single deposit by slug."""
         query = (
             select(Deposit)
             .where(Deposit.slug == slug)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
         )
         result = await self.session.execute(query)
         deposit = result.scalar_one_or_none()
@@ -211,8 +209,8 @@ class DepositRepository:
         latitude: float,
         radius_km: float,
         *,
-        mineral: Optional[str] = None,
-        exclude_id: Optional[UUID] = None,
+        mineral: str | None = None,
+        exclude_id: UUID | None = None,
         limit: int = 10,
     ) -> list[dict]:
         """
@@ -239,8 +237,8 @@ class DepositRepository:
             .join(Country, Deposit.country_id == Country.id)
             .join(DepositClassification, Deposit.deposit_classification_id == DepositClassification.id)
             .where(distance_filter)
-            .where(Deposit.is_public == True)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_public.is_(True))
+            .where(Deposit.is_active.is_(True))
         )
 
         if mineral:
@@ -277,7 +275,7 @@ class DepositRepository:
             )
             .join(Deposit, Deposit.country_id == Country.id)
             .where(Deposit.primary_mineral == mineral)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
             .group_by(Country.iso_code, Country.name_en, Country.name_zh)
             .order_by(func.count(Deposit.id).desc())
             .limit(top_n)
@@ -298,7 +296,7 @@ class DepositRepository:
             )
             .join(Deposit, Deposit.deposit_classification_id == DepositClassification.id)
             .where(Deposit.primary_mineral == mineral)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
             .where(DepositClassification.depth == 1)  # Top-level only
             .group_by(DepositClassification.code, DepositClassification.name_en, DepositClassification.name_zh)
             .order_by(func.count(Deposit.id).desc())
@@ -315,7 +313,7 @@ class DepositRepository:
                 func.sum(Deposit.tonnage_mt).label("total_tonnage"),
             )
             .where(Deposit.primary_mineral == mineral)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
             .group_by(Deposit.status)
             .order_by(func.count(Deposit.id).desc())
         )
@@ -376,7 +374,7 @@ class DepositRepository:
             func.count(Deposit.id).filter(Deposit.status == "production").label("producing_count"),
         ).where(
             Deposit.primary_mineral == mineral,
-            Deposit.is_active == True,
+            Deposit.is_active.is_(True),
         )
         result = await self.session.execute(query)
         row = result.first()
@@ -384,7 +382,7 @@ class DepositRepository:
         # Get largest deposit
         largest_query = (
             select(Deposit.name, Deposit.slug, Deposit.tonnage_mt)
-            .where(Deposit.primary_mineral == mineral, Deposit.is_active == True)
+            .where(Deposit.primary_mineral == mineral, Deposit.is_active.is_(True))
             .where(Deposit.tonnage_mt.isnot(None))
             .order_by(Deposit.tonnage_mt.desc())
             .limit(1)
@@ -395,7 +393,7 @@ class DepositRepository:
         # Get highest grade deposit
         grade_query = (
             select(Deposit.name, Deposit.slug, Deposit.tonnage_grade_pct)
-            .where(Deposit.primary_mineral == mineral, Deposit.is_active == True)
+            .where(Deposit.primary_mineral == mineral, Deposit.is_active.is_(True))
             .where(Deposit.tonnage_grade_pct.isnot(None))
             .order_by(Deposit.tonnage_grade_pct.desc())
             .limit(1)
@@ -459,7 +457,7 @@ class DepositRepository:
             .join(Country, Deposit.country_id == Country.id)
             .join(DepositClassification, Deposit.deposit_classification_id == DepositClassification.id)
             .where(Deposit.primary_mineral == mineral)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
             .where(tsvector.op("@@")(tsquery))
             .order_by(rank.desc())
             .limit(limit)
@@ -487,7 +485,7 @@ class DepositRepository:
             )
             .join(Country, Deposit.country_id == Country.id)
             .where(Deposit.primary_mineral == mineral)
-            .where(Deposit.is_active == True)
+            .where(Deposit.is_active.is_(True))
             .where(Deposit.name.ilike(f"{prefix}%"))
             .order_by(func.similarity(Deposit.name, prefix).desc())
             .limit(limit)

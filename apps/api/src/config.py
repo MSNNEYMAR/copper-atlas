@@ -80,7 +80,7 @@ class Settings(BaseSettings):
         return self.base_dir / "alembic"
 
 
-@lru_cache()
+@lru_cache
 def get_settings() -> Settings:
     """Get cached settings instance."""
     return Settings()

@@ -8,7 +8,7 @@ Uses asyncpg as the underlying PostgreSQL driver for maximum performance.
 
 from __future__ import annotations
 
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
 from geoalchemy2 import Geometry  # noqa: F401 — imported for model usage
 from sqlalchemy import event

@@ -10,6 +10,7 @@ from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
+from geoalchemy2 import Geometry
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers
@@ -41,8 +42,8 @@ def upgrade() -> None:
         sa.Column("name_zh", sa.String(100), nullable=False),
         sa.Column("continent", sa.String(20)),
         sa.Column("subregion", sa.String(50)),
-        sa.Column("geom", postgresql.GEOMETRY("MULTIPOLYGON", srid=4326)),
-        sa.Column("centroid", postgresql.GEOMETRY("POINT", srid=4326)),
+        sa.Column("geom", Geometry("MULTIPOLYGON", srid=4326)),
+        sa.Column("centroid", Geometry("POINT", srid=4326)),
         sa.Column("mineral_rank_copper", sa.SmallInteger()),
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
         sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
@@ -138,9 +139,9 @@ def upgrade() -> None:
         # Location
         sa.Column("country_id", postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column("state_province", sa.String(200)),
-        sa.Column("location", postgresql.GEOMETRY("POINT", srid=4326), nullable=False),
-        sa.Column("location_approx", postgresql.GEOMETRY("POINT", srid=4326)),
-        sa.Column("location_source", postgresql.GEOMETRY("POINT")),
+        sa.Column("location", Geometry("POINT", srid=4326), nullable=False),
+        sa.Column("location_approx", Geometry("POINT", srid=4326)),
+        sa.Column("location_source", Geometry("POINT")),
         sa.Column("source_srid", sa.Integer(), server_default="4326"),
         sa.Column("location_precision_m", sa.Numeric(8, 1)),
         sa.Column("elevation_m", sa.Numeric(8, 1)),
