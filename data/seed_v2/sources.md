@@ -61,3 +61,7 @@ All 100 deposits in this seed file have `data_quality_score >= 3`.
 
 - 85 deposits: `verified` (cross-referenced with at least 2 independent sources)
 - 15 deposits: `pending_final_review` (single source confirmation)
+
+## Coordinate Verification (2026-09-22)
+
+All 100 deposit coordinates were rechecked against the bundled Mindat/Global Copper Deposit dataset, OpenMindat locality export, OpenStreetMap/OpenStreetMap Nominatim, and Wikipedia coordinates where available. The per-record audit trail is stored in `data/seed_v2/coordinate_audit.csv`. Coordinates were also checked against coarse national bounding boxes to catch gross misplacements.

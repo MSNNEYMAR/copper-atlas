@@ -1,0 +1,101 @@
+﻿name,country_iso,old_lat,old_lon,new_lat,new_lon,delta_deg,source_name
+Chuquicamata,CL,-22.3,-68.9,-22.289444,-68.901111,0.0106,Chuquicamata
+Escondida,CL,-24.267,-69.067,-24.27222,-69.068275,0.0054,Escondida
+El Teniente,CL,-34.083,-70.35,-34.083,-70.35,0.0,Manual: known El Teniente mine coordinates
+Collahuasi,CL,-20.983,-68.833,-20.983052,-68.673347,0.1597,Collahuasi
+Los Bronces,CL,-33.15,-70.267,-33.149265,-70.280914,0.0139,OpenMindat Río Blanco-Los Bronces
+Los Pelambres,CL,-31.717,-70.483,-31.713889,-70.488889,0.0067,"Los Pelambres Mine, Salamanca, Choapa Province, Coquimbo, Chile"
+Radomiro Tomic,CL,-22.217,-68.9,-22.44,-68.91,0.2232,Manual/official mine area
+Andina,CL,-33.15,-70.25,-33.15,-70.25,0.0,Manual: Andina/Río Blanco mine area
+El Abra,CL,-21.917,-68.833,-21.920556,-68.8325,0.0036,El  Abra
+Escondida Norte,CL,-24.2,-69.1,-24.2,-69.1,0.0,Manual: northern Escondida pit area
+Spence,CL,-22.783,-69.25,-22.7833,-69.25,0.0003,Manual: mine site; OpenMindat appears offset
+Cerro Colorado,CL,-20.05,-69.267,-20.044722,-69.259722,0.009,Cerro  Colorado
+Cerro Verde,PE,-16.533,-71.55,-16.535278,-71.591667,0.0417,"Cerro Verde Mine, Yarabamba District, Arequipa Province, Arequipa, Peru"
+Las Bambas,PE,-14.1,-72.317,-14.07164,-72.33606,0.0342,OpenMindat Las Bambas/Chalcobamba
+Antamina,PE,-9.533,-77.05,-9.553994,-77.047631,0.0211,OpenStreetMap Antamina mine
+Quellaveco,PE,-17.117,-70.917,-17.097726,-70.627246,0.2904,Quellaveco
+Cuajone,PE,-17.033,-70.717,-17.045556,-70.707222,0.0159,Cuajone
+Toquepala,PE,-17.25,-70.633,-17.245252,-70.613077,0.0205,Toquepala
+Tia Maria,PE,-17.017,-71.767,-17.017,-71.767,0.0,Manual: Tía María project area
+Michiquillay,PE,-7.033,-78.317,-7.038378,-78.321445,0.007,Michiquillay
+Bingham Canyon,US,40.533,-112.15,40.531156,-112.12975,0.0203,OpenStreetMap Bingham Canyon Mine
+Morenci,US,33.083,-109.333,33.090556,-109.366667,0.0345,Wikipedia/OpenMindat Morenci Mine
+Resolution,US,33.3,-111.083,33.303112,-111.10012,0.0174,Wikipedia Resolution Copper
+Safford,US,32.85,-109.667,32.85,-109.667,0.0,Manual: Safford mine area
+Bagdad,US,34.583,-113.217,34.587543,-113.241586,0.025,OpenStreetMap Bagdad Mine
+Sierrita,US,31.867,-111.133,31.871,-111.148,0.0155,OpenStreetMap Sierrita Mine
+Mission Complex,US,31.967,-111.067,31.991747,-111.06315,0.025,OpenStreetMap Mission Mine
+Silver Bell,US,32.367,-111.5,32.4,-111.5,0.033,OpenMindat Silver Bell Mine
+Pebble,US,59.9,-155.3,59.897222,-155.295278,0.0055,Wikipedia/OpenMindat Pebble
+Butte,US,46.017,-112.533,46.013151,-112.536508,0.0052,OpenStreetMap Butte/Berkeley Pit area
+Yerington,US,38.983,-119.167,39.000408,-119.205479,0.0422,OpenStreetMap Yerington Mine
+Highland Valley,CA,50.483,-121.017,50.480831,-121.014241,0.0035,"Highland Valley Copper Mine, Logan Lake, Kamloops Mining Division, British Columbia, Canada"
+Galore Creek,CA,57.117,-131.483,57.125,-131.45,0.034,Galore  Creek
+Mount Milligan,CA,55.05,-124.033,55.126128,-124.026429,0.0764,"Mount Milligan mine (Mount Milligan Cu-Au deposit), Omineca Mining Division, British Columbia, Canada"
+Red Chris,CA,57.683,-129.867,57.736346,-129.753513,0.1254,Red  Chris
+Copper Mountain,CA,49.333,-120.533,49.333,-120.533,0.0,"Manual: Copper Mountain mine, BC"
+Cananea,MX,30.983,-110.3,30.983,-110.3,0.0,Manual: Buenavista/Cananea mine site
+La Caridad,MX,30.317,-109.567,30.320611,-109.564934,0.0042,La  Caridad
+El Arco,MX,28.05,-113.467,28.033333,-113.56666,0.101,El  Arco
+Cobre Panama,PA,8.9,-80.683,8.851972,-80.644778,0.0614,Cobre  Panama
+Kamoa-Kakula,CD,-10.667,25.033,-10.667,25.033,0.0,Manual: Kamoa-Kakula mining complex
+Tenke Fungurume,CD,-10.6,25.65,-10.568411,26.195633,0.5465,Wikipedia Tenke Fungurume Mine
+Kipushi,CD,-11.767,27.25,-11.763654,27.23994,0.0106,OpenStreetMap Kipushi Mine
+Deziwa,CD,-10.5,25.5,-10.5,25.5,0.0,Manual: Deziwa mine area
+Kansanshi,ZM,-12.133,26.467,-12.083471,26.426579,0.0639,Kansanshi
+Sentinel (Kalumbila),ZM,-12.2,25.2,-12.280467,25.298472,0.1272,OpenStreetMap Sentinel Mine
+Lumwana,ZM,-12.25,25.817,-12.243872,25.864255,0.0477,OpenStreetMap Lumwana Mine
+Konkola,ZM,-12.383,27.833,-12.379563,27.828449,0.0057,"Konkola Mine, Chililabombwe District, Copperbelt Province, Zambia"
+Nchanga,ZM,-12.517,27.867,-12.513056,27.854167,0.0134,Nchanga
+Mopani (Mufulira+Nkana),ZM,-12.55,28.25,-12.55,28.25,0.0,Manual: Mufulira mine component
+Grasberg,ID,-4.05,137.117,-4.056017,137.113198,0.0071,Grasberg
+Batu Hijau,ID,-8.967,116.867,-8.965667,116.867245,0.0014,Batu  Hijau
+Ok Tedi,PG,-5.217,141.133,-5.208035,141.138998,0.0108,Ok  Tedi
+Panguna,PG,-6.317,155.5,-6.315131,155.495322,0.005,Panguna
+Frieda River,PG,-4.667,141.783,-4.7,141.783333,0.033,Frieda  River
+Tampakan,PH,6.45,125.017,6.475,125.05,0.0414,Tampakan
+Phu Kham,LA,18.867,102.683,18.916667,102.933333,0.2552,Phu  Kham
+Oyu Tolgoi,MN,-43.017,106.867,43.003484,106.852189,86.0205,Oyu  Tolgoi
+Tsagaan Suvarga,MN,43.867,108.35,43.866667,108.333333,0.0167,Tsagaan-Suvarga
+Dexing,CN,29.017,117.733,29.015622,117.7294,0.0039,OpenStreetMap Dexing Copper Mine
+Yulong,CN,31.4,97.717,31.410302,97.730153,0.0167,Yulong
+Qulong,CN,29.617,91.6,29.629444,91.598889,0.0125,Qulong
+Pulang,CN,28.05,99.983,28.038611,99.989722,0.0132,Pulang
+Tongkuangyu,CN,35.267,111.6,35.316667,111.666667,0.0831,Tongkuangyu
+Norilsk-Talnakh,RU,69.333,88.167,69.333,88.167,0.0,Manual: Norilsk-Talnakh mining region
+Udokan,RU,56.667,118.5,56.583333,118.5,0.0837,Udokan
+Aktogay,KZ,46.833,80.0,46.951572,79.864567,0.18,"Aktogay mine, Aqtoghay, Ayagoz District, Abai Region, Kazakhstan"
+Bozshakol,KZ,51.817,74.283,51.846901,74.291112,0.031,"Bozshakol mine, Ekibastuz, Pavlodar Region, Kazakhstan"
+Kounrad,KZ,47.0,75.0,46.989722,74.987222,0.0164,Kounrad
+Almalyk (Kalmakyr),UZ,40.833,69.667,40.813889,69.646389,0.0281,Almalyk
+Sarcheshmeh,IR,29.983,55.867,29.945,55.861944,0.0383,Sar  Cheshmeh
+Sungun,IR,38.7,46.7,38.701,46.705,0.0051,Sungun
+Reko Diq,PK,29.0,62.0,29.122778,62.078889,0.1459,Reko  Diq
+Olympic Dam,AU,-30.45,136.867,-30.44,136.872778,0.0115,Olympic Dam
+Cadia-Ridgeway,AU,-33.467,149.0,-33.466667,149.0,0.0003,Cadia  Hill/Ridgeway
+Mount Isa Copper,AU,-20.717,139.483,-20.717,139.483,0.0,Manual: Mount Isa mine area
+Ernest Henry,AU,-20.45,140.7,-20.444271,140.705879,0.0082,Ernest Henry
+Prominent Hill,AU,-29.617,135.783,-29.719444,135.583333,0.2244,Prominent Hill
+Carrapateena,AU,-31.383,138.5,-31.214444,137.497222,1.0168,Carrapateena
+Northparkes,AU,-32.917,148.0,-32.917608,148.049417,0.0494,"Northparkes Mine Project, Goonumbla, Kennedy Co., New South Wales, Australia"
+KGHM (Lubin-Glogow),PL,51.45,16.167,51.45,16.167,0.0,Manual: Lubin mine area
+Mansfeld-Sangerhausen,DE,51.583,11.45,51.583,11.45,0.0,Manual: Mansfeld copper district
+White Pine,US,46.75,-89.583,46.75,-89.583,0.0,"Manual: White Pine mine, Michigan"
+Kamoto,CD,-10.7,25.4,-10.714798,25.385542,0.0207,Wikipedia Kamoto Mine
+Mutanda,CD,-10.75,25.8,-10.75,25.8,0.0,Manual: Mutanda mine area
+Cobre Las Cruces,ES,37.5,-6.083,37.500556,-6.093333,0.0103,Las Cruces
+Neves-Corvo,PT,37.567,-7.967,37.573056,-7.970833,0.0072,Neves-Corvo
+Rio Tinto,ES,37.7,-6.6,37.699167,-6.570833,0.0292,Rio Tinto
+Aitik,SE,67.067,20.95,67.0725,20.9575,0.0093,Aitik
+Kevitsa,FI,67.733,27.0,67.693992,26.928048,0.0818,Wikipedia Kevitsa mine
+Sossego,BR,-6.433,-50.067,-6.430838,-50.068699,0.0027,Sossego
+Salobo,BR,-5.95,-50.25,-5.787839,-50.537411,0.33,Salobo
+Cerro Casale,CL,-27.833,-69.467,-27.783333,-69.233333,0.2389,Cerro  Casale
+Cerro Corona,PE,-6.767,-78.6,-6.761389,-78.605556,0.0079,Cerro  Corona
+Candelaria,CL,-27.5,-70.25,-27.526505,-70.294627,0.0519,Candelaria
+Mantos Blancos,CL,-23.433,-70.067,-23.43272,-70.061524,0.0055,OpenStreetMap Mantos Blancos
+Mantoverde,CL,-26.833,-70.35,-26.558436,-70.325291,0.2757,Mantoverde
+Oyu Tolgoi South (Hugo South),MN,-43.05,106.883,43.003484,106.852189,86.0535,Oyu  Tolgoi
+Khetri,IN,28.0,75.783,28.015,75.775556,0.0167,Khetri
+Malanjkhand,IN,22.017,80.7,22.016667,80.716667,0.0167,Malanjkhand

@@ -38,6 +38,23 @@ const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = 
   },
 };
 
+function radiusByTonnage(levels: readonly [number, number, number, number, number]): any {
+  return [
+    'interpolate',
+    ['linear'],
+    ['ln', ['max', ['coalesce', ['get', 'tonnage_mt'], 1], 1]],
+    0,
+    levels[0],
+    Math.log(3),
+    levels[1],
+    Math.log(10),
+    levels[2],
+    Math.log(50),
+    levels[3],
+    Math.log(150),
+    levels[4],
+  ];
+}
 /** Create copper deposit layers on the map. Called exactly once on map load. */
 function addCopperLayers(map: Map) {
   // Shared GeoJSON source with clustering
@@ -88,11 +105,11 @@ function addCopperLayers(map: Map) {
         ['linear'],
         ['zoom'],
         2,
-        ['case', ['>', ['get', 'tonnage_mt'], 50], 6, ['>', ['get', 'tonnage_mt'], 10], 4, 2.5],
+        radiusByTonnage([2.5, 3, 6, 10, 14]),
         8,
-        ['case', ['>', ['get', 'tonnage_mt'], 50], 12, ['>', ['get', 'tonnage_mt'], 10], 8, 5],
+        radiusByTonnage([4, 5, 9, 14, 19]),
         16,
-        ['case', ['>', ['get', 'tonnage_mt'], 50], 20, ['>', ['get', 'tonnage_mt'], 10], 14, 10],
+        radiusByTonnage([7, 8, 13, 20, 26]),
       ],
       'circle-color': [
         'match',
