@@ -71,7 +71,7 @@ function addCopperLayers(map: Map) {
     filter: ['has', 'point_count'],
     layout: {
       'text-field': '{point_count_abbreviated}',
-      'text-font': ['Arial Unicode MS Bold'],
+      'text-font': ['Open Sans Semibold'],
       'text-size': 13,
     },
     paint: { 'text-color': '#fff' },
@@ -157,7 +157,7 @@ function addCopperLayers(map: Map) {
     minzoom: 5,
     layout: {
       'text-field': ['get', 'name'],
-      'text-font': ['Arial Unicode MS Regular'],
+      'text-font': ['Open Sans Regular'],
       'text-size': 10,
       'text-offset': [0, 1.5],
       'text-anchor': 'top',
@@ -225,6 +225,7 @@ export function MapContainer() {
           // Start with a single raster source for the basemap
           style: {
             version: 8,
+            glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
             sources: {
               basemap: {
                 type: 'raster',

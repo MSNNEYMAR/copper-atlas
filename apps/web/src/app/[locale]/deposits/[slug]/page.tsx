@@ -1,4 +1,5 @@
 import { DepositJsonLd } from '@/components/shared/JsonLd';
+import { findAtlasDeposit, toDepositProperties } from '@/lib/atlas-data';
 import { translateServer } from '@/lib/dictionary-server';
 import type { DepositDetailProperties } from '@/types/deposit';
 /**
@@ -13,16 +14,9 @@ import { notFound } from 'next/navigation';
 
 type Props = { params: { slug: string; locale: string } };
 
-const API_BASE = '/api/v1';
-
 async function fetchDeposit(slug: string): Promise<DepositDetailProperties | null> {
-  try {
-    const res = await fetch(`${API_BASE}/deposits/slug/${slug}`, { next: { revalidate: 3600 } });
-    if (!res.ok) return null;
-    return (await res.json()).properties;
-  } catch {
-    return null;
-  }
+  const deposit = findAtlasDeposit(slug);
+  return deposit ? (toDepositProperties(deposit, true) as unknown as DepositDetailProperties) : null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

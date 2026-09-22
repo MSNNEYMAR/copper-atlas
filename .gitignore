@@ -56,3 +56,7 @@ apps/api/supabase/.temp/
 
 
 data/tmp_gh/
+
+test-results/
+playwright-report/
+work/

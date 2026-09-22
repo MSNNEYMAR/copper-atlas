@@ -6,7 +6,7 @@
 
 🌍 A professional geological platform for exploring global copper deposits with interactive WebGL maps, comprehensive deposit data, and rich statistics — built with enterprise-grade engineering practices.
 
-> **Live**: [https://web-three-fawn-65.vercel.app/en](https://web-three-fawn-65.vercel.app/en)
+> **Live**: [https://www.blacksyb.com/en](https://www.blacksyb.com/en)
 
 ---
 

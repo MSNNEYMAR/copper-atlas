@@ -1,0 +1,4830 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "chuquicamata",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9,
+          -22.3
+        ]
+      },
+      "properties": {
+        "name_en": "Chuquicamata",
+        "name_zh": "丘基卡马塔",
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 98.0,
+        "tonnage_grade_pct": 0.55,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1899,
+        "production_start_year": 1915,
+        "operator_company": "Codelco",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Eocene-Oligocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "World's largest open-pit copper mine by excavated volume. Classic giant porphyry Cu-Mo deposit.",
+        "data_source": "Codelco annual reports; Sillitoe (2010)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "open-pit",
+          "supergene-enrichment"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.105.1.3"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "escondida",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.067,
+          -24.267
+        ]
+      },
+      "properties": {
+        "name_en": "Escondida",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 130.0,
+        "tonnage_grade_pct": 0.55,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1981,
+        "production_start_year": 1990,
+        "operator_company": "BHP (57.5%)",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Late Eocene-Early Oligocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "World's largest copper producer by output. Supergene-enriched porphyry Cu deposit.",
+        "data_source": "BHP annual reports; Richards et al. (2001)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "open-pit",
+          "supergene-enrichment"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.96.3.779"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "el-teniente",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.35,
+          -34.083
+        ]
+      },
+      "properties": {
+        "name_en": "El Teniente",
+        "name_zh": "埃尔特尼恩特",
+        "country_iso": "CL",
+        "state_province": "O'Higgins",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 95.0,
+        "tonnage_grade_pct": 0.63,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1819,
+        "production_start_year": 1905,
+        "operator_company": "Codelco",
+        "mining_method": "block_caving",
+        "host_rock_type": "Dacite porphyry breccia",
+        "host_rock_age_text": "Miocene-Pliocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "World's largest underground copper mine. Giant breccia-hosted porphyry Cu-Mo deposit.",
+        "data_source": "Codelco reports; Skewes et al. (2002)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "underground",
+          "breccia"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.97.1.89"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "collahuasi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.833,
+          -20.983
+        ]
+      },
+      "properties": {
+        "name_en": "Collahuasi",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Tarapaca",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 80.0,
+        "tonnage_grade_pct": 0.8,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1880,
+        "production_start_year": 1995,
+        "operator_company": "Anglo American/Glencore",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Eocene-Oligocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "One of the largest copper porphyry districts globally. Rosario and Ujina deposits.",
+        "data_source": "Anglo American technical reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "open-pit",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "los-bronces",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.267,
+          -33.15
+        ]
+      },
+      "properties": {
+        "name_en": "Los Bronces",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Metropolitan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 55.0,
+        "tonnage_grade_pct": 0.45,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1860,
+        "production_start_year": null,
+        "operator_company": "Anglo American",
+        "mining_method": "open_pit",
+        "host_rock_type": "Andesite porphyry",
+        "host_rock_age_text": "Miocene-Pliocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Giant breccia-hosted porphyry Cu-Mo deposit in central Chile.",
+        "data_source": "Anglo American technical reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "breccia",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "los-pelambres",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.483,
+          -31.717
+        ]
+      },
+      "properties": {
+        "name_en": "Los Pelambres",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Coquimbo",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 35.0,
+        "tonnage_grade_pct": 0.52,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1920,
+        "production_start_year": 1999,
+        "operator_company": "Antofagasta Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Major porphyry Cu-Mo deposit in the Eocene-Miocene belt of central Chile.",
+        "data_source": "Antofagasta Minerals reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "radomiro-tomic",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9,
+          -22.217
+        ]
+      },
+      "properties": {
+        "name_en": "Radomiro Tomic",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 20.0,
+        "tonnage_grade_pct": 0.47,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1997,
+        "operator_company": "Codelco",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Porphyry Cu deposit near Chuquicamata. Oxide and sulfide mineralization.",
+        "data_source": "Codelco reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "oxide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "andina",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.25,
+          -33.15
+        ]
+      },
+      "properties": {
+        "name_en": "Andina",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Valparaiso",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 45.0,
+        "tonnage_grade_pct": 0.62,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1920,
+        "production_start_year": 1970,
+        "operator_company": "Codelco",
+        "mining_method": "block_caving",
+        "host_rock_type": "Andesite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Major porphyry Cu-Mo deposit in the Rio Blanco-Los Bronces cluster.",
+        "data_source": "Codelco reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "underground",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "el-abra",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.833,
+          -21.917
+        ]
+      },
+      "properties": {
+        "name_en": "El Abra",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.48,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1996,
+        "operator_company": "Freeport-McMoRan",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Supergene-enriched porphyry Cu deposit in the Chuquicamata district.",
+        "data_source": "Freeport-McMoRan reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "supergene"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "escondida-norte",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.1,
+          -24.2
+        ]
+      },
+      "properties": {
+        "name_en": "Escondida Norte",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 25.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1998,
+        "production_start_year": 2005,
+        "operator_company": "BHP",
+        "mining_method": "open_pit",
+        "host_rock_type": "Andesite porphyry",
+        "host_rock_age_text": "Late Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Northern extension of the giant Escondida system.",
+        "data_source": "BHP reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "spence",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.25,
+          -22.783
+        ]
+      },
+      "properties": {
+        "name_en": "Spence",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1996,
+        "production_start_year": 2006,
+        "operator_company": "BHP",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Paleocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Supergene-enriched porphyry Cu deposit in northern Chile.",
+        "data_source": "BHP reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "supergene"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cerro-colorado",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.267,
+          -20.05
+        ]
+      },
+      "properties": {
+        "name_en": "Cerro Colorado",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Tarapaca",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 12.0,
+        "tonnage_grade_pct": 0.6,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1994,
+        "operator_company": "BHP",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Paleocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Porphyry Cu-Mo deposit with exotic copper mineralization.",
+        "data_source": "BHP reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "exotic"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cerro-verde",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.55,
+          -16.533
+        ]
+      },
+      "properties": {
+        "name_en": "Cerro Verde",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Arequipa",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 40.0,
+        "tonnage_grade_pct": 0.38,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1868,
+        "production_start_year": 1976,
+        "operator_company": "Freeport-McMoRan",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Paleocene-Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "One of Peru's largest copper producers with significant supergene enrichment.",
+        "data_source": "Freeport-McMoRan reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "supergene-enrichment"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "las-bambas",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.317,
+          -14.1
+        ]
+      },
+      "properties": {
+        "name_en": "Las Bambas",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Apurimac",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 25.0,
+        "tonnage_grade_pct": 0.61,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1911,
+        "production_start_year": 2016,
+        "operator_company": "MMG",
+        "mining_method": "open_pit",
+        "host_rock_type": "Skarn and porphyry",
+        "host_rock_age_text": "Eocene-Oligocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Major skarn-porphyry Cu-Au-Mo system in southern Peru.",
+        "data_source": "MMG technical reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "skarn",
+          "porphyry",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "antamina",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05,
+          -9.533
+        ]
+      },
+      "properties": {
+        "name_en": "Antamina",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Ancash",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "zinc",
+          "molybdenum",
+          "silver",
+          "lead"
+        ],
+        "deposit_type_code": "SKN_CALC",
+        "tonnage_mt": 20.0,
+        "tonnage_grade_pct": 1.0,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1952,
+        "production_start_year": 2001,
+        "operator_company": "Teck/BHP/Glencore/Mitsubishi",
+        "mining_method": "open_pit",
+        "host_rock_type": "Limestone and skarn",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "World's largest known skarn deposit with exceptional Cu-Zn grades.",
+        "data_source": "Teck reports; Love et al. (2004)",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "skarn",
+          "calcium",
+          "polymetallic"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.99.2.235"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "quellaveco",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.917,
+          -17.117
+        ]
+      },
+      "properties": {
+        "name_en": "Quellaveco",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Moquegua",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.47,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 2022,
+        "operator_company": "Anglo American",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Paleocene-Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Major porphyry Cu-Mo deposit in southern Peru",
+        "data_source": " commissioned in 2022.",
+        "data_quality_score": "Anglo American reports",
+        "is_featured": false,
+        "tags": [
+          "no"
+        ],
+        "sources_doi": [
+          "porphyry",
+          "open-pit",
+          "andes"
+        ],
+        "last_verified_date": null,
+        "null": [
+          "2026-01-15"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cuajone",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.717,
+          -17.033
+        ]
+      },
+      "properties": {
+        "name_en": "Cuajone",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Moquegua",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 20.0,
+        "tonnage_grade_pct": 0.57,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1942,
+        "production_start_year": 1976,
+        "operator_company": "Southern Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Paleocene-Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Major porphyry Cu-Mo deposit operated by Grupo Mexico.",
+        "data_source": "Southern Copper reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "toquepala",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.633,
+          -17.25
+        ]
+      },
+      "properties": {
+        "name_en": "Toquepala",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Tacna",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 18.0,
+        "tonnage_grade_pct": 0.45,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1960,
+        "operator_company": "Southern Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Paleocene-Eocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Porphyry Cu-Mo deposit in the Toquepala district",
+        "data_source": " southern Peru.",
+        "data_quality_score": "Southern Copper reports",
+        "is_featured": false,
+        "tags": [
+          "no"
+        ],
+        "sources_doi": [
+          "porphyry",
+          "open-pit",
+          "andes"
+        ],
+        "last_verified_date": null,
+        "null": [
+          "2025-12-01"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tia-maria",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.767,
+          -17.017
+        ]
+      },
+      "properties": {
+        "name_en": "Tia Maria",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Arequipa",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.32,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1994,
+        "production_start_year": null,
+        "operator_company": "Southern Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Paleocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Greenfield porphyry Cu project in southern Peru. Permitting ongoing.",
+        "data_source": "Southern Copper reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "michiquillay",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.317,
+          -7.033
+        ]
+      },
+      "properties": {
+        "name_en": "Michiquillay",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Cajamarca",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.45,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1950,
+        "production_start_year": null,
+        "operator_company": "Southern Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Porphyry",
+        "host_rock_age_text": "Neogene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Large undeveloped porphyry Cu-Au-Mo deposit in northern Peru.",
+        "data_source": "Southern Copper reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "andes"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bingham-canyon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.15,
+          40.533
+        ]
+      },
+      "properties": {
+        "name_en": "Bingham Canyon",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Utah",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 35.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1848,
+        "production_start_year": 1906,
+        "operator_company": "Rio Tinto",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Eocene (Laramide)",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Type example of porphyry Cu system. One of the world's most productive deposits.",
+        "data_source": "Rio Tinto reports; John (2010)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "type-example",
+          "laramide"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.105.1.3"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "morenci",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.333,
+          33.083
+        ]
+      },
+      "properties": {
+        "name_en": "Morenci",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 28.0,
+        "tonnage_grade_pct": 0.26,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1865,
+        "production_start_year": 1872,
+        "operator_company": "Freeport-McMoRan",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Paleocene-Eocene (Laramide)",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Largest copper mine in North America by production. Extensive supergene enrichment.",
+        "data_source": "Freeport-McMoRan reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "supergene-enrichment",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "resolution",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.083,
+          33.3
+        ]
+      },
+      "properties": {
+        "name_en": "Resolution",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 25.0,
+        "tonnage_grade_pct": 1.47,
+        "tonnage_confidence": "NI43-101",
+        "status": "development",
+        "discovery_year": 1994,
+        "production_start_year": null,
+        "operator_company": "Rio Tinto/BHP",
+        "mining_method": "block_caving",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "One of the largest undeveloped copper deposits globally. Exceptionally high grade at >1km depth.",
+        "data_source": "Rio Tinto reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "undeveloped",
+          "deep",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "safford",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.667,
+          32.85
+        ]
+      },
+      "properties": {
+        "name_en": "Safford",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.3,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 2007,
+        "operator_company": "Freeport-McMoRan",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Laramide porphyry Cu-Mo system in eastern Arizona.",
+        "data_source": "Freeport-McMoRan reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bagdad",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.217,
+          34.583
+        ]
+      },
+      "properties": {
+        "name_en": "Bagdad",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.36,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1882,
+        "production_start_year": null,
+        "operator_company": "Freeport-McMoRan",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Laramide porphyry Cu-Mo deposit in western Arizona.",
+        "data_source": "Freeport-McMoRan reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sierrita",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.133,
+          31.867
+        ]
+      },
+      "properties": {
+        "name_en": "Sierrita",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.25,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": null,
+        "operator_company": "Freeport-McMoRan",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Laramide porphyry Cu-Mo system. Significant molybdenum byproduct.",
+        "data_source": "Freeport-McMoRan reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "molybdenum",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mission-complex",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.067,
+          31.967
+        ]
+      },
+      "properties": {
+        "name_en": "Mission Complex",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.25,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1961,
+        "production_start_year": null,
+        "operator_company": "ASARCO",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Laramide porphyry Cu complex in the Sierrita-Mission district.",
+        "data_source": "ASARCO reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "silver-bell",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.5,
+          32.367
+        ]
+      },
+      "properties": {
+        "name_en": "Silver Bell",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Arizona",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.3,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": null,
+        "operator_company": "ASARCO",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Laramide porphyry Cu deposit northwest of Tucson.",
+        "data_source": "ASARCO reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pebble",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.3,
+          59.9
+        ]
+      },
+      "properties": {
+        "name_en": "Pebble",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Alaska",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 40.0,
+        "tonnage_grade_pct": 0.35,
+        "tonnage_confidence": "NI43-101",
+        "status": "exploration",
+        "discovery_year": 1988,
+        "production_start_year": null,
+        "operator_company": "Northern Dynasty Minerals",
+        "mining_method": null,
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Cretaceous",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Alaska Range",
+        "metallogenic_belt": "Alaska Porphyry Belt",
+        "summary_en": "One of the world's largest undeveloped Cu-Au-Mo porphyry deposits. Controversial due to Bristol Bay salmon fishery.",
+        "data_source": "Northern Dynasty reports; Lang et al. (2013)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "undeveloped",
+          "controversial"
+        ],
+        "sources_doi": [
+          "10.2113/econgeo.108.3.587"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "butte",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.533,
+          46.017
+        ]
+      },
+      "properties": {
+        "name_en": "Butte",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Montana",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "silver",
+          "molybdenum",
+          "zinc"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 20.0,
+        "tonnage_grade_pct": 0.75,
+        "tonnage_confidence": "historical",
+        "status": "closed",
+        "discovery_year": 1864,
+        "production_start_year": 1880,
+        "operator_company": null,
+        "mining_method": "underground",
+        "host_rock_type": "Quartz monzonite",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Rocky Mountains",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Historic \"Richest Hill on Earth.\" Vein and porphyry Cu-Mo system. Transitioned from underground to open pit.",
+        "data_source": "USGS; Meyer et al. (1968)",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "historic",
+          "porphyry",
+          "vein",
+          "laramide"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yerington",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.167,
+          38.983
+        ]
+      },
+      "properties": {
+        "name_en": "Yerington",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Nevada",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 6.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "historical",
+        "status": "closed",
+        "discovery_year": 1860,
+        "production_start_year": 1950,
+        "operator_company": null,
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Jurassic",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Basin and Range",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Tilted porphyry Cu system exposing complete vertical section. Classic teaching locality.",
+        "data_source": "USGS; Dilles (1987)",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "type-example",
+          "jurassic",
+          "tilted"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.82.7.1649"
+        ],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "highland-valley",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.017,
+          50.483
+        ]
+      },
+      "properties": {
+        "name_en": "Highland Valley",
+        "name_zh": "海兰瓦利",
+        "country_iso": "CA",
+        "state_province": "British Columbia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.34,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1960,
+        "production_start_year": 1962,
+        "operator_company": "Teck Resources",
+        "mining_method": "open_pit",
+        "host_rock_type": "Bethlehem granodiorite",
+        "host_rock_age_text": "Late Triassic-Early Jurassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Canadian Cordillera",
+        "metallogenic_belt": "Canadian Porphyry Belt",
+        "summary_en": "Canada's largest copper mine. Porphyry Cu-Mo system in the Guichon Creek batholith.",
+        "data_source": "Teck reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "canada",
+          "triassic-jurassic"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "galore-creek",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -131.483,
+          57.117
+        ]
+      },
+      "properties": {
+        "name_en": "Galore Creek",
+        "name_zh": null,
+        "country_iso": "CA",
+        "state_province": "British Columbia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 12.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "development",
+        "discovery_year": 1960,
+        "production_start_year": null,
+        "operator_company": "Teck/Newmont",
+        "mining_method": "open_pit",
+        "host_rock_type": "Alkalic porphyry",
+        "host_rock_age_text": "Late Triassic-Early Jurassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Canadian Cordillera",
+        "metallogenic_belt": "Canadian Porphyry Belt",
+        "summary_en": "Alkalic porphyry Cu-Au deposit in the Stikine terrane of northwestern BC.",
+        "data_source": "Teck reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "alkalic",
+          "undeveloped",
+          "canada"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mount-milligan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -124.033,
+          55.05
+        ]
+      },
+      "properties": {
+        "name_en": "Mount Milligan",
+        "name_zh": null,
+        "country_iso": "CA",
+        "state_province": "British Columbia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.19,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1980,
+        "production_start_year": 2013,
+        "operator_company": "Centerra Gold",
+        "mining_method": "open_pit",
+        "host_rock_type": "Monzonite porphyry",
+        "host_rock_age_text": "Early Jurassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Canadian Cordillera",
+        "metallogenic_belt": "Canadian Porphyry Belt",
+        "summary_en": "Alkalic porphyry Cu-Au deposit in central BC. Significant gold credits.",
+        "data_source": "Centerra reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "alkalic",
+          "gold-rich",
+          "canada"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "red-chris",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -129.867,
+          57.683
+        ]
+      },
+      "properties": {
+        "name_en": "Red Chris",
+        "name_zh": null,
+        "country_iso": "CA",
+        "state_province": "British Columbia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.35,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 2015,
+        "operator_company": "Newcrest/Imperial Metals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Monzonite porphyry",
+        "host_rock_age_text": "Late Triassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Canadian Cordillera",
+        "metallogenic_belt": "Canadian Porphyry Belt",
+        "summary_en": "Alkalic porphyry Cu-Au deposit in the Stikine terrane. Newcrest block cave expansion planned.",
+        "data_source": "Newcrest reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "alkalic",
+          "canada"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "copper-mountain",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.533,
+          49.333
+        ]
+      },
+      "properties": {
+        "name_en": "Copper Mountain",
+        "name_zh": null,
+        "country_iso": "CA",
+        "state_province": "British Columbia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 3.0,
+        "tonnage_grade_pct": 0.25,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1880,
+        "production_start_year": 1972,
+        "operator_company": "Hudbay Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Early Jurassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Canadian Cordillera",
+        "metallogenic_belt": "Canadian Porphyry Belt",
+        "summary_en": "Porphyry Cu-Au deposit in the Princeton area of southern BC.",
+        "data_source": "Hudbay reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "canada"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cananea",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3,
+          30.983
+        ]
+      },
+      "properties": {
+        "name_en": "Cananea",
+        "name_zh": "Buenavista del Cobre",
+        "country_iso": "MX",
+        "state_province": "Sonora",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 30.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1760,
+        "production_start_year": 1899,
+        "operator_company": "Grupo Mexico",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Paleocene (Laramide)",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Sierra Madre Occidental",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "One of the world's largest porphyry Cu-Mo deposits. Continuous production since 1899.",
+        "data_source": "Grupo Mexico reports; Valencia-Moreno et al. (2006)",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "laramide",
+          "mexico"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "la-caridad",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.567,
+          30.317
+        ]
+      },
+      "properties": {
+        "name_en": "La Caridad",
+        "name_zh": null,
+        "country_iso": "MX",
+        "state_province": "Sonora",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 20.0,
+        "tonnage_grade_pct": 0.34,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1960,
+        "production_start_year": 1979,
+        "operator_company": "Grupo Mexico",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Paleocene (Laramide)",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Sierra Madre Occidental",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Major Laramide porphyry Cu-Mo deposit in northern Sonora.",
+        "data_source": "Grupo Mexico reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "laramide",
+          "mexico"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "el-arco",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.467,
+          28.05
+        ]
+      },
+      "properties": {
+        "name_en": "El Arco",
+        "name_zh": null,
+        "country_iso": "MX",
+        "state_province": "Baja California",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.45,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1970,
+        "production_start_year": null,
+        "operator_company": "Grupo Mexico",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Laramide",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Baja California",
+        "metallogenic_belt": "Western US Porphyry Belt",
+        "summary_en": "Large undeveloped porphyry Cu-Au deposit in central Baja California.",
+        "data_source": "Grupo Mexico reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "mexico"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cobre-panama",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.683,
+          8.9
+        ]
+      },
+      "properties": {
+        "name_en": "Cobre Panama",
+        "name_zh": null,
+        "country_iso": "PA",
+        "state_province": "Colon",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 18.0,
+        "tonnage_grade_pct": 0.36,
+        "tonnage_confidence": "JORC",
+        "status": "suspended",
+        "discovery_year": 1950,
+        "production_start_year": 2019,
+        "operator_company": "First Quantum Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Andesite porphyry",
+        "host_rock_age_text": "Miocene-Pliocene",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Central American Arc",
+        "metallogenic_belt": "Central American Porphyry Belt",
+        "summary_en": "One of the largest new copper mines of the 21st century. Operations suspended in 2023.",
+        "data_source": "First Quantum Minerals reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "island-arc",
+          "miocene",
+          "suspended"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kamoa-kakula",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.033,
+          -10.667
+        ]
+      },
+      "properties": {
+        "name_en": "Kamoa-Kakula",
+        "name_zh": null,
+        "country_iso": "CD",
+        "state_province": "Lualaba",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt",
+          "silver"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 60.0,
+        "tonnage_grade_pct": 3.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 2008,
+        "production_start_year": 2021,
+        "operator_company": "Ivanhoe Mines/Zijin Mining",
+        "mining_method": "underground",
+        "host_rock_type": "Sandstone and siltstone",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "World's highest-grade major copper deposit. Sediment-hosted stratiform copper.",
+        "data_source": "Ivanhoe Mines reports; Hitzman et al. (2012)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "sediment-hosted",
+          "high-grade",
+          "copperbelt",
+          "stratiform"
+        ],
+        "sources_doi": [
+          "10.2113/econgeo.107.2.275"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tenke-fungurume",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.65,
+          -10.6
+        ]
+      },
+      "properties": {
+        "name_en": "Tenke Fungurume",
+        "name_zh": null,
+        "country_iso": "CD",
+        "state_province": "Lualaba",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 35.0,
+        "tonnage_grade_pct": 2.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 2009,
+        "operator_company": "CMOC Group",
+        "mining_method": "open_pit",
+        "host_rock_type": "Dolomite and shale",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "One of the world's largest sediment-hosted Cu-Co deposits.",
+        "data_source": "Freeport-McMoRan/CMOC reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "sediment-hosted",
+          "cobalt",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kipushi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.25,
+          -11.767
+        ]
+      },
+      "properties": {
+        "name_en": "Kipushi",
+        "name_zh": null,
+        "country_iso": "CD",
+        "state_province": "Haut-Katanga",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "zinc"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 2.0,
+        "tonnage_confidence": "historical",
+        "status": "closed",
+        "discovery_year": 1920,
+        "production_start_year": 1925,
+        "operator_company": "Ivanhoe Mines",
+        "mining_method": "underground",
+        "host_rock_type": "Carbonate rock",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "High-grade Zn-Cu deposit in the DRC Copperbelt. Recently being restarted by Ivanhoe.",
+        "data_source": "Ivanhoe Mines reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "zinc",
+          "high-grade",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "deziwa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.5,
+          -10.5
+        ]
+      },
+      "properties": {
+        "name_en": "Deziwa",
+        "name_zh": null,
+        "country_iso": "CD",
+        "state_province": "Lualaba",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 1.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 2010,
+        "production_start_year": 2019,
+        "operator_company": "CNMC/Zijin",
+        "mining_method": "open_pit",
+        "host_rock_type": "Sandstone",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "Ecaille D and Ecaille C deposits in the western DRC Copperbelt.",
+        "data_source": "CNMC reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "cobalt",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kansanshi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.467,
+          -12.133
+        ]
+      },
+      "properties": {
+        "name_en": "Kansanshi",
+        "name_zh": null,
+        "country_iso": "ZM",
+        "state_province": "North-Western",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.7,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 2005,
+        "operator_company": "First Quantum Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Sandstone and shale",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "Africa's largest copper mine by production. Sediment-hosted Cu-Au with significant gold credits.",
+        "data_source": "First Quantum Minerals reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "gold-rich",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sentinel-(kalumbila)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.2,
+          -12.2
+        ]
+      },
+      "properties": {
+        "name_en": "Sentinel (Kalumbila)",
+        "name_zh": null,
+        "country_iso": "ZM",
+        "state_province": "North-Western",
+        "primary_mineral": "copper",
+        "secondary_minerals": [],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 2015,
+        "operator_company": "First Quantum Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Sandstone and shale",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "One of Zambia's largest copper mines in the Kalumbila district.",
+        "data_source": "First Quantum Minerals reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lumwana",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.817,
+          -12.25
+        ]
+      },
+      "properties": {
+        "name_en": "Lumwana",
+        "name_zh": null,
+        "country_iso": "ZM",
+        "state_province": "North-Western",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "uranium",
+          "cobalt"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.55,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1960,
+        "production_start_year": 2008,
+        "operator_company": "Barrick Gold",
+        "mining_method": "open_pit",
+        "host_rock_type": "Schist and gneiss",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "Metamorphosed sediment-hosted Cu-Co-U deposit in the Mwombezhi Dome.",
+        "data_source": "Barrick reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "iocg-like",
+          "uranium",
+          "open-pit",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "konkola",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.833,
+          -12.383
+        ]
+      },
+      "properties": {
+        "name_en": "Konkola",
+        "name_zh": null,
+        "country_iso": "ZM",
+        "state_province": "Copperbelt",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 2.0,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1957,
+        "operator_company": "Vedanta Resources",
+        "mining_method": "underground",
+        "host_rock_type": "Shale and sandstone",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "High-grade underground Cu-Co mine in the Zambian Copperbelt.",
+        "data_source": "Vedanta reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "underground",
+          "high-grade",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nchanga",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.867,
+          -12.517
+        ]
+      },
+      "properties": {
+        "name_en": "Nchanga",
+        "name_zh": null,
+        "country_iso": "ZM",
+        "state_province": "Copperbelt",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 1.0,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1925,
+        "production_start_year": 1930,
+        "operator_company": "Vedanta Resources",
+        "mining_method": "open_pit;underground",
+        "host_rock_type": "Sandstone",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "One of Zambia's largest producing copper mines. Open pit + underground.",
+        "data_source": "Vedanta reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mopani-(mufulira+nkana)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.25,
+          -12.55
+        ]
+      },
+      "properties": {
+        "name_en": "Mopani (Mufulira+Nkana)",
+        "name_zh": null,
+        "country_iso": "ZM",
+        "state_province": "Copperbelt",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 12.0,
+        "tonnage_grade_pct": 1.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1930,
+        "production_start_year": 1933,
+        "operator_company": "ZCCM-IH",
+        "mining_method": "underground",
+        "host_rock_type": "Shale and sandstone",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "Historical Cu-Co mines in the heart of the Zambian Copperbelt.",
+        "data_source": "ZCCM-IH reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "underground",
+          "cobalt",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "grasberg",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.117,
+          -4.05
+        ]
+      },
+      "properties": {
+        "name_en": "Grasberg",
+        "name_zh": null,
+        "country_iso": "ID",
+        "state_province": "Papua",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 50.0,
+        "tonnage_grade_pct": 1.0,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1936,
+        "production_start_year": 1972,
+        "operator_company": "PT Freeport Indonesia",
+        "mining_method": "open-pit;block_caving",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Pliocene",
+        "tectonic_setting": "Island arc collision",
+        "geological_province": "Papua Fold Belt",
+        "metallogenic_belt": "Papua-New Guinea Mineral Belt",
+        "summary_en": "One of the world's largest Cu-Au deposits. Transitioning from open pit to block cave.",
+        "data_source": "Freeport-McMoRan reports; Cooke et al. (2005)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "skarn",
+          "gold-rich",
+          "island-arc"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.100.5.853"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "batu-hijau",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.867,
+          -8.967
+        ]
+      },
+      "properties": {
+        "name_en": "Batu Hijau",
+        "name_zh": null,
+        "country_iso": "ID",
+        "state_province": "West Nusa Tenggara",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.45,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 2000,
+        "operator_company": "Amman Mineral",
+        "mining_method": "open_pit",
+        "host_rock_type": "Tonalite porphyry",
+        "host_rock_age_text": "Pliocene",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Sunda-Banda Arc",
+        "metallogenic_belt": "Southeast Asian Porphyry Belt",
+        "summary_en": "World-class porphyry Cu-Au deposit on Sumbawa Island.",
+        "data_source": "Amman Mineral reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "gold-rich",
+          "island-arc",
+          "indonesia"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ok-tedi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.133,
+          -5.217
+        ]
+      },
+      "properties": {
+        "name_en": "Ok Tedi",
+        "name_zh": null,
+        "country_iso": "PG",
+        "state_province": "Western Province",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "SKN_CALC",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.65,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1968,
+        "production_start_year": 1984,
+        "operator_company": "Ok Tedi Mining Limited",
+        "mining_method": "open_pit",
+        "host_rock_type": "Skarn and porphyry",
+        "host_rock_age_text": "Pliocene",
+        "tectonic_setting": "Island arc collision",
+        "geological_province": "Papua Fold Belt",
+        "metallogenic_belt": "Papua-New Guinea Mineral Belt",
+        "summary_en": "Large Cu-Au skarn-porphyry system in the Star Mountains of PNG.",
+        "data_source": "OTML reports; van Dongen et al. (2010)",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "skarn",
+          "porphyry",
+          "gold-rich",
+          "png"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "panguna",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          155.5,
+          -6.317
+        ]
+      },
+      "properties": {
+        "name_en": "Panguna",
+        "name_zh": null,
+        "country_iso": "PG",
+        "state_province": "Bougainville",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "historical",
+        "status": "closed",
+        "discovery_year": 1960,
+        "production_start_year": 1972,
+        "operator_company": null,
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Pliocene",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Solomon Islands Arc",
+        "metallogenic_belt": "Southeast Asian Porphyry Belt",
+        "summary_en": "One of the world's largest porphyry Cu-Au deposits. Closed since 1989 due to civil conflict.",
+        "data_source": "RTZ reports; Clark (1990)",
+        "data_quality_score": 4,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "closed",
+          "conflict",
+          "png"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "frieda-river",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.783,
+          -4.667
+        ]
+      },
+      "properties": {
+        "name_en": "Frieda River",
+        "name_zh": null,
+        "country_iso": "PG",
+        "state_province": "East Sepik",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 12.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1970,
+        "production_start_year": null,
+        "operator_company": "PanAust",
+        "mining_method": "open_pit",
+        "host_rock_type": "Andesite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Papua Fold Belt",
+        "metallogenic_belt": "Papua-New Guinea Mineral Belt",
+        "summary_en": "Large undeveloped porphyry Cu-Au deposit in the Frieda River complex.",
+        "data_source": "PanAust reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "png"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tampakan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.017,
+          6.45
+        ]
+      },
+      "properties": {
+        "name_en": "Tampakan",
+        "name_zh": null,
+        "country_iso": "PH",
+        "state_province": "South Cotabato",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1990,
+        "production_start_year": null,
+        "operator_company": "Sagittarius Mines",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Pliocene",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Philippine Mobile Belt",
+        "metallogenic_belt": "Southeast Asian Porphyry Belt",
+        "summary_en": "One of the largest undeveloped Cu-Au deposits in Southeast Asia.",
+        "data_source": "Sagittarius Mines reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "philippines"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "phu-kham",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          102.683,
+          18.867
+        ]
+      },
+      "properties": {
+        "name_en": "Phu Kham",
+        "name_zh": null,
+        "country_iso": "LA",
+        "state_province": "Xaisomboun",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 2008,
+        "operator_company": "PanAust",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Permo-Triassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Truong Son Fold Belt",
+        "metallogenic_belt": "Southeast Asian Porphyry Belt",
+        "summary_en": "Porphyry-related Cu-Au deposit in the Truong Son belt of Laos.",
+        "data_source": "PanAust reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "gold-rich",
+          "laos"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "oyu-tolgoi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.867,
+          -43.017
+        ]
+      },
+      "properties": {
+        "name_en": "Oyu Tolgoi",
+        "name_zh": "奥尤陶勒盖",
+        "country_iso": "MN",
+        "state_province": "Omnogovi",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 45.0,
+        "tonnage_grade_pct": 0.85,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 2001,
+        "production_start_year": 2013,
+        "operator_company": "Rio Tinto/Turquoise Hill",
+        "mining_method": "block_caving",
+        "host_rock_type": "Basalt and andesite",
+        "host_rock_age_text": "Devonian",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Central Asian Orogenic Belt",
+        "metallogenic_belt": "Central Asian Porphyry Belt",
+        "summary_en": "One of the world's largest Cu-Au porphyry systems. Hugo Dummett deposit in block cave production.",
+        "data_source": "Rio Tinto reports; Wainwright et al. (2011)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "gold-rich",
+          "caob",
+          "gobi"
+        ],
+        "sources_doi": [
+          "10.2113/econgeo.106.5.749"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tsagaan-suvarga",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.35,
+          43.867
+        ]
+      },
+      "properties": {
+        "name_en": "Tsagaan Suvarga",
+        "name_zh": null,
+        "country_iso": "MN",
+        "state_province": "Dornogovi",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.53,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1960,
+        "production_start_year": null,
+        "operator_company": "Mongolyn Alt Corporation",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Devonian",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Central Asian Orogenic Belt",
+        "metallogenic_belt": "Central Asian Porphyry Belt",
+        "summary_en": "Porphyry Cu-Mo deposit in the South Gobi desert. One of Mongolia's largest Cu resources.",
+        "data_source": "MAK reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "mongolia",
+          "caob"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "dexing",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.733,
+          29.017
+        ]
+      },
+      "properties": {
+        "name_en": "Dexing",
+        "name_zh": "德兴铜矿",
+        "country_iso": "CN",
+        "state_province": "Jiangxi",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.43,
+        "tonnage_confidence": "Chinese classification",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1969,
+        "operator_company": "Jiangxi Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Jurassic",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Yangtze Craton",
+        "metallogenic_belt": "East China Porphyry Belt",
+        "summary_en": "China's largest copper mine. Porphyry Cu-Mo-Au system in the Dexing cluster.",
+        "data_source": "Jiangxi Copper reports; Pan et al. (1999)",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "china",
+          "jurassic"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yulong",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          97.717,
+          31.4
+        ]
+      },
+      "properties": {
+        "name_en": "Yulong",
+        "name_zh": "玉龙铜矿",
+        "country_iso": "CN",
+        "state_province": "Tibet",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.62,
+        "tonnage_confidence": "Chinese classification",
+        "status": "production",
+        "discovery_year": 1960,
+        "production_start_year": 2017,
+        "operator_company": "Western Mining",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Eocene",
+        "tectonic_setting": "Continental collision",
+        "geological_province": "Tibetan Plateau",
+        "metallogenic_belt": "Tethyan Metallogenic Belt",
+        "summary_en": "Porphyry Cu-Mo deposit in the Yulong belt of eastern Tibet. High altitude (>4500m).",
+        "data_source": "Western Mining reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "high-altitude",
+          "tibet",
+          "china"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "qulong",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.6,
+          29.617
+        ]
+      },
+      "properties": {
+        "name_en": "Qulong",
+        "name_zh": null,
+        "country_iso": "CN",
+        "state_province": "Tibet",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 12.0,
+        "tonnage_grade_pct": 0.38,
+        "tonnage_confidence": "Chinese classification",
+        "status": "development",
+        "discovery_year": 2000,
+        "production_start_year": null,
+        "operator_company": "Zijin Mining",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental collision",
+        "geological_province": "Tibetan Plateau",
+        "metallogenic_belt": "Tethyan Metallogenic Belt",
+        "summary_en": "Giant porphyry Cu-Mo deposit in the Gangdese belt of southern Tibet.",
+        "data_source": "Zijin reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "tibet",
+          "china",
+          "gangdese"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pulang",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.983,
+          28.05
+        ]
+      },
+      "properties": {
+        "name_en": "Pulang",
+        "name_zh": "普朗铜矿",
+        "country_iso": "CN",
+        "state_province": "Yunnan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "Chinese classification",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 2017,
+        "operator_company": "Yunnan Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz diorite porphyry",
+        "host_rock_age_text": "Triassic",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Sanjiang Orogen",
+        "metallogenic_belt": "Sanjiang Metallogenic Belt",
+        "summary_en": "Porphyry Cu-Au deposit in the Zhongdian arc of Yunnan.",
+        "data_source": "Yunnan Copper reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "china",
+          "triassic",
+          "sanjiang"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tongkuangyu",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6,
+          35.267
+        ]
+      },
+      "properties": {
+        "name_en": "Tongkuangyu",
+        "name_zh": "铜矿峪",
+        "country_iso": "CN",
+        "state_province": "Shanxi",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 3.0,
+        "tonnage_grade_pct": 0.67,
+        "tonnage_confidence": "Chinese classification",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": null,
+        "operator_company": "Zhongtiaoshan Nonferrous Metals",
+        "mining_method": "underground",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Archean-Paleoproterozoic",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "North China Craton",
+        "metallogenic_belt": "Zhongtiao Metallogenic Belt",
+        "summary_en": "Archean porphyry Cu deposit in the Zhongtiao Mountains. One of China's oldest copper mines.",
+        "data_source": "CGS reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "archean",
+          "china",
+          "underground"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "norilsk-talnakh",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.167,
+          69.333
+        ]
+      },
+      "properties": {
+        "name_en": "Norilsk-Talnakh",
+        "name_zh": null,
+        "country_iso": "RU",
+        "state_province": "Krasnoyarsk Krai",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "nickel",
+          "palladium",
+          "platinum",
+          "cobalt",
+          "gold"
+        ],
+        "deposit_type_code": "MAG",
+        "tonnage_mt": 30.0,
+        "tonnage_grade_pct": 2.0,
+        "tonnage_confidence": "Russian classification",
+        "status": "production",
+        "discovery_year": 1920,
+        "production_start_year": 1935,
+        "operator_company": "Nornickel",
+        "mining_method": "underground",
+        "host_rock_type": "Norite and gabbro",
+        "host_rock_age_text": "Permian-Triassic",
+        "tectonic_setting": "Large Igneous Province",
+        "geological_province": "Siberian Craton",
+        "metallogenic_belt": "Siberian Traps",
+        "summary_en": "World's largest magmatic Ni-Cu-PGE sulfide deposit. Massive sulfides in Siberian Traps intrusions.",
+        "data_source": "Nornickel reports; Naldrett (2010)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "magmatic",
+          "nickel",
+          "pgm",
+          "siberian-traps"
+        ],
+        "sources_doi": [
+          "10.5382/econgeo.105.3.459"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "udokan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.5,
+          56.667
+        ]
+      },
+      "properties": {
+        "name_en": "Udokan",
+        "name_zh": null,
+        "country_iso": "RU",
+        "state_province": "Zabaykalsky Krai",
+        "primary_mineral": "copper",
+        "secondary_minerals": [],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 26.0,
+        "tonnage_grade_pct": 1.05,
+        "tonnage_confidence": "Russian classification",
+        "status": "development",
+        "discovery_year": 1949,
+        "production_start_year": null,
+        "operator_company": "Baikal Mining Company",
+        "mining_method": "open_pit",
+        "host_rock_type": "Sandstone and siltstone",
+        "host_rock_age_text": "Paleoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Siberian Craton",
+        "metallogenic_belt": "Udokan-Chiney Belt",
+        "summary_en": "Largest undeveloped copper deposit in Russia. Unique Proterozoic sediment-hosted stratiform copper.",
+        "data_source": "Baikal Mining Company reports; USGS",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "proterozoic",
+          "undeveloped",
+          "giant"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "aktogay",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          46.833
+        ]
+      },
+      "properties": {
+        "name_en": "Aktogay",
+        "name_zh": null,
+        "country_iso": "KZ",
+        "state_province": "East Kazakhstan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.35,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 2015,
+        "operator_company": "KAZ Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Carboniferous",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Asian Orogenic Belt",
+        "metallogenic_belt": "Central Asian Porphyry Belt",
+        "summary_en": "Major porphyry Cu-Mo deposit in the Balkhash-Ili belt of eastern Kazakhstan.",
+        "data_source": "KAZ Minerals reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "open-pit",
+          "kazakhstan",
+          "caob"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bozshakol",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.283,
+          51.817
+        ]
+      },
+      "properties": {
+        "name_en": "Bozshakol",
+        "name_zh": null,
+        "country_iso": "KZ",
+        "state_province": "Pavlodar",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.35,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1930,
+        "production_start_year": 2016,
+        "operator_company": "KAZ Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Cambrian-Ordovician",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Central Asian Orogenic Belt",
+        "metallogenic_belt": "Central Asian Porphyry Belt",
+        "summary_en": "Large porphyry Cu-Au-Mo deposit in the Bozshakol-Chingiz belt.",
+        "data_source": "KAZ Minerals reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "kazakhstan",
+          "caob",
+          "cambrian"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kounrad",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.0,
+          47.0
+        ]
+      },
+      "properties": {
+        "name_en": "Kounrad",
+        "name_zh": null,
+        "country_iso": "KZ",
+        "state_province": "Karaganda",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 0.6,
+        "tonnage_confidence": "historical",
+        "status": "production",
+        "discovery_year": 1928,
+        "production_start_year": 1934,
+        "operator_company": "Kazakhmys",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Carboniferous",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Asian Orogenic Belt",
+        "metallogenic_belt": "Central Asian Porphyry Belt",
+        "summary_en": "Historic porphyry Cu deposit in central Kazakhstan. One of the first Soviet-era Cu mines.",
+        "data_source": "Kazakhmys reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "historic",
+          "kazakhstan",
+          "caob"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almalyk-(kalmakyr)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.667,
+          40.833
+        ]
+      },
+      "properties": {
+        "name_en": "Almalyk (Kalmakyr)",
+        "name_zh": null,
+        "country_iso": "UZ",
+        "state_province": "Tashkent",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 25.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "Russian classification",
+        "status": "production",
+        "discovery_year": 1930,
+        "production_start_year": 1961,
+        "operator_company": "Almalyk MMC",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Carboniferous",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Tian Shan",
+        "metallogenic_belt": "Cental Asian Porphyry Belt",
+        "summary_en": "One of the largest porphyry Cu-Au-Mo systems in Central Asia. Kalmakyr and Dalneye deposits.",
+        "data_source": "Almalyk MMC reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "uzbekistan",
+          "tian-shan"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sarcheshmeh",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.867,
+          29.983
+        ]
+      },
+      "properties": {
+        "name_en": "Sarcheshmeh",
+        "name_zh": null,
+        "country_iso": "IR",
+        "state_province": "Kerman",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 20.0,
+        "tonnage_grade_pct": 0.65,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1960,
+        "production_start_year": 1979,
+        "operator_company": "NICICO",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Iran",
+        "metallogenic_belt": "Tethyan Metallogenic Belt",
+        "summary_en": "Iran's largest copper mine. Porphyry Cu-Mo deposit in the Kerman belt.",
+        "data_source": "NICICO reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "iran",
+          "tethyan",
+          "miocene"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sungun",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.7,
+          38.7
+        ]
+      },
+      "properties": {
+        "name_en": "Sungun",
+        "name_zh": null,
+        "country_iso": "IR",
+        "state_province": "East Azerbaijan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.55,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 2007,
+        "operator_company": "NICICO",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental collision",
+        "geological_province": "Alborz-Azerbaijan",
+        "metallogenic_belt": "Tethyan Metallogenic Belt",
+        "summary_en": "Major porphyry Cu-Mo deposit in the Arasbaran belt of NW Iran.",
+        "data_source": "NICICO reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "iran",
+          "tethyan",
+          "miocene"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "reko-diq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.0,
+          29.0
+        ]
+      },
+      "properties": {
+        "name_en": "Reko Diq",
+        "name_zh": null,
+        "country_iso": "PK",
+        "state_province": "Balochistan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "molybdenum"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 25.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1970,
+        "production_start_year": null,
+        "operator_company": "Barrick Gold",
+        "mining_method": "open_pit",
+        "host_rock_type": "Quartz diorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental collision",
+        "geological_province": "Chagai Arc",
+        "metallogenic_belt": "Tethyan Metallogenic Belt",
+        "summary_en": "One of the world's largest undeveloped Cu-Au porphyry deposits. Long legal dispute resolved in 2022.",
+        "data_source": "Barrick reports",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "porphyry",
+          "undeveloped",
+          "pakistan",
+          "tethyan"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "olympic-dam",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.867,
+          -30.45
+        ]
+      },
+      "properties": {
+        "name_en": "Olympic Dam",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "South Australia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "uranium",
+          "silver",
+          "rare_earth"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 80.0,
+        "tonnage_grade_pct": 0.8,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1975,
+        "production_start_year": 1988,
+        "operator_company": "BHP",
+        "mining_method": "underground",
+        "host_rock_type": "Hematite breccia",
+        "host_rock_age_text": "Mesoproterozoic",
+        "tectonic_setting": "Intracratonic",
+        "geological_province": "Gawler Craton",
+        "metallogenic_belt": "Gawler-IOCG Province",
+        "summary_en": "Largest uranium deposit and one of largest copper deposits globally. Type example of IOCG.",
+        "data_source": "BHP reports; Ehrig et al. (2012)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "iocg",
+          "type-example",
+          "uranium",
+          "proterozoic"
+        ],
+        "sources_doi": [
+          "10.2113/econgeo.107.4.601"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cadia-ridgeway",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          149.0,
+          -33.467
+        ]
+      },
+      "properties": {
+        "name_en": "Cadia-Ridgeway",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "New South Wales",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 18.0,
+        "tonnage_grade_pct": 0.4,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 1998,
+        "operator_company": "Newmont",
+        "mining_method": "block_caving",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Ordovician",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Macquarie Arc",
+        "metallogenic_belt": "Lachlan Fold Belt",
+        "summary_en": "Australia's largest porphyry Au-Cu system in the Ordovician Macquarie Arc.",
+        "data_source": "Newmont reports; Wilson et al. (2003)",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "gold-rich",
+          "ordovician",
+          "australia"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.98.1.1"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mount-isa-copper",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.483,
+          -20.717
+        ]
+      },
+      "properties": {
+        "name_en": "Mount Isa Copper",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "Queensland",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "lead",
+          "zinc",
+          "silver"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 3.0,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1923,
+        "production_start_year": 1953,
+        "operator_company": "Glencore",
+        "mining_method": "underground",
+        "host_rock_type": "Shale and siltstone",
+        "host_rock_age_text": "Paleoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Mount Isa Inlier",
+        "metallogenic_belt": "Mount Isa Mineral Province",
+        "summary_en": "World-class sediment-hosted Cu-Pb-Zn deposit in Proterozoic rocks.",
+        "data_source": "Glencore reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "underground",
+          "proterozoic",
+          "australia",
+          "isa"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ernest-henry",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.7,
+          -20.45
+        ]
+      },
+      "properties": {
+        "name_en": "Ernest Henry",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "Queensland",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "magnetite"
+        ],
+        "deposit_type_code": "IOCG_MAG",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.9,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1991,
+        "production_start_year": 1998,
+        "operator_company": "Evolution Mining",
+        "mining_method": "underground",
+        "host_rock_type": "Hematite-magnetite breccia",
+        "host_rock_age_text": "Paleoproterozoic",
+        "tectonic_setting": "Intracratonic",
+        "geological_province": "Mount Isa Inlier",
+        "metallogenic_belt": "Cloncurry IOCG Province",
+        "summary_en": "Magnetite-rich IOCG deposit in the Cloncurry district.",
+        "data_source": "Evolution Mining reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "underground",
+          "australia",
+          "magnetite"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "prominent-hill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.783,
+          -29.617
+        ]
+      },
+      "properties": {
+        "name_en": "Prominent Hill",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "South Australia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.9,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 2001,
+        "production_start_year": 2009,
+        "operator_company": "OZ Minerals",
+        "mining_method": "underground",
+        "host_rock_type": "Hematite breccia",
+        "host_rock_age_text": "Mesoproterozoic",
+        "tectonic_setting": "Intracratonic",
+        "geological_province": "Gawler Craton",
+        "metallogenic_belt": "Gawler-IOCG Province",
+        "summary_en": "Hematite-rich IOCG deposit in the Gawler Craton. Now part of BHP.",
+        "data_source": "OZ Minerals (BHP) reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "underground",
+          "australia",
+          "hematite"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "carrapateena",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.5,
+          -31.383
+        ]
+      },
+      "properties": {
+        "name_en": "Carrapateena",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "South Australia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.9,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 2005,
+        "production_start_year": 2019,
+        "operator_company": "OZ Minerals (BHP)",
+        "mining_method": "block_caving",
+        "host_rock_type": "Hematite breccia",
+        "host_rock_age_text": "Mesoproterozoic",
+        "tectonic_setting": "Intracratonic",
+        "geological_province": "Gawler Craton",
+        "metallogenic_belt": "Gawler-IOCG Province",
+        "summary_en": "Deep IOCG deposit in the Gawler Craton. Block cave mining at >500m depth.",
+        "data_source": "OZ Minerals (BHP) reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "block-caving",
+          "deep",
+          "australia"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "northparkes",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          148.0,
+          -32.917
+        ]
+      },
+      "properties": {
+        "name_en": "Northparkes",
+        "name_zh": null,
+        "country_iso": "AU",
+        "state_province": "New South Wales",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.55,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 1993,
+        "operator_company": "Evolution Mining",
+        "mining_method": "block_caving",
+        "host_rock_type": "Quartz monzonite porphyry",
+        "host_rock_age_text": "Ordovician",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Macquarie Arc",
+        "metallogenic_belt": "Lachlan Fold Belt",
+        "summary_en": "Porphyry Cu-Au system. Pioneer of block cave mining in Australia.",
+        "data_source": "Evolution Mining reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "block-caving",
+          "australia",
+          "ordovician"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kghm-(lubin-glogow)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.167,
+          51.45
+        ]
+      },
+      "properties": {
+        "name_en": "KGHM (Lubin-Glogow)",
+        "name_zh": "卢宾-格沃古夫",
+        "country_iso": "PL",
+        "state_province": "Lower Silesia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "silver",
+          "lead",
+          "zinc"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 40.0,
+        "tonnage_grade_pct": 2.0,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1957,
+        "production_start_year": 1968,
+        "operator_company": "KGHM Polska Miedz",
+        "mining_method": "underground",
+        "host_rock_type": "Shale and sandstone",
+        "host_rock_age_text": "Permian (Zechstein)",
+        "tectonic_setting": "Intracratonic basin",
+        "geological_province": "Southern Permian Basin",
+        "metallogenic_belt": "Kupferschiefer Belt",
+        "summary_en": "Europe's largest copper district. Type example of reduced-facies SSC (Kupferschiefer type).",
+        "data_source": "KGHM reports; Oszczepalski (1999)",
+        "data_quality_score": 5,
+        "is_featured": true,
+        "tags": [
+          "giant",
+          "sediment-hosted",
+          "kupferschiefer",
+          "silver",
+          "permian",
+          "poland"
+        ],
+        "sources_doi": [
+          "10.2113/gsecongeo.94.8.1183"
+        ],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mansfeld-sangerhausen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.45,
+          51.583
+        ]
+      },
+      "properties": {
+        "name_en": "Mansfeld-Sangerhausen",
+        "name_zh": null,
+        "country_iso": "DE",
+        "state_province": "Saxony-Anhalt",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "silver"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 1.5,
+        "tonnage_confidence": "historical",
+        "status": "closed",
+        "discovery_year": 1199,
+        "production_start_year": null,
+        "operator_company": null,
+        "mining_method": null,
+        "host_rock_type": "Shale",
+        "host_rock_age_text": "Permian (Zechstein)",
+        "tectonic_setting": "Intracratonic basin",
+        "geological_province": "Southern Permian Basin",
+        "metallogenic_belt": "Kupferschiefer Belt",
+        "summary_en": "Historic Kupferschiefer Cu-Ag mining district. Mined since medieval times.",
+        "data_source": "USGS; historical records",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "kupferschiefer",
+          "historic",
+          "germany"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "white-pine",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.583,
+          46.75
+        ]
+      },
+      "properties": {
+        "name_en": "White Pine",
+        "name_zh": null,
+        "country_iso": "US",
+        "state_province": "Michigan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "silver"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 1.0,
+        "tonnage_confidence": "historical",
+        "status": "closed",
+        "discovery_year": 1920,
+        "production_start_year": 1953,
+        "operator_company": null,
+        "mining_method": "underground",
+        "host_rock_type": "Shale and sandstone",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Midcontinent Rift",
+        "metallogenic_belt": "Keweenaw Copper District",
+        "summary_en": "Sediment-hosted stratiform Cu in the Nonesuch Shale. Keweenaw Peninsula.",
+        "data_source": "USGS; Mauk et al. (1992)",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "historic",
+          "midcontinent-rift",
+          "keweenaw"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kamoto",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.4,
+          -10.7
+        ]
+      },
+      "properties": {
+        "name_en": "Kamoto",
+        "name_zh": null,
+        "country_iso": "CD",
+        "state_province": "Lualaba",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 4.0,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1930,
+        "production_start_year": null,
+        "operator_company": "Glencore",
+        "mining_method": "underground",
+        "host_rock_type": "Dolomite and shale",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "Exceptionally high-grade Cu-Co deposit in the Kolwezi district.",
+        "data_source": "Glencore reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "high-grade",
+          "cobalt",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mutanda",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8,
+          -10.75
+        ]
+      },
+      "properties": {
+        "name_en": "Mutanda",
+        "name_zh": null,
+        "country_iso": "CD",
+        "state_province": "Lualaba",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "cobalt"
+        ],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 1.5,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 2000,
+        "production_start_year": 2010,
+        "operator_company": "Glencore",
+        "mining_method": "open_pit",
+        "host_rock_type": "Shale and dolomite",
+        "host_rock_age_text": "Neoproterozoic",
+        "tectonic_setting": "Intracratonic rift",
+        "geological_province": "Central African Copperbelt",
+        "metallogenic_belt": "Central African Copperbelt",
+        "summary_en": "Major Cu-Co oxide deposit in the Kolwezi district.",
+        "data_source": "Glencore reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "cobalt",
+          "oxide",
+          "copperbelt"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cobre-las-cruces",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.083,
+          37.5
+        ]
+      },
+      "properties": {
+        "name_en": "Cobre Las Cruces",
+        "name_zh": null,
+        "country_iso": "ES",
+        "state_province": "Andalusia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "VMS_BF",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 5.0,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 2009,
+        "operator_company": "First Quantum Minerals",
+        "mining_method": "open_pit",
+        "host_rock_type": "Volcaniclastic and shale",
+        "host_rock_age_text": "Mississippian",
+        "tectonic_setting": "Back-arc basin",
+        "geological_province": "Iberian Pyrite Belt",
+        "metallogenic_belt": "Iberian Pyrite Belt",
+        "summary_en": "High-grade secondary Cu enrichment overlying a VMS deposit in the IPB.",
+        "data_source": "First Quantum Minerals reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "vms",
+          "supergene",
+          "high-grade",
+          "iberian-pyrite-belt",
+          "spain"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "neves-corvo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.967,
+          37.567
+        ]
+      },
+      "properties": {
+        "name_en": "Neves-Corvo",
+        "name_zh": null,
+        "country_iso": "PT",
+        "state_province": "Alentejo",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "zinc",
+          "lead",
+          "silver",
+          "tin"
+        ],
+        "deposit_type_code": "VMS_BF",
+        "tonnage_mt": 8.0,
+        "tonnage_grade_pct": 2.5,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1977,
+        "production_start_year": 1988,
+        "operator_company": "Somincor (Lundin Mining)",
+        "mining_method": "underground",
+        "host_rock_type": "Felsic volcanic rocks",
+        "host_rock_age_text": "Mississippian",
+        "tectonic_setting": "Back-arc basin",
+        "geological_province": "Iberian Pyrite Belt",
+        "metallogenic_belt": "Iberian Pyrite Belt",
+        "summary_en": "World-class VMS deposit with exceptional Cu-Sn grades in the IPB.",
+        "data_source": "Lundin Mining reports; Carvalho et al. (1999)",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "vms",
+          "underground",
+          "tin",
+          "high-grade",
+          "iberian-pyrite-belt",
+          "portugal"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rio-tinto",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.6,
+          37.7
+        ]
+      },
+      "properties": {
+        "name_en": "Rio Tinto",
+        "name_zh": null,
+        "country_iso": "ES",
+        "state_province": "Andalusia",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver",
+          "zinc",
+          "lead"
+        ],
+        "deposit_type_code": "VMS_BM",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.8,
+        "tonnage_confidence": "historical",
+        "status": "production",
+        "discovery_year": "pre-Roman",
+        "production_start_year": 1873,
+        "operator_company": "Atalaya Mining",
+        "mining_method": "open_pit",
+        "host_rock_type": "Felsic volcanic rocks",
+        "host_rock_age_text": "Mississippian",
+        "tectonic_setting": "Back-arc basin",
+        "geological_province": "Iberian Pyrite Belt",
+        "metallogenic_belt": "Iberian Pyrite Belt",
+        "summary_en": "Historic mining district in the IPB. Type locality for VMS deposits. Mined for >5000 years.",
+        "data_source": "Atalaya Mining reports; Tornos (2006)",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "vms",
+          "historic",
+          "type-example",
+          "iberian-pyrite-belt",
+          "spain"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "aitik",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.95,
+          67.067
+        ]
+      },
+      "properties": {
+        "name_en": "Aitik",
+        "name_zh": null,
+        "country_iso": "SE",
+        "state_province": "Norrbotten",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "IOCG_MAG",
+        "tonnage_mt": 7.0,
+        "tonnage_grade_pct": 0.22,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1930,
+        "production_start_year": 1968,
+        "operator_company": "Boliden",
+        "mining_method": "open_pit",
+        "host_rock_type": "Gneiss and schist",
+        "host_rock_age_text": "Paleoproterozoic",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "Fennoscandian Shield",
+        "metallogenic_belt": "Norrbotten IOCG Province",
+        "summary_en": "Europe's largest open-pit copper mine. Low-grade but very large-tonnage IOCG-style deposit.",
+        "data_source": "Boliden reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "open-pit",
+          "sweden",
+          "low-grade",
+          "proterozoic"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kevitsa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.0,
+          67.733
+        ]
+      },
+      "properties": {
+        "name_en": "Kevitsa",
+        "name_zh": null,
+        "country_iso": "FI",
+        "state_province": "Lapland",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "nickel",
+          "gold",
+          "platinum"
+        ],
+        "deposit_type_code": "MAG",
+        "tonnage_mt": 3.0,
+        "tonnage_grade_pct": 0.3,
+        "tonnage_confidence": "NI43-101",
+        "status": "production",
+        "discovery_year": 1980,
+        "production_start_year": 2012,
+        "operator_company": "Boliden",
+        "mining_method": "open_pit",
+        "host_rock_type": "Ultramafic intrusion",
+        "host_rock_age_text": "Paleoproterozoic",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "Fennoscandian Shield",
+        "metallogenic_belt": "Central Lapland Greenstone Belt",
+        "summary_en": "Ni-Cu-PGE deposit in a mafic-ultramafic intrusion in Finnish Lapland.",
+        "data_source": "Boliden reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "magmatic",
+          "nickel",
+          "pgm",
+          "finland",
+          "lapland"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sossego",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -50.067,
+          -6.433
+        ]
+      },
+      "properties": {
+        "name_en": "Sossego",
+        "name_zh": null,
+        "country_iso": "BR",
+        "state_province": "Para",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.9,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1996,
+        "production_start_year": 2004,
+        "operator_company": "Vale",
+        "mining_method": "open_pit;underground",
+        "host_rock_type": "Hematite breccia",
+        "host_rock_age_text": "Archean",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "Carajas Mineral Province",
+        "metallogenic_belt": "Carajas IOCG Province",
+        "summary_en": "First IOCG discovery in the Carajas province. Magnetite-poor hematite-rich style.",
+        "data_source": "Vale reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "brazil",
+          "carajas",
+          "archean",
+          "hematite"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "salobo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -50.25,
+          -5.95
+        ]
+      },
+      "properties": {
+        "name_en": "Salobo",
+        "name_zh": null,
+        "country_iso": "BR",
+        "state_province": "Para",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "magnetite"
+        ],
+        "deposit_type_code": "IOCG_MAG",
+        "tonnage_mt": 10.0,
+        "tonnage_grade_pct": 0.7,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1991,
+        "production_start_year": 2012,
+        "operator_company": "Vale",
+        "mining_method": "open_pit",
+        "host_rock_type": "Magnetite schist",
+        "host_rock_age_text": "Archean",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "Carajas Mineral Province",
+        "metallogenic_belt": "Carajas IOCG Province",
+        "summary_en": "Large-tonnage magnetite-rich IOCG deposit in Carajas. Vale's largest copper operation.",
+        "data_source": "Vale reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "iocg",
+          "brazil",
+          "carajas",
+          "magnetite",
+          "archean"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cerro-casale",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.467,
+          -27.833
+        ]
+      },
+      "properties": {
+        "name_en": "Cerro Casale",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Atacama",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 25.0,
+        "tonnage_grade_pct": 0.55,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 1990,
+        "production_start_year": null,
+        "operator_company": "Barrick/Gold Fields",
+        "mining_method": null,
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Maricunga Belt",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "World-class undeveloped Cu-Au porphyry deposit in the Maricunga belt.",
+        "data_source": "Barrick/Gold Fields reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "giant",
+          "porphyry",
+          "undeveloped",
+          "gold-rich",
+          "chile",
+          "maricunga"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cerro-corona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.6,
+          -6.767
+        ]
+      },
+      "properties": {
+        "name_en": "Cerro Corona",
+        "name_zh": null,
+        "country_iso": "PE",
+        "state_province": "Cajamarca",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.45,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1990,
+        "production_start_year": 2008,
+        "operator_company": "Gold Fields",
+        "mining_method": "open_pit",
+        "host_rock_type": "Diorite porphyry",
+        "host_rock_age_text": "Miocene",
+        "tectonic_setting": "Continental arc",
+        "geological_province": "Central Andes",
+        "metallogenic_belt": "Andean Porphyry Belt",
+        "summary_en": "Porphyry Cu-Au deposit in the Hualgayoc district of northern Peru.",
+        "data_source": "Gold Fields reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "gold-rich",
+          "peru"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "candelaria",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.25,
+          -27.5
+        ]
+      },
+      "properties": {
+        "name_en": "Candelaria",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Atacama",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold",
+          "silver"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.54,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1985,
+        "production_start_year": 1994,
+        "operator_company": "Lundin Mining",
+        "mining_method": "open_pit",
+        "host_rock_type": "Andesite and diorite",
+        "host_rock_age_text": "Early Cretaceous",
+        "tectonic_setting": "Back-arc basin",
+        "geological_province": "Chilean Iron Belt",
+        "metallogenic_belt": "Punta del Cobre IOCG Belt",
+        "summary_en": "Major IOCG deposit in the Punta del Cobre district of the Chilean Iron Belt.",
+        "data_source": "Lundin Mining reports",
+        "data_quality_score": 5,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "open-pit",
+          "chile",
+          "cretaceous"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2026-01-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mantos-blancos",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.067,
+          -23.433
+        ]
+      },
+      "properties": {
+        "name_en": "Mantos Blancos",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Antofagasta",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "silver"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.8,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1950,
+        "production_start_year": 1960,
+        "operator_company": "Mantos Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Andesite",
+        "host_rock_age_text": "Jurassic",
+        "tectonic_setting": "Back-arc basin",
+        "geological_province": "Chilean Iron Belt",
+        "metallogenic_belt": "Chilean IOCG Belt",
+        "summary_en": "Vein and disseminated Cu-Ag deposit in the Jurassic volcanic belt of northern Chile.",
+        "data_source": "Mantos Copper reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "chile",
+          "jurassic"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mantoverde",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.35,
+          -26.833
+        ]
+      },
+      "properties": {
+        "name_en": "Mantoverde",
+        "name_zh": null,
+        "country_iso": "CL",
+        "state_province": "Atacama",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "IOCG_HEM",
+        "tonnage_mt": 5.0,
+        "tonnage_grade_pct": 0.5,
+        "tonnage_confidence": "JORC",
+        "status": "production",
+        "discovery_year": 1985,
+        "production_start_year": 1995,
+        "operator_company": "Mantos Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite",
+        "host_rock_age_text": "Early Cretaceous",
+        "tectonic_setting": "Back-arc basin",
+        "geological_province": "Chilean Iron Belt",
+        "metallogenic_belt": "Chilean IOCG Belt",
+        "summary_en": "IOCG-style Cu-Au deposit in the Atacama region.",
+        "data_source": "Mantos Copper reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "iocg",
+          "chile",
+          "cretaceous",
+          "atacama"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "oyu-tolgoi-south-(hugo-south)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.883,
+          -43.05
+        ]
+      },
+      "properties": {
+        "name_en": "Oyu Tolgoi South (Hugo South)",
+        "name_zh": null,
+        "country_iso": "MN",
+        "state_province": "Omnogovi",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUAU",
+        "tonnage_mt": 15.0,
+        "tonnage_grade_pct": 0.6,
+        "tonnage_confidence": "JORC",
+        "status": "development",
+        "discovery_year": 2003,
+        "production_start_year": null,
+        "operator_company": "Rio Tinto/Turquoise Hill",
+        "mining_method": "block_caving",
+        "host_rock_type": "Basalt and andesite",
+        "host_rock_age_text": "Devonian",
+        "tectonic_setting": "Island arc",
+        "geological_province": "Central Asian Orogenic Belt",
+        "metallogenic_belt": "Central Asian Porphyry Belt",
+        "summary_en": "Southern extension of the Hugo Dummett deposit at Oyu Tolgoi. Currently under development.",
+        "data_source": "Rio Tinto reports",
+        "data_quality_score": 4,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "undeveloped",
+          "gold-rich",
+          "caob",
+          "mongolia"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "khetri",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.783,
+          28.0
+        ]
+      },
+      "properties": {
+        "name_en": "Khetri",
+        "name_zh": null,
+        "country_iso": "IN",
+        "state_province": "Rajasthan",
+        "primary_mineral": "copper",
+        "secondary_minerals": [],
+        "deposit_type_code": "SED_SSC",
+        "tonnage_mt": 3.0,
+        "tonnage_grade_pct": 1.0,
+        "tonnage_confidence": "historical",
+        "status": "production",
+        "discovery_year": "ancient",
+        "production_start_year": 1967,
+        "operator_company": "Hindustan Copper",
+        "mining_method": "underground",
+        "host_rock_type": "Schist and quartzite",
+        "host_rock_age_text": "Proterozoic",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "Aravalli-Delhi Belt",
+        "metallogenic_belt": "Aravalli Copper Belt",
+        "summary_en": "Ancient copper mining district in the Aravalli belt. Mined since Indus Valley Civilization.",
+        "data_source": "Hindustan Copper reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "sediment-hosted",
+          "historic",
+          "india",
+          "aravalli"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "malanjkhand",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.7,
+          22.017
+        ]
+      },
+      "properties": {
+        "name_en": "Malanjkhand",
+        "name_zh": null,
+        "country_iso": "IN",
+        "state_province": "Madhya Pradesh",
+        "primary_mineral": "copper",
+        "secondary_minerals": [
+          "molybdenum",
+          "gold"
+        ],
+        "deposit_type_code": "POR_CUMO",
+        "tonnage_mt": 3.0,
+        "tonnage_grade_pct": 0.83,
+        "tonnage_confidence": "historical",
+        "status": "production",
+        "discovery_year": 1970,
+        "production_start_year": 1982,
+        "operator_company": "Hindustan Copper",
+        "mining_method": "open_pit",
+        "host_rock_type": "Granodiorite",
+        "host_rock_age_text": "Proterozoic",
+        "tectonic_setting": "Craton margin",
+        "geological_province": "Central Indian Tectonic Zone",
+        "metallogenic_belt": "Indian Porphyry Belt",
+        "summary_en": "India's largest porphyry Cu-Mo deposit in the Malanjkhand belt.",
+        "data_source": "Hindustan Copper reports",
+        "data_quality_score": 3,
+        "is_featured": false,
+        "tags": [
+          "porphyry",
+          "india",
+          "proterozoic"
+        ],
+        "sources_doi": [],
+        "last_verified_date": "2025-12-01"
+      }
+    }
+  ],
+  "metadata": {
+    "name": "Global Copper Deposits Atlas — Seed Dataset v0.1",
+    "description": "100 representative copper deposits from 28 countries",
+    "version": "0.1.0",
+    "created": "2026-07-04",
+    "license": "CC-BY-4.0",
+    "sources": [
+      "USGS Mineral Resources Data System (MRDS)",
+      "Company NI 43-101 / JORC Technical Reports",
+      "National Geological Surveys",
+      "Peer-reviewed literature (Economic Geology, Mineralium Deposita, etc.)"
+    ],
+    "total_deposits": 100
+  }
+}
