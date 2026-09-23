@@ -13,6 +13,7 @@ import { translateCode } from '@/lib/dictionary';
 import { type Locale, useLocale, useTranslations } from '@/lib/i18n';
 import { useMapStore } from '@/stores/mapStore';
 import { useUIStore } from '@/stores/uiStore';
+import { useEffect } from 'react';
 
 export function DepositDetailPanel() {
   const t = useTranslations('deposit');
@@ -23,6 +24,14 @@ export function DepositDetailPanel() {
   const { data: detail, isLoading, error } = useDepositDetail(selectedDepositId);
   const { data: nearby } = useNearbyDeposits(selectedDepositId, 50, 8);
   const props = detail?.properties;
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeDetailPanel();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [closeDetailPanel]);
 
   // Localized field accessors
   const locName = props ? (locale === 'zh' && props.name_zh ? props.name_zh : props.name) : '';
@@ -49,13 +58,13 @@ export function DepositDetailPanel() {
 
   return (
     <div className="flex h-full flex-col bg-white shadow-lg border-l border-gray-200">
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 shrink-0">
-        <h2 className="text-sm font-semibold text-gray-900 truncate">
+      <div className="relative z-20 flex shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 py-3">
+        <h2 className="min-w-0 truncate text-sm font-semibold text-gray-900">
           {isLoading ? t('loading') : locName || t('detail')}
         </h2>
         <button
           onClick={closeDetailPanel}
-          className="rounded-md p-1.5 text-gray-400 hover:text-gray-600"
+          className="ml-3 inline-flex shrink-0 items-center gap-x-1.5 rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
           type="button"
           aria-label={t('close')}
         >
@@ -68,6 +77,7 @@ export function DepositDetailPanel() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
+          <span>{t('close')}</span>
         </button>
       </div>
 

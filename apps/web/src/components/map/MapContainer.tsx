@@ -22,8 +22,8 @@ const CLUSTER_RADIUS = 45;
 
 const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = {
   osm: {
-    tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-    attribution: '© OpenStreetMap',
+    tiles: ['https://tile.openstreetmap.de/{z}/{x}/{y}.png'],
+    attribution: '© OpenStreetMap contributors',
   },
   satellite: {
     tiles: [
@@ -32,14 +32,74 @@ const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = 
     attribution: '© Esri',
   },
   terrain: {
-    tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-    attribution: '© OpenStreetMap',
+    tiles: [
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+    ],
+    attribution: '© Esri',
   },
   dark: {
-    tiles: ['https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png'],
-    attribution: '© CARTO',
+    tiles: ['https://tile.openstreetmap.de/{z}/{x}/{y}.png'],
+    attribution: '© OpenStreetMap contributors',
   },
 };
+
+function padBbox(
+  bbox: [number, number, number, number],
+  ratio = 0.18,
+): [number, number, number, number] {
+  const [west, south, east, north] = bbox;
+  const xPad = Math.max((east - west) * ratio, 0.01);
+  const yPad = Math.max((north - south) * ratio, 0.01);
+  return [west - xPad, south - yPad, east + xPad, north + yPad];
+}
+
+function depositTypeColor(): any {
+  return [
+    'match',
+    ['get', 'deposit_type_code'],
+    'POR', '#E74C3C',
+    'POR_CUMO', '#E74C3C',
+    'POR_CUAU', '#C0392B',
+    'POR_AU', '#C0392B',
+    'SED', '#3498DB',
+    'SED_SSC', '#2980B9',
+    'SED_SEDEX', '#2980B9',
+    'VMS', '#9B59B6',
+    'VMS_BM', '#9B59B6',
+    'VMS_BF', '#9B59B6',
+    'VMS_PM', '#9B59B6',
+    'IOCG', '#E67E22',
+    'IOCG_HEM', '#D35400',
+    'IOCG_MAG', '#D35400',
+    'SKN', '#2ECC71',
+    'SKN_CALC', '#27AE60',
+    'SKN_MAG', '#27AE60',
+    'EPI', '#F39C12',
+    'EPI_HS', '#E67E22',
+    'EPI_LS', '#F1C40F',
+    'EPI_IS', '#F39C12',
+    'MAG', '#1ABC9C',
+    '#95A5A6',
+  ];
+}
+
+function pointRadiusByTonnage(): any {
+  return [
+    'interpolate',
+    ['linear'],
+    ['ln', ['max', ['coalesce', ['get', 'tonnage_mt'], 1], 1]],
+    0,
+    4,
+    Math.log(3),
+    6,
+    Math.log(10),
+    9,
+    Math.log(50),
+    14,
+    Math.log(150),
+    20,
+  ];
+}
 
 function clusterTypeCount(codes: string[]): any {
   const args: any[] = [];
@@ -120,8 +180,6 @@ function radiusByTonnage(levels: readonly [number, number, number, number, numbe
 }
 /** Create copper deposit layers on the map. Called exactly once on map load. */
 function addCopperLayers(map: Map) {
-  // Country boundaries and labels are loaded separately from the raster basemap.
-  // This is especially important for satellite imagery, which has no place labels.
   map.addSource('world-reference', {
     type: 'vector',
     url: 'https://demotiles.maplibre.org/tiles/tiles.json',
@@ -137,11 +195,7 @@ function addCopperLayers(map: Map) {
       'line-width': ['interpolate', ['linear'], ['zoom'], 1, 1, 4, 1.6, 8, 2.2],
       'line-opacity': 0.85,
     },
-    layout: {
-      'line-cap': 'round',
-      'line-join': 'round',
-      visibility: 'none',
-    },
+    layout: { 'line-cap': 'round', 'line-join': 'round', visibility: 'none' },
   });
   map.addLayer({
     id: 'world-country-labels',
@@ -165,7 +219,6 @@ function addCopperLayers(map: Map) {
     },
   });
 
-  // Shared GeoJSON source with clustering
   map.addSource('copper-deposits-geojson', {
     type: 'geojson',
     data: { type: 'FeatureCollection', features: [] },
@@ -185,7 +238,6 @@ function addCopperLayers(map: Map) {
     },
   });
 
-  // Cluster circles
   map.addLayer({
     id: 'copper-clusters',
     type: 'circle',
@@ -199,7 +251,6 @@ function addCopperLayers(map: Map) {
       'circle-stroke-color': '#fff',
     },
   });
-  // Cluster count labels
   map.addLayer({
     id: 'copper-cluster-count',
     type: 'symbol',
@@ -212,94 +263,42 @@ function addCopperLayers(map: Map) {
     },
     paint: { 'text-color': '#fff' },
   });
-  // Individual deposit circles
-  map.addLayer({
-    id: 'copper-deposits-circle',
-    type: 'circle',
-    source: 'copper-deposits-geojson',
-    filter: ['!', ['has', 'point_count']],
-    paint: {
-      'circle-radius': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        2,
-        radiusByTonnage([2.5, 3, 6, 10, 14]),
-        8,
-        radiusByTonnage([4, 5, 9, 14, 19]),
-        16,
-        radiusByTonnage([7, 8, 13, 20, 26]),
-      ],
-      'circle-color': [
-        'match',
-        ['get', 'deposit_type_code'],
-        'POR',
-        '#E74C3C',
-        'POR_CUMO',
-        '#E74C3C',
-        'POR_CUAU',
-        '#C0392B',
-        'POR_AU',
-        '#C0392B',
-        'SED',
-        '#3498DB',
-        'SED_SSC',
-        '#2980B9',
-        'SED_SEDEX',
-        '#2980B9',
-        'VMS',
-        '#9B59B6',
-        'VMS_BM',
-        '#9B59B6',
-        'VMS_BF',
-        '#9B59B6',
-        'VMS_PM',
-        '#9B59B6',
-        'IOCG',
-        '#E67E22',
-        'IOCG_HEM',
-        '#D35400',
-        'IOCG_MAG',
-        '#D35400',
-        'SKN',
-        '#2ECC71',
-        'SKN_CALC',
-        '#27AE60',
-        'SKN_MAG',
-        '#27AE60',
-        'EPI',
-        '#F39C12',
-        'EPI_HS',
-        '#E67E22',
-        'EPI_LS',
-        '#F1C40F',
-        'EPI_IS',
-        '#F39C12',
-        'MAG',
-        '#1ABC9C',
-        '#95A5A6',
-      ],
-      'circle-opacity': 0.85,
-      'circle-stroke-width': 1.5,
-      'circle-stroke-color': '#fff',
-    },
-  });
-  // Name labels
-  map.addLayer({
-    id: 'copper-deposit-labels',
-    type: 'symbol',
-    source: 'copper-deposits-geojson',
-    filter: ['!', ['has', 'point_count']],
-    minzoom: 5,
-    layout: {
-      'text-field': ['get', 'name'],
-      'text-font': ['Open Sans Regular'],
-      'text-size': 10,
-      'text-offset': [0, 1.5],
-      'text-anchor': 'top',
-    },
-    paint: { 'text-color': '#333', 'text-halo-color': '#fff', 'text-halo-width': 2 },
-  });
+}
+
+
+const MARKER_TYPE_COLORS: Record<string, string> = {
+  POR: '#E74C3C',
+  POR_CUMO: '#E74C3C',
+  POR_CUAU: '#C0392B',
+  POR_AU: '#C0392B',
+  SED: '#3498DB',
+  SED_SSC: '#2980B9',
+  SED_SEDEX: '#2980B9',
+  VMS: '#9B59B6',
+  VMS_BM: '#9B59B6',
+  VMS_BF: '#9B59B6',
+  VMS_PM: '#9B59B6',
+  IOCG: '#E67E22',
+  IOCG_HEM: '#D35400',
+  IOCG_MAG: '#D35400',
+  SKN: '#2ECC71',
+  SKN_CALC: '#27AE60',
+  SKN_MAG: '#27AE60',
+  EPI: '#F39C12',
+  EPI_HS: '#E67E22',
+  EPI_LS: '#F1C40F',
+  EPI_IS: '#F39C12',
+  MAG: '#1ABC9C',
+};
+
+function markerSize(tonnage: number | null): number {
+  if (tonnage === null || !Number.isFinite(tonnage) || tonnage <= 0) return 8;
+  const scaled = Math.log(Math.max(tonnage, 3)) / Math.log(150);
+  return Math.round(6 + Math.min(Math.max(scaled, 0), 1) * 14);
+}
+
+function markerColor(typeCode: string | null): string {
+  return MARKER_TYPE_COLORS[typeCode || ''] || '#95A5A6';
 }
 
 export function MapContainer() {
@@ -311,16 +310,63 @@ export function MapContainer() {
   const lastFetchRef = useRef<string>('');
   const fetchAbortRef = useRef<AbortController | null>(null);
   const loadDepositsRef = useRef<() => void>(() => {});
+  const markersRef = useRef<maplibregl.Marker[]>([]);
+  const srcDataRef = useRef<GeoJSON.FeatureCollection>({
+    type: 'FeatureCollection',
+    features: [],
+  });
 
   const filters = useFilterStore();
   const { setBbox, setViewport, selectDeposit, setMapLoaded, setMapError, basemap, clusterMetric } =
     useMapStore();
   const { openDetailPanel } = useUIStore();
 
-  // Track current basemap for tile URL updates (avoids stale closure)
-  const basemapRef = useRef(basemap);
-  const appliedBasemapRef = useRef(basemap);
-  basemapRef.current = basemap;
+  const renderHighZoomMarkers = useCallback(
+    (map: Map, collection: GeoJSON.FeatureCollection) => {
+      for (const marker of markersRef.current) marker.remove();
+      markersRef.current = [];
+      if (map.getZoom() < CLUSTER_MAX_ZOOM) return;
+
+      for (const feature of collection.features) {
+        const properties = feature.properties || {};
+        const coordinates = feature.geometry?.type === 'Point'
+          ? feature.geometry.coordinates
+          : null;
+        if (!coordinates) continue;
+
+        const id = String(properties.id || feature.id || '');
+        if (!id) continue;
+        const tonnage = Number(properties.tonnage_mt);
+        const size = markerSize(Number.isFinite(tonnage) ? tonnage : null);
+        const element = document.createElement('button');
+        element.type = 'button';
+        element.className = 'copper-point-marker';
+        element.setAttribute('aria-label', String(properties.name || id));
+        element.title = String(properties.name || id);
+        Object.assign(element.style, {
+          width: `${size}px`,
+          height: `${size}px`,
+          padding: '0',
+          borderRadius: '50%',
+          backgroundColor: markerColor(properties.deposit_type_code as string | null),
+          border: '1.5px solid #fff',
+          boxShadow: '0 1px 4px rgba(0,0,0,.35)',
+          cursor: 'pointer',
+        });
+        element.addEventListener('click', (event) => {
+          event.stopPropagation();
+          selectDeposit(id);
+          openDetailPanel();
+        });
+
+        const marker = new maplibregl.Marker({ element, anchor: 'center' })
+          .setLngLat(coordinates as [number, number])
+          .addTo(map);
+        markersRef.current.push(marker);
+      }
+    },
+    [openDetailPanel, selectDeposit],
+  );
 
   const buildApiUrl = useCallback(() => {
     const p = new URLSearchParams();
@@ -355,14 +401,17 @@ export function MapContainer() {
       if (!res.ok) return;
       const data = await res.json();
       if (controller.signal.aborted) return;
-      src.setData({
-        type: 'FeatureCollection',
+      const collection = {
+        type: 'FeatureCollection' as const,
         features: (data.features || []).filter((f: any) => f.geometry?.coordinates),
-      });
+      };
+      srcDataRef.current = collection;
+      src.setData(collection);
+      renderHighZoomMarkers(mapRef.current, collection);
     } catch (error) {
       if ((error as Error).name !== 'AbortError') lastFetchRef.current = '';
     }
-  }, [buildApiUrl]);
+  }, [buildApiUrl, renderHighZoomMarkers]);
 
   useEffect(() => {
     loadDepositsRef.current = loadDeposits;
@@ -383,14 +432,61 @@ export function MapContainer() {
             version: 8,
             glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
             sources: {
-              basemap: {
+              'basemap-osm': {
                 type: 'raster',
                 tiles: BASEMAP_TILES.osm.tiles,
                 tileSize: 256,
+                maxzoom: 20,
                 attribution: BASEMAP_TILES.osm.attribution,
               },
+              'basemap-satellite': {
+                type: 'raster',
+                tiles: BASEMAP_TILES.satellite.tiles,
+                tileSize: 256,
+                maxzoom: 19,
+                attribution: BASEMAP_TILES.satellite.attribution,
+              },
+              'basemap-terrain': {
+                type: 'raster',
+                tiles: BASEMAP_TILES.terrain.tiles,
+                tileSize: 256,
+                maxzoom: 19,
+                attribution: BASEMAP_TILES.terrain.attribution,
+              },
+              'basemap-dark': {
+                type: 'raster',
+                tiles: BASEMAP_TILES.dark.tiles,
+                tileSize: 256,
+                maxzoom: 20,
+                attribution: BASEMAP_TILES.dark.attribution,
+              },
             },
-            layers: [{ id: 'basemap-layer', type: 'raster', source: 'basemap' }],
+            layers: [
+              { id: 'basemap-osm-layer', type: 'raster', source: 'basemap-osm' },
+              {
+                id: 'basemap-satellite-layer',
+                type: 'raster',
+                source: 'basemap-satellite',
+                layout: { visibility: 'none' },
+              },
+              {
+                id: 'basemap-terrain-layer',
+                type: 'raster',
+                source: 'basemap-terrain',
+                layout: { visibility: 'none' },
+              },
+              {
+                id: 'basemap-dark-layer',
+                type: 'raster',
+                source: 'basemap-dark',
+                layout: { visibility: 'none' },
+                paint: {
+                  'raster-saturation': -1,
+                  'raster-contrast': 0.16,
+                  'raster-brightness-max': 0.58,
+                },
+              },
+            ],
           },
           center: [0, 20],
           zoom: 2.5,
@@ -417,7 +513,7 @@ export function MapContainer() {
           const currentMap = map;
           if (!currentMap) return;
           const b = currentMap.getBounds();
-          bboxRef.current = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+          bboxRef.current = padBbox([b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]);
           setBbox(bboxRef.current);
           const center = currentMap.getCenter();
           setViewport({
@@ -426,18 +522,13 @@ export function MapContainer() {
             bearing: currentMap.getBearing(),
             pitch: currentMap.getPitch(),
           });
+          renderHighZoomMarkers(currentMap, srcDataRef.current);
           if (moveEndTimer) clearTimeout(moveEndTimer);
           moveEndTimer = setTimeout(() => loadDepositsRef.current(), 180);
         });
 
         map.once('idle', () => loadDepositsRef.current());
 
-        map.on('click', 'copper-deposits-circle', (e) => {
-          if (e.features?.[0]?.properties?.id) {
-            selectDeposit(e.features[0].properties.id);
-            openDetailPanel();
-          }
-        });
         map.on('click', 'copper-clusters', (e) => {
           const f = e.features?.[0];
           if (f?.properties?.cluster_id) {
@@ -451,16 +542,14 @@ export function MapContainer() {
             });
           }
         });
-        for (const layer of ['copper-deposits-circle', 'copper-clusters']) {
+        map.on('mousemove', (e) => {
           const currentMap = map;
-          if (!currentMap) continue;
-          currentMap.on('mouseenter', layer, () => {
-            currentMap.getCanvas().style.cursor = 'pointer';
+          if (!currentMap || !currentMap.getLayer('copper-clusters')) return;
+          const hit = currentMap.queryRenderedFeatures(e.point, {
+            layers: ['copper-clusters'],
           });
-          currentMap.on('mouseleave', layer, () => {
-            currentMap.getCanvas().style.cursor = '';
-          });
-        }
+          currentMap.getCanvas().style.cursor = hit.length ? 'pointer' : '';
+        });
 
         mapRef.current = map;
         (window as any).__mapInstance = map;
@@ -472,6 +561,8 @@ export function MapContainer() {
     return () => {
       if (moveEndTimer) clearTimeout(moveEndTimer);
       fetchAbortRef.current?.abort();
+      for (const marker of markersRef.current) marker.remove();
+      markersRef.current = [];
       map?.remove();
       mapRef.current = null;
     };
@@ -486,13 +577,12 @@ export function MapContainer() {
   // ---- BASEMAP SWITCH — swap tiles, NOT style ----
   useEffect(() => {
     const m = mapRef.current;
-    if (!m || !mapReady || appliedBasemapRef.current === basemap) return;
-    const cfg = BASEMAP_TILES[basemap] || BASEMAP_TILES.osm;
-    const src = m.getSource('basemap') as any;
-    if (src?.setTiles) {
-      src.setTiles(cfg.tiles);
-      appliedBasemapRef.current = basemap;
-      // attribution stays with the map, tiles are the only thing that changes
+    if (!m || !mapReady) return;
+    for (const basemapId of Object.keys(BASEMAP_TILES)) {
+      const layerId = `basemap-${basemapId}-layer`;
+      if (m.getLayer(layerId)) {
+        m.setLayoutProperty(layerId, 'visibility', basemapId === basemap ? 'visible' : 'none');
+      }
     }
   }, [basemap, mapReady]);
 
