@@ -9,13 +9,16 @@
 
 import { useTranslations } from '@/lib/i18n';
 import { useFilterStore } from '@/stores/filterStore';
-import { useMapStore } from '@/stores/mapStore';
+import { type ClusterMetric, useMapStore } from '@/stores/mapStore';
 import { useUIStore } from '@/stores/uiStore';
 import maplibregl from 'maplibre-gl';
 import type { GeoJSONSource, Map } from 'maplibre-gl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const API_BASE = '/api/v1';
+const MAP_DATA_LIMIT = 5000;
+const CLUSTER_MAX_ZOOM = 12;
+const CLUSTER_RADIUS = 45;
 
 const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = {
   osm: {
@@ -37,6 +40,37 @@ const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = 
     attribution: '© CARTO',
   },
 };
+
+function clusterRadiusByMetric(metric: ClusterMetric): any {
+  if (metric === 'tonnage') {
+    return [
+      'interpolate',
+      ['linear'],
+      ['ln', ['max', ['coalesce', ['get', 'total_tonnage_mt'], 1], 1]],
+      0,
+      14,
+      Math.log(10),
+      18,
+      Math.log(100),
+      25,
+      Math.log(1000),
+      34,
+    ];
+  }
+  return ['step', ['get', 'point_count'], 14, 10, 22, 50, 30];
+}
+
+function clusterLabelByMetric(metric: ClusterMetric): any {
+  if (metric === 'tonnage') {
+    return [
+      'case',
+      ['>', ['coalesce', ['get', 'total_tonnage_mt'], 0], 0],
+      ['concat', ['number-format', ['get', 'total_tonnage_mt'], { 'max-fraction-digits': 0 }], ' Mt'],
+      '{point_count_abbreviated}',
+    ];
+  }
+  return '{point_count_abbreviated}';
+}
 
 function radiusByTonnage(levels: readonly [number, number, number, number, number]): any {
   return [
@@ -62,8 +96,12 @@ function addCopperLayers(map: Map) {
     type: 'geojson',
     data: { type: 'FeatureCollection', features: [] },
     cluster: true,
-    clusterMaxZoom: 10,
-    clusterRadius: 50,
+    clusterMaxZoom: CLUSTER_MAX_ZOOM,
+    clusterRadius: CLUSTER_RADIUS,
+    clusterProperties: {
+      total_tonnage_mt: ['+', ['coalesce', ['get', 'tonnage_mt'], 0]],
+      producing_count: ['+', ['case', ['==', ['get', 'status'], 'production'], 1, 0]],
+    },
   });
 
   // Cluster circles
@@ -73,7 +111,7 @@ function addCopperLayers(map: Map) {
     source: 'copper-deposits-geojson',
     filter: ['has', 'point_count'],
     paint: {
-      'circle-radius': ['step', ['get', 'point_count'], 14, 10, 22, 50, 30],
+      'circle-radius': clusterRadiusByMetric('count'),
       'circle-color': '#E74C3C',
       'circle-opacity': 0.7,
       'circle-stroke-width': 2,
@@ -87,7 +125,7 @@ function addCopperLayers(map: Map) {
     source: 'copper-deposits-geojson',
     filter: ['has', 'point_count'],
     layout: {
-      'text-field': '{point_count_abbreviated}',
+      'text-field': clusterLabelByMetric('count'),
       'text-font': ['Open Sans Semibold'],
       'text-size': 13,
     },
@@ -190,24 +228,31 @@ export function MapContainer() {
   const [mapReady, setMapReady] = useState(false);
   const bboxRef = useRef<[number, number, number, number] | null>(null);
   const lastFetchRef = useRef<string>('');
+  const fetchAbortRef = useRef<AbortController | null>(null);
+  const loadDepositsRef = useRef<() => void>(() => {});
 
   const filters = useFilterStore();
-  const { setBbox, setViewport, selectDeposit, setMapLoaded, setMapError, basemap } = useMapStore();
+  const { setBbox, setViewport, selectDeposit, setMapLoaded, setMapError, basemap, clusterMetric } =
+    useMapStore();
   const { openDetailPanel } = useUIStore();
 
   // Track current basemap for tile URL updates (avoids stale closure)
   const basemapRef = useRef(basemap);
+  const appliedBasemapRef = useRef(basemap);
   basemapRef.current = basemap;
 
   const buildApiUrl = useCallback(() => {
     const p = new URLSearchParams();
     p.set('mineral', filters.mineral);
-    p.set('size', '200');
+    p.set('size', String(MAP_DATA_LIMIT));
     if (bboxRef.current) p.set('bbox', bboxRef.current.join(','));
     if (filters.countryIsos.length) p.set('country', filters.countryIsos.join(','));
     if (filters.statuses.length) p.set('status', filters.statuses.join(','));
+    if (filters.depositTypePaths.length) p.set('deposit_type', filters.depositTypePaths.join(','));
     if (filters.tonnageRange[0] > 0) p.set('min_tonnage', String(filters.tonnageRange[0]));
     if (filters.tonnageRange[1] < 200) p.set('max_tonnage', String(filters.tonnageRange[1]));
+    if (filters.gradeRange[0] > 0) p.set('min_grade', String(filters.gradeRange[0]));
+    if (filters.gradeRange[1] < 5) p.set('max_grade', String(filters.gradeRange[1]));
     if (filters.searchQuery) p.set('search', filters.searchQuery);
     return `${API_BASE}/deposits?${p}`;
   }, [filters]);
@@ -218,22 +263,35 @@ export function MapContainer() {
     if (!src) return;
     const url = buildApiUrl();
     if (url === lastFetchRef.current) return;
+
+    fetchAbortRef.current?.abort();
+    const controller = new AbortController();
+    fetchAbortRef.current = controller;
     lastFetchRef.current = url;
+
     try {
-      const res = await fetch(url);
+      const res = await fetch(url, { signal: controller.signal });
       if (!res.ok) return;
       const data = await res.json();
+      if (controller.signal.aborted) return;
       src.setData({
         type: 'FeatureCollection',
         features: (data.features || []).filter((f: any) => f.geometry?.coordinates),
       });
-    } catch {}
+    } catch (error) {
+      if ((error as Error).name !== 'AbortError') lastFetchRef.current = '';
+    }
   }, [buildApiUrl]);
+
+  useEffect(() => {
+    loadDepositsRef.current = loadDeposits;
+  }, [loadDeposits]);
 
   // ---- INIT (runs once) ----
   useEffect(() => {
     if (!containerRef.current) return;
     let map: Map | null = null;
+    let moveEndTimer: ReturnType<typeof setTimeout> | undefined;
 
     (async () => {
       try {
@@ -266,13 +324,13 @@ export function MapContainer() {
         map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
         map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-        map.on('load', () => {
+        map.once('style.load', () => {
           addCopperLayers(map!);
           setMapReady(true);
           setMapLoaded(true);
+          loadDepositsRef.current();
         });
 
-        let lastZoom = map.getZoom();
         map.on('moveend', () => {
           const currentMap = map;
           if (!currentMap) return;
@@ -286,13 +344,11 @@ export function MapContainer() {
             bearing: currentMap.getBearing(),
             pitch: currentMap.getPitch(),
           });
-          if (Math.abs(currentMap.getZoom() - lastZoom) >= 0.8) {
-            lastZoom = currentMap.getZoom();
-            loadDeposits();
-          }
+          if (moveEndTimer) clearTimeout(moveEndTimer);
+          moveEndTimer = setTimeout(() => loadDepositsRef.current(), 180);
         });
 
-        map.once('idle', () => loadDeposits());
+        map.once('idle', () => loadDepositsRef.current());
 
         map.on('click', 'copper-deposits-circle', (e) => {
           if (e.features?.[0]?.properties?.id) {
@@ -332,6 +388,8 @@ export function MapContainer() {
     })();
 
     return () => {
+      if (moveEndTimer) clearTimeout(moveEndTimer);
+      fetchAbortRef.current?.abort();
       map?.remove();
       mapRef.current = null;
     };
@@ -346,20 +404,29 @@ export function MapContainer() {
   // ---- BASEMAP SWITCH — swap tiles, NOT style ----
   useEffect(() => {
     const m = mapRef.current;
-    if (!m || !mapReady) return;
+    if (!m || !mapReady || appliedBasemapRef.current === basemap) return;
     const cfg = BASEMAP_TILES[basemap] || BASEMAP_TILES.osm;
     const src = m.getSource('basemap') as any;
     if (src?.setTiles) {
       src.setTiles(cfg.tiles);
+      appliedBasemapRef.current = basemap;
       // attribution stays with the map, tiles are the only thing that changes
     }
   }, [basemap, mapReady]);
+
+  useEffect(() => {
+    const m = mapRef.current;
+    if (!m || !mapReady || !m.getLayer('copper-clusters')) return;
+    m.setPaintProperty('copper-clusters', 'circle-radius', clusterRadiusByMetric(clusterMetric));
+    m.setLayoutProperty('copper-cluster-count', 'text-field', clusterLabelByMetric(clusterMetric));
+    m.setLayoutProperty('copper-cluster-count', 'text-size', clusterMetric === 'tonnage' ? 11 : 13);
+  }, [clusterMetric, mapReady]);
 
   // Reload data when filters change
   useEffect(() => {
     if (mapReady) {
       lastFetchRef.current = '';
-      loadDeposits();
+      loadDepositsRef.current();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);

@@ -66,7 +66,7 @@ export function SearchPanel() {
     async function build() {
       try {
         const [depRes, cRes, clRes] = await Promise.all([
-          fetch('/api/v1/deposits?mineral=copper&size=500'),
+          fetch('/api/v1/deposits?mineral=copper&size=5000'),
           fetch('/api/v1/countries'),
           fetch('/api/v1/reference?type=deposit-types'),
         ]);

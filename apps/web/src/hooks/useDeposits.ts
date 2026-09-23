@@ -60,7 +60,7 @@ export function useDeposits() {
         ...(filters.gradeRange[0] > 0 && { min_grade: filters.gradeRange[0] }),
         ...(filters.gradeRange[1] < 5 && { max_grade: filters.gradeRange[1] }),
         ...(filters.searchQuery && { search: filters.searchQuery }),
-        size: 100,
+        size: 5000,
       };
 
       return apiFetch<GeoJsonFeatureCollection<DepositProperties>>(
@@ -155,6 +155,6 @@ function emptyCollection(): GeoJsonFeatureCollection<DepositProperties> {
   return {
     type: 'FeatureCollection',
     features: [],
-    meta: { total: 0, page: 1, size: 100, pages: 0 },
+    meta: { total: 0, page: 1, size: 5000, pages: 0 },
   };
 }

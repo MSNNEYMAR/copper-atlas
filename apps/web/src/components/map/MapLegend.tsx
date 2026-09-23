@@ -9,6 +9,7 @@
 
 import { translateCode } from '@/lib/dictionary';
 import { useLocale } from '@/lib/i18n';
+import { useMapStore } from '@/stores/mapStore';
 
 const TYPE_COLORS: Record<string, string> = {
   POR_CUMO: '#E74C3C',
@@ -45,6 +46,8 @@ const DISPLAY_TYPES = [
 
 export function MapLegend() {
   const locale = useLocale();
+  const clusterMetric = useMapStore((state) => state.clusterMetric);
+  const setClusterMetric = useMapStore((state) => state.setClusterMetric);
 
   return (
     <div className="absolute bottom-8 left-4 z-10 rounded-lg bg-white/95 backdrop-blur shadow-lg border border-gray-200 p-3 text-xs w-48">
@@ -63,6 +66,44 @@ export function MapLegend() {
             </div>
           );
         })}
+      </div>
+      <div className="mt-3 border-t border-gray-200 pt-3">
+        <div className="mb-1.5 font-medium text-gray-700">
+          {locale === 'zh' ? '聚合圆显示' : 'Cluster labels'}
+        </div>
+        <div className="grid grid-cols-2 gap-1 rounded-md bg-gray-100 p-1">
+          <button
+            type="button"
+            onClick={() => setClusterMetric('count')}
+            className={`rounded px-2 py-1 text-[11px] transition-colors ${
+              clusterMetric === 'count'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-500 hover:text-gray-800'
+            }`}
+          >
+            {locale === 'zh' ? '矿床数' : 'Deposits'}
+          </button>
+          <button
+            type="button"
+            onClick={() => setClusterMetric('tonnage')}
+            className={`rounded px-2 py-1 text-[11px] transition-colors ${
+              clusterMetric === 'tonnage'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-500 hover:text-gray-800'
+            }`}
+          >
+            {locale === 'zh' ? '铜金属量' : 'Cu metal'}
+          </button>
+        </div>
+        <p className="mt-1.5 text-[10px] leading-4 text-gray-400">
+          {clusterMetric === 'count'
+            ? locale === 'zh'
+              ? '数字表示当前圆点内的矿床数量。'
+              : 'Number = deposits inside this cluster.'
+            : locale === 'zh'
+              ? '数字表示当前圆点内的总铜金属量。'
+              : 'Number = total contained Cu in this cluster.'}
+        </p>
       </div>
     </div>
   );

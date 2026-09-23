@@ -9,6 +9,7 @@
 import { create } from 'zustand';
 
 export type BasemapLayer = 'osm' | 'satellite' | 'terrain' | 'dark';
+export type ClusterMetric = 'count' | 'tonnage';
 
 export interface Viewport {
   center: [number, number]; // [lng, lat]
@@ -28,6 +29,7 @@ export interface MapState {
 
   // Active layers
   basemap: BasemapLayer;
+  clusterMetric: ClusterMetric;
   showGeologicalOverlay: boolean;
   showCountryBoundaries: boolean;
 
@@ -40,6 +42,7 @@ export interface MapState {
   setMapLoaded: (loaded: boolean) => void;
   setMapError: (error: boolean) => void;
   setBasemap: (basemap: BasemapLayer) => void;
+  setClusterMetric: (metric: ClusterMetric) => void;
   toggleGeologicalOverlay: () => void;
   toggleCountryBoundaries: () => void;
   selectDeposit: (id: string | null) => void;
@@ -57,6 +60,7 @@ export const useMapStore = create<MapState>()((set) => ({
   isMapLoaded: false,
   isMapError: false,
   basemap: 'osm',
+  clusterMetric: 'count',
   showGeologicalOverlay: false,
   showCountryBoundaries: true,
   selectedDepositId: null,
@@ -74,6 +78,8 @@ export const useMapStore = create<MapState>()((set) => ({
   setMapError: (error) => set({ isMapError: error }),
 
   setBasemap: (basemap) => set({ basemap }),
+
+  setClusterMetric: (clusterMetric) => set({ clusterMetric }),
 
   toggleGeologicalOverlay: () =>
     set((state) => ({ showGeologicalOverlay: !state.showGeologicalOverlay })),

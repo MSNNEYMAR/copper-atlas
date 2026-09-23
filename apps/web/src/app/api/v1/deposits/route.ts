@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
   const maxGrade = params.has('max_grade') ? Number(params.get('max_grade')) : null;
   const featured = params.get('is_featured');
   const page = Math.max(Number.parseInt(params.get('page') || '1', 10) || 1, 1);
-  const size = Math.min(Math.max(Number.parseInt(params.get('size') || '200', 10) || 200, 1), 500);
+  const size = Math.min(Math.max(Number.parseInt(params.get('size') || '5000', 10) || 5000, 1), 5000);
   const sort = params.get('sort');
   const order = params.get('order') === 'asc' ? 'asc' : 'desc';
 
