@@ -530,17 +530,37 @@ export function MapContainer() {
         map.once('idle', () => loadDepositsRef.current());
 
         map.on('click', 'copper-clusters', (e) => {
-          const f = e.features?.[0];
-          if (f?.properties?.cluster_id) {
-            const s = map?.getSource('copper-deposits-geojson') as any;
-            s.getClusterExpansionZoom(f.properties.cluster_id, (_: any, zoom: number) => {
-              map?.flyTo({
-                center: (f.geometry as any).coordinates,
-                zoom: Math.min(zoom, 16),
-                duration: 500,
+          const feature = e.features?.[0];
+          if (!feature?.properties?.cluster_id) return;
+          const clusterSource = map?.getSource('copper-deposits-geojson') as any;
+          clusterSource?.getClusterLeaves(
+            feature.properties.cluster_id,
+            10000,
+            0,
+            (_error: any, leaves: any[]) => {
+              if (!leaves?.length || !map) return;
+              const coordinates = leaves
+                .map((leaf) => leaf.geometry?.coordinates)
+                .filter(
+                  (coords): coords is [number, number] =>
+                    Array.isArray(coords) && coords.length === 2,
+                );
+              if (!coordinates.length) return;
+              if (coordinates.length === 1) {
+                map.flyTo({ center: coordinates[0], zoom: 16, duration: 700 });
+                return;
+              }
+              const bounds = coordinates.reduce(
+                (acc, coords) => acc.extend(coords),
+                new maplibregl.LngLatBounds(coordinates[0], coordinates[0]),
+              );
+              map.fitBounds(bounds, {
+                padding: 80,
+                maxZoom: 16,
+                duration: 800,
               });
-            });
-          }
+            },
+          );
         });
         map.on('mousemove', (e) => {
           const currentMap = map;
