@@ -104,6 +104,9 @@ export function MapLegend() {
               ? '数字表示当前圆点内的总铜金属量。'
               : 'Number = total contained Cu in this cluster.'}
         </p>
+        <p className="mt-1 text-[10px] leading-4 text-gray-400">
+          {locale === 'zh' ? '聚合圆颜色代表组内主导矿床类型。' : 'Cluster color = dominant deposit type.'}
+        </p>
       </div>
     </div>
   );

@@ -41,6 +41,35 @@ const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = 
   },
 };
 
+function clusterTypeCount(codes: string[]): any {
+  const args: any[] = [];
+  for (const code of codes) {
+    args.push(['==', ['get', 'deposit_type_code'], code], 1);
+  }
+  args.push(0);
+  return ['+', ['case', ...args]];
+}
+
+function clusterDominantTypeColor(): any {
+  const maxOther = ['max', ['get', 'sediment_count'], ['get', 'vms_count'], ['get', 'iocg_count'], ['get', 'skarn_count'], ['get', 'epithermal_count'], ['get', 'magmatic_count']];
+  const maxSkarn = ['max', ['get', 'skarn_count'], ['get', 'epithermal_count'], ['get', 'magmatic_count']];
+  const maxIocg = ['max', ['get', 'iocg_count'], ['get', 'skarn_count'], ['get', 'epithermal_count'], ['get', 'magmatic_count']];
+  const maxVms = ['max', ['get', 'vms_count'], ['get', 'iocg_count'], ['get', 'skarn_count'], ['get', 'epithermal_count'], ['get', 'magmatic_count']];
+  const maxSediment = ['max', ['get', 'sediment_count'], ['get', 'vms_count'], ['get', 'iocg_count'], ['get', 'skarn_count'], ['get', 'epithermal_count'], ['get', 'magmatic_count']];
+  const maxEpithermal = ['max', ['get', 'epithermal_count'], ['get', 'magmatic_count']];
+  return [
+    'case',
+    ['>=', ['get', 'porphyry_count'], maxOther], '#E74C3C',
+    ['>=', ['get', 'sediment_count'], maxSediment], '#2980B9',
+    ['>=', ['get', 'vms_count'], maxVms], '#9B59B6',
+    ['>=', ['get', 'iocg_count'], maxIocg], '#D35400',
+    ['>=', ['get', 'skarn_count'], maxSkarn], '#27AE60',
+    ['>=', ['get', 'epithermal_count'], maxEpithermal], '#F39C12',
+    ['>', ['get', 'magmatic_count'], 0], '#1ABC9C',
+    '#95A5A6',
+  ];
+}
+
 function clusterRadiusByMetric(metric: ClusterMetric): any {
   if (metric === 'tonnage') {
     return [
@@ -91,6 +120,51 @@ function radiusByTonnage(levels: readonly [number, number, number, number, numbe
 }
 /** Create copper deposit layers on the map. Called exactly once on map load. */
 function addCopperLayers(map: Map) {
+  // Country boundaries and labels are loaded separately from the raster basemap.
+  // This is especially important for satellite imagery, which has no place labels.
+  map.addSource('world-reference', {
+    type: 'vector',
+    url: 'https://demotiles.maplibre.org/tiles/tiles.json',
+  });
+  map.addLayer({
+    id: 'world-country-boundaries',
+    type: 'line',
+    source: 'world-reference',
+    'source-layer': 'countries',
+    minzoom: 1,
+    paint: {
+      'line-color': 'rgba(255,255,255,0.72)',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 1, 1, 4, 1.6, 8, 2.2],
+      'line-opacity': 0.85,
+    },
+    layout: {
+      'line-cap': 'round',
+      'line-join': 'round',
+      visibility: 'none',
+    },
+  });
+  map.addLayer({
+    id: 'world-country-labels',
+    type: 'symbol',
+    source: 'world-reference',
+    'source-layer': 'centroids',
+    minzoom: 1.5,
+    maxzoom: 7,
+    layout: {
+      'text-field': ['coalesce', ['get', 'NAME'], ['get', 'ABBREV']],
+      'text-font': ['Open Sans Semibold'],
+      'text-size': ['interpolate', ['linear'], ['zoom'], 1.5, 9, 4, 11, 6, 13],
+      'text-max-width': 8,
+      'text-padding': 3,
+      visibility: 'none',
+    },
+    paint: {
+      'text-color': '#ffffff',
+      'text-halo-color': 'rgba(0,0,0,0.68)',
+      'text-halo-width': 1.4,
+    },
+  });
+
   // Shared GeoJSON source with clustering
   map.addSource('copper-deposits-geojson', {
     type: 'geojson',
@@ -101,6 +175,13 @@ function addCopperLayers(map: Map) {
     clusterProperties: {
       total_tonnage_mt: ['+', ['coalesce', ['get', 'tonnage_mt'], 0]],
       producing_count: ['+', ['case', ['==', ['get', 'status'], 'production'], 1, 0]],
+      porphyry_count: clusterTypeCount(['POR', 'POR_CUMO', 'POR_CUAU']),
+      sediment_count: clusterTypeCount(['SED', 'SED_SSC', 'SED_SEDEX']),
+      vms_count: clusterTypeCount(['VMS', 'VMS_BM', 'VMS_BF', 'VMS_PM']),
+      iocg_count: clusterTypeCount(['IOCG', 'IOCG_MAG', 'IOCG_HEM']),
+      skarn_count: clusterTypeCount(['SKN', 'SKN_CALC', 'SKN_MAG']),
+      epithermal_count: clusterTypeCount(['EPI', 'EPI_HS', 'EPI_LS', 'EPI_IS']),
+      magmatic_count: clusterTypeCount(['MAG']),
     },
   });
 
@@ -112,8 +193,8 @@ function addCopperLayers(map: Map) {
     filter: ['has', 'point_count'],
     paint: {
       'circle-radius': clusterRadiusByMetric('count'),
-      'circle-color': '#E74C3C',
-      'circle-opacity': 0.7,
+      'circle-color': clusterDominantTypeColor(),
+      'circle-opacity': 0.78,
       'circle-stroke-width': 2,
       'circle-stroke-color': '#fff',
     },
@@ -315,6 +396,7 @@ export function MapContainer() {
           zoom: 2.5,
           minZoom: 1,
           maxZoom: 18,
+          renderWorldCopies: false,
           attributionControl: false,
           maxTileCacheSize: 200,
           fadeDuration: 100,
@@ -411,6 +493,17 @@ export function MapContainer() {
       src.setTiles(cfg.tiles);
       appliedBasemapRef.current = basemap;
       // attribution stays with the map, tiles are the only thing that changes
+    }
+  }, [basemap, mapReady]);
+
+  useEffect(() => {
+    const m = mapRef.current;
+    if (!m || !mapReady) return;
+    const showReferenceOverlay = basemap === 'satellite';
+    for (const layerId of ['world-country-boundaries', 'world-country-labels']) {
+      if (m.getLayer(layerId)) {
+        m.setLayoutProperty(layerId, 'visibility', showReferenceOverlay ? 'visible' : 'none');
+      }
     }
   }, [basemap, mapReady]);
 
