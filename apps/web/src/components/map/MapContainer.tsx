@@ -18,6 +18,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const API_BASE = '/api/v1';
 const MAP_DATA_LIMIT = 5000;
 const CLUSTER_MAX_ZOOM = 12;
+const INDIVIDUAL_POINT_MIN_ZOOM = 11;
 const CLUSTER_RADIUS = 45;
 
 const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = {
@@ -81,24 +82,6 @@ function depositTypeColor(): any {
     'EPI_IS', '#F39C12',
     'MAG', '#1ABC9C',
     '#95A5A6',
-  ];
-}
-
-function pointRadiusByTonnage(): any {
-  return [
-    'interpolate',
-    ['linear'],
-    ['ln', ['max', ['coalesce', ['get', 'tonnage_mt'], 1], 1]],
-    0,
-    4,
-    Math.log(3),
-    6,
-    Math.log(10),
-    9,
-    Math.log(50),
-    14,
-    Math.log(150),
-    20,
   ];
 }
 
@@ -239,11 +222,43 @@ function addCopperLayers(map: Map) {
     },
   });
 
+  // A separate, non-clustered source guarantees individual deposits are
+  // rendered once the map reaches the cluster expansion zoom.
+  map.addSource('copper-deposits-points', {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features: [] },
+  });
+
+  map.addLayer({
+    id: 'copper-deposits-circle',
+    type: 'circle',
+    source: 'copper-deposits-points',
+    minzoom: INDIVIDUAL_POINT_MIN_ZOOM,
+    paint: {
+      'circle-radius': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        2,
+        radiusByTonnage([2.5, 3, 6, 10, 14]),
+        8,
+        radiusByTonnage([4, 5, 9, 14, 19]),
+        16,
+        radiusByTonnage([7, 8, 13, 20, 26]),
+      ],
+      'circle-color': depositTypeColor(),
+      'circle-opacity': 0.85,
+      'circle-stroke-width': 1.5,
+      'circle-stroke-color': '#fff',
+    },
+  });
+
   map.addLayer({
     id: 'copper-clusters',
     type: 'circle',
     source: 'copper-deposits-geojson',
     filter: ['has', 'point_count'],
+    maxzoom: INDIVIDUAL_POINT_MIN_ZOOM,
     paint: {
       'circle-radius': clusterRadiusByMetric('count'),
       'circle-color': clusterDominantTypeColor(),
@@ -257,6 +272,7 @@ function addCopperLayers(map: Map) {
     type: 'symbol',
     source: 'copper-deposits-geojson',
     filter: ['has', 'point_count'],
+    maxzoom: INDIVIDUAL_POINT_MIN_ZOOM,
     layout: {
       'text-field': clusterLabelByMetric('count'),
       'text-font': ['Open Sans Semibold'],
@@ -264,42 +280,21 @@ function addCopperLayers(map: Map) {
     },
     paint: { 'text-color': '#fff' },
   });
-}
 
-
-const MARKER_TYPE_COLORS: Record<string, string> = {
-  POR: '#E74C3C',
-  POR_CUMO: '#E74C3C',
-  POR_CUAU: '#C0392B',
-  POR_AU: '#C0392B',
-  SED: '#3498DB',
-  SED_SSC: '#2980B9',
-  SED_SEDEX: '#2980B9',
-  VMS: '#9B59B6',
-  VMS_BM: '#9B59B6',
-  VMS_BF: '#9B59B6',
-  VMS_PM: '#9B59B6',
-  IOCG: '#E67E22',
-  IOCG_HEM: '#D35400',
-  IOCG_MAG: '#D35400',
-  SKN: '#2ECC71',
-  SKN_CALC: '#27AE60',
-  SKN_MAG: '#27AE60',
-  EPI: '#F39C12',
-  EPI_HS: '#E67E22',
-  EPI_LS: '#F1C40F',
-  EPI_IS: '#F39C12',
-  MAG: '#1ABC9C',
-};
-
-function markerSize(tonnage: number | null): number {
-  if (tonnage === null || !Number.isFinite(tonnage) || tonnage <= 0) return 8;
-  const scaled = Math.log(Math.max(tonnage, 3)) / Math.log(150);
-  return Math.round(6 + Math.min(Math.max(scaled, 0), 1) * 14);
-}
-
-function markerColor(typeCode: string | null): string {
-  return MARKER_TYPE_COLORS[typeCode || ''] || '#95A5A6';
+  map.addLayer({
+    id: 'copper-deposit-labels',
+    type: 'symbol',
+    source: 'copper-deposits-points',
+    minzoom: INDIVIDUAL_POINT_MIN_ZOOM,
+    layout: {
+      'text-field': ['get', 'name'],
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 10,
+      'text-offset': [0, 1.5],
+      'text-anchor': 'top',
+    },
+    paint: { 'text-color': '#333', 'text-halo-color': '#fff', 'text-halo-width': 2 },
+  });
 }
 
 export function MapContainer() {
@@ -311,64 +306,10 @@ export function MapContainer() {
   const lastFetchRef = useRef<string>('');
   const fetchAbortRef = useRef<AbortController | null>(null);
   const loadDepositsRef = useRef<() => void>(() => {});
-  const markersRef = useRef<maplibregl.Marker[]>([]);
-  const forceMarkersRef = useRef(false);
-  const srcDataRef = useRef<GeoJSON.FeatureCollection>({
-    type: 'FeatureCollection',
-    features: [],
-  });
-
   const filters = useFilterStore();
   const { setBbox, setViewport, selectDeposit, setMapLoaded, setMapError, basemap, clusterMetric } =
     useMapStore();
   const { openDetailPanel } = useUIStore();
-
-  const renderHighZoomMarkers = useCallback(
-    (map: Map, collection: GeoJSON.FeatureCollection, force = false) => {
-      for (const marker of markersRef.current) marker.remove();
-      markersRef.current = [];
-      if (!force && map.getZoom() < CLUSTER_MAX_ZOOM) return;
-
-      for (const feature of collection.features) {
-        const properties = feature.properties || {};
-        const coordinates = feature.geometry?.type === 'Point'
-          ? feature.geometry.coordinates
-          : null;
-        if (!coordinates) continue;
-
-        const id = String(properties.id || feature.id || '');
-        if (!id) continue;
-        const tonnage = Number(properties.tonnage_mt);
-        const size = markerSize(Number.isFinite(tonnage) ? tonnage : null);
-        const element = document.createElement('button');
-        element.type = 'button';
-        element.className = 'copper-point-marker';
-        element.setAttribute('aria-label', String(properties.name || id));
-        element.title = String(properties.name || id);
-        Object.assign(element.style, {
-          width: `${size}px`,
-          height: `${size}px`,
-          padding: '0',
-          borderRadius: '50%',
-          backgroundColor: markerColor(properties.deposit_type_code as string | null),
-          border: '1.5px solid #fff',
-          boxShadow: '0 1px 4px rgba(0,0,0,.35)',
-          cursor: 'pointer',
-        });
-        element.addEventListener('click', (event) => {
-          event.stopPropagation();
-          selectDeposit(id);
-          openDetailPanel();
-        });
-
-        const marker = new maplibregl.Marker({ element, anchor: 'center' })
-          .setLngLat(coordinates as [number, number])
-          .addTo(map);
-        markersRef.current.push(marker);
-      }
-    },
-    [openDetailPanel, selectDeposit],
-  );
 
   const buildApiUrl = useCallback(() => {
     const p = new URLSearchParams();
@@ -389,7 +330,8 @@ export function MapContainer() {
   const loadDeposits = useCallback(async () => {
     if (!mapRef.current) return;
     const src = mapRef.current.getSource('copper-deposits-geojson') as GeoJSONSource | undefined;
-    if (!src) return;
+    const pointSrc = mapRef.current.getSource('copper-deposits-points') as GeoJSONSource | undefined;
+    if (!src || !pointSrc) return;
     const url = buildApiUrl();
     if (url === lastFetchRef.current) return;
 
@@ -407,13 +349,12 @@ export function MapContainer() {
         type: 'FeatureCollection' as const,
         features: (data.features || []).filter((f: any) => f.geometry?.coordinates),
       };
-      srcDataRef.current = collection;
       src.setData(collection);
-      renderHighZoomMarkers(mapRef.current, collection, forceMarkersRef.current);
+      pointSrc.setData(collection);
     } catch (error) {
       if ((error as Error).name !== 'AbortError') lastFetchRef.current = '';
     }
-  }, [buildApiUrl, renderHighZoomMarkers]);
+  }, [buildApiUrl]);
 
   useEffect(() => {
     loadDepositsRef.current = loadDeposits;
@@ -530,58 +471,57 @@ export function MapContainer() {
             bearing: currentMap.getBearing(),
             pitch: currentMap.getPitch(),
           });
-          renderHighZoomMarkers(currentMap, srcDataRef.current, forceMarkersRef.current);
           if (moveEndTimer) clearTimeout(moveEndTimer);
           moveEndTimer = setTimeout(() => loadDepositsRef.current(), 180);
         });
 
         map.once('idle', () => loadDepositsRef.current());
 
-        map.on('click', async (e) => {
-          const currentMap = map;
-          if (!currentMap?.getLayer('copper-clusters')) return;
-          const feature = currentMap.queryRenderedFeatures(e.point, {
-            layers: ['copper-clusters'],
-          })[0];
-          if (!feature?.properties?.cluster_id) {
-            forceMarkersRef.current = false;
-            renderHighZoomMarkers(currentMap, srcDataRef.current);
-            return;
-          }
+        map.on('click', 'copper-deposits-circle', (e) => {
+          const depositId = e.features?.[0]?.properties?.id;
+          if (!depositId) return;
+          selectDeposit(String(depositId));
+          openDetailPanel();
+        });
 
-          const clusterSource = currentMap.getSource('copper-deposits-geojson') as any;
-          if (!clusterSource?.getClusterLeaves) return;
+        map.on('click', 'copper-clusters', async (e) => {
+          const feature = e.features?.[0];
+          if (!feature) return;
+          const clusterId = Number(feature.properties?.cluster_id);
+          if (!Number.isFinite(clusterId)) return;
+
+          const clusterSource = map?.getSource('copper-deposits-geojson') as
+            | GeoJSONSource
+            | undefined;
+          if (!clusterSource || feature.geometry.type !== 'Point') return;
+
           try {
-            const leaves = await clusterSource.getClusterLeaves(
-              feature.properties.cluster_id,
-              10000,
-              0,
-            );
+            const leaves = await clusterSource.getClusterLeaves(clusterId, 10000, 0);
             const coordinates = leaves
-              .map((leaf: any) => leaf.geometry?.coordinates)
+              .map((leaf) => (leaf.geometry?.type === 'Point' ? leaf.geometry.coordinates : null))
               .filter(
-                (coords: any): coords is [number, number] =>
+                (coords): coords is [number, number] =>
                   Array.isArray(coords) && coords.length === 2,
               );
-            if (!coordinates.length) return;
-            forceMarkersRef.current = true;
-            renderHighZoomMarkers(
-              currentMap,
-              { type: 'FeatureCollection', features: leaves },
-              true,
-            );
+            if (!coordinates.length || !map) return;
+
             if (coordinates.length === 1) {
-              currentMap.flyTo({ center: coordinates[0], zoom: 16, duration: 700 });
+              map.flyTo({
+                center: coordinates[0],
+                zoom: Math.max(map.getZoom() + 2, 14),
+                duration: 650,
+              });
               return;
             }
+
             const bounds = coordinates.reduce(
-              (acc: maplibregl.LngLatBounds, coords: [number, number]) => acc.extend(coords),
+              (acc, coords) => acc.extend(coords),
               new maplibregl.LngLatBounds(coordinates[0], coordinates[0]),
             );
-            currentMap.fitBounds(bounds, {
-              padding: 80,
-              maxZoom: 16,
-              duration: 800,
+            map.fitBounds(bounds, {
+              padding: { top: 90, right: 80, bottom: 80, left: 400 },
+              maxZoom: 15,
+              duration: 700,
             });
           } catch {
             // Ignore stale cluster ids after a data refresh.
@@ -590,10 +530,12 @@ export function MapContainer() {
 
         map.on('mousemove', (e) => {
           const currentMap = map;
-          if (!currentMap || !currentMap.getLayer('copper-clusters')) return;
-          const hit = currentMap.queryRenderedFeatures(e.point, {
-            layers: ['copper-clusters'],
-          });
+          if (!currentMap) return;
+          const layers = ['copper-deposits-circle', 'copper-clusters'].filter((layerId) =>
+            currentMap.getLayer(layerId),
+          );
+          if (!layers.length) return;
+          const hit = currentMap.queryRenderedFeatures(e.point, { layers });
           currentMap.getCanvas().style.cursor = hit.length ? 'pointer' : '';
         });
 
@@ -607,8 +549,6 @@ export function MapContainer() {
     return () => {
       if (moveEndTimer) clearTimeout(moveEndTimer);
       fetchAbortRef.current?.abort();
-      for (const marker of markersRef.current) marker.remove();
-      markersRef.current = [];
       map?.remove();
       mapRef.current = null;
     };
