@@ -46,10 +46,11 @@ const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = 
 function padBbox(
   bbox: [number, number, number, number],
   ratio = 0.18,
+  minPad = 0.01,
 ): [number, number, number, number] {
   const [west, south, east, north] = bbox;
-  const xPad = Math.max((east - west) * ratio, 0.01);
-  const yPad = Math.max((north - south) * ratio, 0.01);
+  const xPad = Math.max((east - west) * ratio, minPad);
+  const yPad = Math.max((north - south) * ratio, minPad);
   return [west - xPad, south - yPad, east + xPad, north + yPad];
 }
 
@@ -311,6 +312,7 @@ export function MapContainer() {
   const fetchAbortRef = useRef<AbortController | null>(null);
   const loadDepositsRef = useRef<() => void>(() => {});
   const markersRef = useRef<maplibregl.Marker[]>([]);
+  const forceMarkersRef = useRef(false);
   const srcDataRef = useRef<GeoJSON.FeatureCollection>({
     type: 'FeatureCollection',
     features: [],
@@ -322,10 +324,10 @@ export function MapContainer() {
   const { openDetailPanel } = useUIStore();
 
   const renderHighZoomMarkers = useCallback(
-    (map: Map, collection: GeoJSON.FeatureCollection) => {
+    (map: Map, collection: GeoJSON.FeatureCollection, force = false) => {
       for (const marker of markersRef.current) marker.remove();
       markersRef.current = [];
-      if (map.getZoom() < CLUSTER_MAX_ZOOM) return;
+      if (!force && map.getZoom() < CLUSTER_MAX_ZOOM) return;
 
       for (const feature of collection.features) {
         const properties = feature.properties || {};
@@ -407,7 +409,7 @@ export function MapContainer() {
       };
       srcDataRef.current = collection;
       src.setData(collection);
-      renderHighZoomMarkers(mapRef.current, collection);
+      renderHighZoomMarkers(mapRef.current, collection, forceMarkersRef.current);
     } catch (error) {
       if ((error as Error).name !== 'AbortError') lastFetchRef.current = '';
     }
@@ -513,7 +515,13 @@ export function MapContainer() {
           const currentMap = map;
           if (!currentMap) return;
           const b = currentMap.getBounds();
-          bboxRef.current = padBbox([b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]);
+          const zoom = currentMap.getZoom();
+          const minBuffer = zoom >= 12 ? 0.5 : 0.05;
+          bboxRef.current = padBbox(
+            [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()],
+            0.18,
+            minBuffer,
+          );
           setBbox(bboxRef.current);
           const center = currentMap.getCenter();
           setViewport({
@@ -522,46 +530,64 @@ export function MapContainer() {
             bearing: currentMap.getBearing(),
             pitch: currentMap.getPitch(),
           });
-          renderHighZoomMarkers(currentMap, srcDataRef.current);
+          renderHighZoomMarkers(currentMap, srcDataRef.current, forceMarkersRef.current);
           if (moveEndTimer) clearTimeout(moveEndTimer);
           moveEndTimer = setTimeout(() => loadDepositsRef.current(), 180);
         });
 
         map.once('idle', () => loadDepositsRef.current());
 
-        map.on('click', 'copper-clusters', (e) => {
-          const feature = e.features?.[0];
-          if (!feature?.properties?.cluster_id) return;
-          const clusterSource = map?.getSource('copper-deposits-geojson') as any;
-          clusterSource?.getClusterLeaves(
-            feature.properties.cluster_id,
-            10000,
-            0,
-            (_error: any, leaves: any[]) => {
-              if (!leaves?.length || !map) return;
-              const coordinates = leaves
-                .map((leaf) => leaf.geometry?.coordinates)
-                .filter(
-                  (coords): coords is [number, number] =>
-                    Array.isArray(coords) && coords.length === 2,
-                );
-              if (!coordinates.length) return;
-              if (coordinates.length === 1) {
-                map.flyTo({ center: coordinates[0], zoom: 16, duration: 700 });
-                return;
-              }
-              const bounds = coordinates.reduce(
-                (acc, coords) => acc.extend(coords),
-                new maplibregl.LngLatBounds(coordinates[0], coordinates[0]),
+        map.on('click', async (e) => {
+          const currentMap = map;
+          if (!currentMap?.getLayer('copper-clusters')) return;
+          const feature = currentMap.queryRenderedFeatures(e.point, {
+            layers: ['copper-clusters'],
+          })[0];
+          if (!feature?.properties?.cluster_id) {
+            forceMarkersRef.current = false;
+            renderHighZoomMarkers(currentMap, srcDataRef.current);
+            return;
+          }
+
+          const clusterSource = currentMap.getSource('copper-deposits-geojson') as any;
+          if (!clusterSource?.getClusterLeaves) return;
+          try {
+            const leaves = await clusterSource.getClusterLeaves(
+              feature.properties.cluster_id,
+              10000,
+              0,
+            );
+            const coordinates = leaves
+              .map((leaf: any) => leaf.geometry?.coordinates)
+              .filter(
+                (coords: any): coords is [number, number] =>
+                  Array.isArray(coords) && coords.length === 2,
               );
-              map.fitBounds(bounds, {
-                padding: 80,
-                maxZoom: 16,
-                duration: 800,
-              });
-            },
-          );
+            if (!coordinates.length) return;
+            forceMarkersRef.current = true;
+            renderHighZoomMarkers(
+              currentMap,
+              { type: 'FeatureCollection', features: leaves },
+              true,
+            );
+            if (coordinates.length === 1) {
+              currentMap.flyTo({ center: coordinates[0], zoom: 16, duration: 700 });
+              return;
+            }
+            const bounds = coordinates.reduce(
+              (acc: maplibregl.LngLatBounds, coords: [number, number]) => acc.extend(coords),
+              new maplibregl.LngLatBounds(coordinates[0], coordinates[0]),
+            );
+            currentMap.fitBounds(bounds, {
+              padding: 80,
+              maxZoom: 16,
+              duration: 800,
+            });
+          } catch {
+            // Ignore stale cluster ids after a data refresh.
+          }
         });
+
         map.on('mousemove', (e) => {
           const currentMap = map;
           if (!currentMap || !currentMap.getLayer('copper-clusters')) return;
