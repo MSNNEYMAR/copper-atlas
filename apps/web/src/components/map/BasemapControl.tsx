@@ -9,7 +9,7 @@ import { useTranslations } from '@/lib/i18n';
 import { type BasemapLayer, useMapStore } from '@/stores/mapStore';
 
 const BASEMAPS: { id: BasemapLayer; icon: string }[] = [
-  { id: 'osm', icon: '🗺' },
+  { id: 'street', icon: '🗺' },
   { id: 'satellite', icon: '🛰' },
   { id: 'terrain', icon: '⛰' },
   { id: 'dark', icon: '🌙' },

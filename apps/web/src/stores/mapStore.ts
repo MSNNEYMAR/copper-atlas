@@ -8,7 +8,7 @@
 
 import { create } from 'zustand';
 
-export type BasemapLayer = 'osm' | 'satellite' | 'terrain' | 'dark';
+export type BasemapLayer = 'street' | 'satellite' | 'terrain' | 'dark';
 export type ClusterMetric = 'count' | 'tonnage';
 
 export interface Viewport {
@@ -59,7 +59,7 @@ export const useMapStore = create<MapState>()((set) => ({
   bbox: null,
   isMapLoaded: false,
   isMapError: false,
-  basemap: 'osm',
+  basemap: 'street',
   clusterMetric: 'count',
   showGeologicalOverlay: false,
   showCountryBoundaries: true,

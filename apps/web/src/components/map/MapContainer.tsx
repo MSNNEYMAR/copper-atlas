@@ -9,7 +9,7 @@
 
 import { useTranslations } from '@/lib/i18n';
 import { useFilterStore } from '@/stores/filterStore';
-import { type ClusterMetric, useMapStore } from '@/stores/mapStore';
+import { type BasemapLayer, type ClusterMetric, useMapStore } from '@/stores/mapStore';
 import { useUIStore } from '@/stores/uiStore';
 import maplibregl from 'maplibre-gl';
 import type { GeoJSONSource, Map } from 'maplibre-gl';
@@ -28,28 +28,82 @@ const CLUSTER_LAYER_MAX_ZOOM = CLUSTER_MAX_ZOOM + 1;
 const POINT_LABEL_MIN_ZOOM = 11;
 const CLUSTER_RADIUS = 45;
 
-const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = {
-  osm: {
-    tiles: ['https://tile.openstreetmap.de/{z}/{x}/{y}.png'],
-    attribution: '© OpenStreetMap contributors',
+// All four basemaps come from Esri's ArcGIS Online raster tile services: one global
+// CDN, no API key, 256px tiles up to z19, and `Access-Control-Allow-Origin: *` on
+// tile responses. The previous default, the volunteer-run tile.openstreetmap.de
+// mirror, throttled under normal panning and answered with CORS-less error
+// responses, which surfaced as blank tiles plus "blocked by CORS policy" noise in
+// the console. CARTO was evaluated too but now watermarks tiles without an API key.
+const ESRI_TILES = 'https://server.arcgisonline.com/ArcGIS/rest/services';
+const ESRI_ATTRIBUTION =
+  '© Esri, HERE, Garmin, © OpenStreetMap contributors, and the GIS User Community';
+
+interface BasemapDef {
+  tiles: string[];
+  attribution: string;
+  /** Highest zoom the provider really serves; MapLibre overzooms beyond it. */
+  maxzoom: number;
+  /** Optional raster adjustments — used to derive the dark theme. */
+  paint?: Record<string, unknown>;
+}
+
+const BASEMAP_TILES: Record<BasemapLayer, BasemapDef> = {
+  street: {
+    tiles: [`${ESRI_TILES}/World_Street_Map/MapServer/tile/{z}/{y}/{x}`],
+    attribution: ESRI_ATTRIBUTION,
+    maxzoom: 19,
   },
   satellite: {
-    tiles: [
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    ],
-    attribution: '© Esri',
+    tiles: [`${ESRI_TILES}/World_Imagery/MapServer/tile/{z}/{y}/{x}`],
+    attribution: '© Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+    maxzoom: 19,
   },
   terrain: {
-    tiles: [
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-    ],
-    attribution: '© Esri',
+    tiles: [`${ESRI_TILES}/World_Topo_Map/MapServer/tile/{z}/{y}/{x}`],
+    attribution: ESRI_ATTRIBUTION,
+    maxzoom: 19,
   },
   dark: {
-    tiles: ['https://tile.openstreetmap.de/{z}/{x}/{y}.png'],
-    attribution: '© OpenStreetMap contributors',
+    // ArcGIS' dedicated dark basemap (Canvas/World_Dark_Gray_Base) has no tiles
+    // above z16, so the street map is desaturated and dimmed instead.
+    tiles: [`${ESRI_TILES}/World_Street_Map/MapServer/tile/{z}/{y}/{x}`],
+    attribution: ESRI_ATTRIBUTION,
+    maxzoom: 19,
+    paint: {
+      'raster-saturation': -1,
+      'raster-contrast': 0.12,
+      'raster-brightness-max': 0.42,
+    },
   },
 };
+
+/** Basemap raster sources + layers. Swapping basemaps only toggles visibility. */
+function addBasemapLayers(initial: BasemapLayer): maplibregl.StyleSpecification {
+  const sources: Record<string, any> = {};
+  const layers: any[] = [];
+  for (const [id, def] of Object.entries(BASEMAP_TILES)) {
+    sources[`basemap-${id}`] = {
+      type: 'raster',
+      tiles: def.tiles,
+      tileSize: 256,
+      maxzoom: def.maxzoom,
+      attribution: def.attribution,
+    };
+    layers.push({
+      id: `basemap-${id}-layer`,
+      type: 'raster',
+      source: `basemap-${id}`,
+      ...(def.paint ? { paint: def.paint } : {}),
+      ...(id === initial ? {} : { layout: { visibility: 'none' } }),
+    });
+  }
+  return {
+    version: 8,
+    glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+    sources,
+    layers,
+  };
+}
 
 function padBbox(
   bbox: [number, number, number, number],
@@ -379,67 +433,7 @@ export function MapContainer() {
       try {
         map = new maplibregl.Map({
           container: containerRef.current!,
-          // Start with a single raster source for the basemap
-          style: {
-            version: 8,
-            glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-            sources: {
-              'basemap-osm': {
-                type: 'raster',
-                tiles: BASEMAP_TILES.osm.tiles,
-                tileSize: 256,
-                maxzoom: 20,
-                attribution: BASEMAP_TILES.osm.attribution,
-              },
-              'basemap-satellite': {
-                type: 'raster',
-                tiles: BASEMAP_TILES.satellite.tiles,
-                tileSize: 256,
-                maxzoom: 19,
-                attribution: BASEMAP_TILES.satellite.attribution,
-              },
-              'basemap-terrain': {
-                type: 'raster',
-                tiles: BASEMAP_TILES.terrain.tiles,
-                tileSize: 256,
-                maxzoom: 19,
-                attribution: BASEMAP_TILES.terrain.attribution,
-              },
-              'basemap-dark': {
-                type: 'raster',
-                tiles: BASEMAP_TILES.dark.tiles,
-                tileSize: 256,
-                maxzoom: 20,
-                attribution: BASEMAP_TILES.dark.attribution,
-              },
-            },
-            layers: [
-              { id: 'basemap-osm-layer', type: 'raster', source: 'basemap-osm' },
-              {
-                id: 'basemap-satellite-layer',
-                type: 'raster',
-                source: 'basemap-satellite',
-                layout: { visibility: 'none' },
-              },
-              {
-                id: 'basemap-terrain-layer',
-                type: 'raster',
-                source: 'basemap-terrain',
-                layout: { visibility: 'none' },
-              },
-              {
-                id: 'basemap-dark-layer',
-                type: 'raster',
-                source: 'basemap-dark',
-                layout: { visibility: 'none' },
-                paint: {
-                  'raster-saturation': -1,
-                  'raster-contrast': 0.16,
-                  'raster-brightness-max': 0.58,
-                },
-              },
-            ],
-          },
+          style: addBasemapLayers(useMapStore.getState().basemap),
           center: [0, 20],
           zoom: 2.5,
           minZoom: 1,
