@@ -1,3 +1,4 @@
+import countryCatalog from '@/data/countries.json';
 import seed from '@/data/seed-v2.json';
 
 type RawFeature = {
@@ -69,36 +70,10 @@ export interface AtlasDeposit {
   lastVerifiedDate: string | null;
 }
 
-const COUNTRY_META: Record<string, Omit<AtlasCountry, 'id' | 'iso_code'>> = {
-  AU: { iso_code_3: 'AUS', name_en: 'Australia', name_zh: '澳大利亚', continent: 'Oceania', subregion: 'Australia and New Zealand' },
-  BR: { iso_code_3: 'BRA', name_en: 'Brazil', name_zh: '巴西', continent: 'South America', subregion: 'South America' },
-  CA: { iso_code_3: 'CAN', name_en: 'Canada', name_zh: '加拿大', continent: 'North America', subregion: 'North America' },
-  CD: { iso_code_3: 'COD', name_en: 'Democratic Republic of the Congo', name_zh: '刚果民主共和国', continent: 'Africa', subregion: 'Middle Africa' },
-  CL: { iso_code_3: 'CHL', name_en: 'Chile', name_zh: '智利', continent: 'South America', subregion: 'South America' },
-  CN: { iso_code_3: 'CHN', name_en: 'China', name_zh: '中国', continent: 'Asia', subregion: 'Eastern Asia' },
-  DE: { iso_code_3: 'DEU', name_en: 'Germany', name_zh: '德国', continent: 'Europe', subregion: 'Western Europe' },
-  ES: { iso_code_3: 'ESP', name_en: 'Spain', name_zh: '西班牙', continent: 'Europe', subregion: 'Southern Europe' },
-  FI: { iso_code_3: 'FIN', name_en: 'Finland', name_zh: '芬兰', continent: 'Europe', subregion: 'Northern Europe' },
-  ID: { iso_code_3: 'IDN', name_en: 'Indonesia', name_zh: '印度尼西亚', continent: 'Asia', subregion: 'South-eastern Asia' },
-  IN: { iso_code_3: 'IND', name_en: 'India', name_zh: '印度', continent: 'Asia', subregion: 'Southern Asia' },
-  IR: { iso_code_3: 'IRN', name_en: 'Iran', name_zh: '伊朗', continent: 'Asia', subregion: 'Southern Asia' },
-  KZ: { iso_code_3: 'KAZ', name_en: 'Kazakhstan', name_zh: '哈萨克斯坦', continent: 'Asia', subregion: 'Central Asia' },
-  LA: { iso_code_3: 'LAO', name_en: 'Laos', name_zh: '老挝', continent: 'Asia', subregion: 'South-eastern Asia' },
-  MN: { iso_code_3: 'MNG', name_en: 'Mongolia', name_zh: '蒙古', continent: 'Asia', subregion: 'Eastern Asia' },
-  MX: { iso_code_3: 'MEX', name_en: 'Mexico', name_zh: '墨西哥', continent: 'North America', subregion: 'Central America' },
-  PA: { iso_code_3: 'PAN', name_en: 'Panama', name_zh: '巴拿马', continent: 'North America', subregion: 'Central America' },
-  PE: { iso_code_3: 'PER', name_en: 'Peru', name_zh: '秘鲁', continent: 'South America', subregion: 'South America' },
-  PG: { iso_code_3: 'PNG', name_en: 'Papua New Guinea', name_zh: '巴布亚新几内亚', continent: 'Oceania', subregion: 'Melanesia' },
-  PH: { iso_code_3: 'PHL', name_en: 'Philippines', name_zh: '菲律宾', continent: 'Asia', subregion: 'South-eastern Asia' },
-  PK: { iso_code_3: 'PAK', name_en: 'Pakistan', name_zh: '巴基斯坦', continent: 'Asia', subregion: 'Southern Asia' },
-  PL: { iso_code_3: 'POL', name_en: 'Poland', name_zh: '波兰', continent: 'Europe', subregion: 'Eastern Europe' },
-  PT: { iso_code_3: 'PRT', name_en: 'Portugal', name_zh: '葡萄牙', continent: 'Europe', subregion: 'Southern Europe' },
-  RU: { iso_code_3: 'RUS', name_en: 'Russia', name_zh: '俄罗斯', continent: 'Europe', subregion: 'Eastern Europe' },
-  SE: { iso_code_3: 'SWE', name_en: 'Sweden', name_zh: '瑞典', continent: 'Europe', subregion: 'Northern Europe' },
-  US: { iso_code_3: 'USA', name_en: 'United States', name_zh: '美国', continent: 'North America', subregion: 'North America' },
-  UZ: { iso_code_3: 'UZB', name_en: 'Uzbekistan', name_zh: '乌兹别克斯坦', continent: 'Asia', subregion: 'Central Asia' },
-  ZM: { iso_code_3: 'ZMB', name_en: 'Zambia', name_zh: '赞比亚', continent: 'Africa', subregion: 'Eastern Africa' },
-};
+const COUNTRY_META = countryCatalog as Record<
+  string,
+  Omit<AtlasCountry, 'id' | 'iso_code'>
+>;
 
 export const atlasCountries: AtlasCountry[] = Object.entries(COUNTRY_META)
   .map(([iso_code, meta]) => ({ id: iso_code, iso_code, ...meta }))

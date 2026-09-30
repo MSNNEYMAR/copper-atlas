@@ -8,6 +8,7 @@
  */
 'use client';
 
+import countryCatalog from '@/data/countries.json';
 import { useEffect, useMemo, useState } from 'react';
 
 // --- Types mirror the statistics API response ---
@@ -111,56 +112,10 @@ export interface Aggregations {
   topByGrade: { id: string; name: string; grade: number; country: string }[];
 }
 
-const CONTINENTS: Record<string, string> = {
-  CL: 'South America',
-  PE: 'South America',
-  AR: 'South America',
-  BR: 'South America',
-  EC: 'South America',
-  CO: 'South America',
-  US: 'North America',
-  CA: 'North America',
-  MX: 'North America',
-  PA: 'North America',
-  CU: 'North America',
-  CN: 'Asia',
-  ID: 'Asia',
-  PH: 'Asia',
-  MN: 'Asia',
-  KZ: 'Asia',
-  IR: 'Asia',
-  IN: 'Asia',
-  PK: 'Asia',
-  TR: 'Asia',
-  SA: 'Asia',
-  MM: 'Asia',
-  VN: 'Asia',
-  LA: 'Asia',
-  UZ: 'Asia',
-  KG: 'Asia',
-  JP: 'Asia',
-  AF: 'Asia',
-  AU: 'Oceania',
-  PG: 'Oceania',
-  NZ: 'Oceania',
-  CD: 'Africa',
-  ZM: 'Africa',
-  ZA: 'Africa',
-  NA: 'Africa',
-  BW: 'Africa',
-  MG: 'Africa',
-  MA: 'Africa',
-  RU: 'Europe',
-  PL: 'Europe',
-  SE: 'Europe',
-  FI: 'Europe',
-  ES: 'Europe',
-  PT: 'Europe',
-  DE: 'Europe',
-  RS: 'Europe',
-  BG: 'Europe',
-  AM: 'Europe',
-};
+const CONTINENTS: Record<string, string> = Object.fromEntries(
+  Object.entries(countryCatalog).map(([iso, country]) => [iso, country.continent]),
+);
+
 
 export function useStatisticsData() {
   const [data, setData] = useState<StatisticsResponse | null>(null);

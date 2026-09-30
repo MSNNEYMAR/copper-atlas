@@ -1,0 +1,653 @@
+{
+  "AF": {
+    "iso_code_3": "AFG",
+    "name_en": "Afghanistan",
+    "name_zh": "阿富汗",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "AM": {
+    "iso_code_3": "ARM",
+    "name_en": "Armenia",
+    "name_zh": "亚美尼亚",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "AO": {
+    "iso_code_3": "AGO",
+    "name_en": "Angola",
+    "name_zh": "安哥拉",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "AR": {
+    "iso_code_3": "ARG",
+    "name_en": "Argentina",
+    "name_zh": "阿根廷",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "AU": {
+    "iso_code_3": "AUS",
+    "name_en": "Australia",
+    "name_zh": "澳大利亚",
+    "continent": "Oceania",
+    "subregion": "Oceania"
+  },
+  "AZ": {
+    "iso_code_3": "AZE",
+    "name_en": "Azerbaijan",
+    "name_zh": "阿塞拜疆",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "BE": {
+    "iso_code_3": "BEL",
+    "name_en": "Belgium",
+    "name_zh": "比利时",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "BG": {
+    "iso_code_3": "BGR",
+    "name_en": "Bulgaria",
+    "name_zh": "保加利亚",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "BO": {
+    "iso_code_3": "BOL",
+    "name_en": "Bolivia",
+    "name_zh": "玻利维亚",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "BR": {
+    "iso_code_3": "BRA",
+    "name_en": "Brazil",
+    "name_zh": "巴西",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "BW": {
+    "iso_code_3": "BWA",
+    "name_en": "Botswana",
+    "name_zh": "博茨瓦纳",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "CA": {
+    "iso_code_3": "CAN",
+    "name_en": "Canada",
+    "name_zh": "加拿大",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "CD": {
+    "iso_code_3": "COD",
+    "name_en": "Congo, The Democratic Republic of the",
+    "name_zh": "刚果（金）",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "CG": {
+    "iso_code_3": "COG",
+    "name_en": "Congo",
+    "name_zh": "刚果（布）",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "CH": {
+    "iso_code_3": "CHE",
+    "name_en": "Switzerland",
+    "name_zh": "瑞士",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "CL": {
+    "iso_code_3": "CHL",
+    "name_en": "Chile",
+    "name_zh": "智利",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "CN": {
+    "iso_code_3": "CHN",
+    "name_en": "China",
+    "name_zh": "中国",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "CO": {
+    "iso_code_3": "COL",
+    "name_en": "Colombia",
+    "name_zh": "哥伦比亚",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "CR": {
+    "iso_code_3": "CRI",
+    "name_en": "Costa Rica",
+    "name_zh": "哥斯达黎加",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "CU": {
+    "iso_code_3": "CUB",
+    "name_en": "Cuba",
+    "name_zh": "古巴",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "CY": {
+    "iso_code_3": "CYP",
+    "name_en": "Cyprus",
+    "name_zh": "塞浦路斯",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "CZ": {
+    "iso_code_3": "CZE",
+    "name_en": "Czechia",
+    "name_zh": "捷克",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "DE": {
+    "iso_code_3": "DEU",
+    "name_en": "Germany",
+    "name_zh": "德国",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "DO": {
+    "iso_code_3": "DOM",
+    "name_en": "Dominican Republic",
+    "name_zh": "多米尼加共和国",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "DZ": {
+    "iso_code_3": "DZA",
+    "name_en": "Algeria",
+    "name_zh": "阿尔及利亚",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "EC": {
+    "iso_code_3": "ECU",
+    "name_en": "Ecuador",
+    "name_zh": "厄瓜多尔",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "EG": {
+    "iso_code_3": "EGY",
+    "name_en": "Egypt",
+    "name_zh": "埃及",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "ER": {
+    "iso_code_3": "ERI",
+    "name_en": "Eritrea",
+    "name_zh": "厄立特里亚",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "ES": {
+    "iso_code_3": "ESP",
+    "name_en": "Spain",
+    "name_zh": "西班牙",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "FI": {
+    "iso_code_3": "FIN",
+    "name_en": "Finland",
+    "name_zh": "芬兰",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "FJ": {
+    "iso_code_3": "FJI",
+    "name_en": "Fiji",
+    "name_zh": "斐济",
+    "continent": "Oceania",
+    "subregion": "Oceania"
+  },
+  "FR": {
+    "iso_code_3": "FRA",
+    "name_en": "France",
+    "name_zh": "法国",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "GA": {
+    "iso_code_3": "GAB",
+    "name_en": "Gabon",
+    "name_zh": "加蓬",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "GB": {
+    "iso_code_3": "GBR",
+    "name_en": "United Kingdom",
+    "name_zh": "英国",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "GE": {
+    "iso_code_3": "GEO",
+    "name_en": "Georgia",
+    "name_zh": "格鲁吉亚",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "GL": {
+    "iso_code_3": "GRL",
+    "name_en": "Greenland",
+    "name_zh": "格陵兰",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "GR": {
+    "iso_code_3": "GRC",
+    "name_en": "Greece",
+    "name_zh": "希腊",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "GT": {
+    "iso_code_3": "GTM",
+    "name_en": "Guatemala",
+    "name_zh": "危地马拉",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "GY": {
+    "iso_code_3": "GUY",
+    "name_en": "Guyana",
+    "name_zh": "圭亚那",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "HT": {
+    "iso_code_3": "HTI",
+    "name_en": "Haiti",
+    "name_zh": "海地",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "HU": {
+    "iso_code_3": "HUN",
+    "name_en": "Hungary",
+    "name_zh": "匈牙利",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "ID": {
+    "iso_code_3": "IDN",
+    "name_en": "Indonesia",
+    "name_zh": "印度尼西亚",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "IE": {
+    "iso_code_3": "IRL",
+    "name_en": "Ireland",
+    "name_zh": "爱尔兰",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "IL": {
+    "iso_code_3": "ISR",
+    "name_en": "Israel",
+    "name_zh": "以色列",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "IN": {
+    "iso_code_3": "IND",
+    "name_en": "India",
+    "name_zh": "印度",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "IR": {
+    "iso_code_3": "IRN",
+    "name_en": "Iran",
+    "name_zh": "伊朗",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "IT": {
+    "iso_code_3": "ITA",
+    "name_en": "Italy",
+    "name_zh": "意大利",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "JM": {
+    "iso_code_3": "JAM",
+    "name_en": "Jamaica",
+    "name_zh": "牙买加",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "JO": {
+    "iso_code_3": "JOR",
+    "name_en": "Jordan",
+    "name_zh": "约旦",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "JP": {
+    "iso_code_3": "JPN",
+    "name_en": "Japan",
+    "name_zh": "日本",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "KG": {
+    "iso_code_3": "KGZ",
+    "name_en": "Kyrgyzstan",
+    "name_zh": "吉尔吉斯斯坦",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "KZ": {
+    "iso_code_3": "KAZ",
+    "name_en": "Kazakhstan",
+    "name_zh": "哈萨克斯坦",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "LA": {
+    "iso_code_3": "LAO",
+    "name_en": "Laos",
+    "name_zh": "老挝",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "MA": {
+    "iso_code_3": "MAR",
+    "name_en": "Morocco",
+    "name_zh": "摩洛哥",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "MK": {
+    "iso_code_3": "MKD",
+    "name_en": "North Macedonia",
+    "name_zh": "北马其顿",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "ML": {
+    "iso_code_3": "MLI",
+    "name_en": "Mali",
+    "name_zh": "马里",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "MM": {
+    "iso_code_3": "MMR",
+    "name_en": "Myanmar",
+    "name_zh": "缅甸",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "MN": {
+    "iso_code_3": "MNG",
+    "name_en": "Mongolia",
+    "name_zh": "蒙古",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "MX": {
+    "iso_code_3": "MEX",
+    "name_en": "Mexico",
+    "name_zh": "墨西哥",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "MY": {
+    "iso_code_3": "MYS",
+    "name_en": "Malaysia",
+    "name_zh": "马来西亚",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "NA": {
+    "iso_code_3": "NAM",
+    "name_en": "Namibia",
+    "name_zh": "纳米比亚",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "NG": {
+    "iso_code_3": "NGA",
+    "name_en": "Nigeria",
+    "name_zh": "尼日利亚",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "NO": {
+    "iso_code_3": "NOR",
+    "name_en": "Norway",
+    "name_zh": "挪威",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "NZ": {
+    "iso_code_3": "NZL",
+    "name_en": "New Zealand",
+    "name_zh": "新西兰",
+    "continent": "Oceania",
+    "subregion": "Oceania"
+  },
+  "OM": {
+    "iso_code_3": "OMN",
+    "name_en": "Oman",
+    "name_zh": "阿曼",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "PA": {
+    "iso_code_3": "PAN",
+    "name_en": "Panama",
+    "name_zh": "巴拿马",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "PE": {
+    "iso_code_3": "PER",
+    "name_en": "Peru",
+    "name_zh": "秘鲁",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "PG": {
+    "iso_code_3": "PNG",
+    "name_en": "Papua New Guinea",
+    "name_zh": "巴布亚新几内亚",
+    "continent": "Oceania",
+    "subregion": "Oceania"
+  },
+  "PH": {
+    "iso_code_3": "PHL",
+    "name_en": "Philippines",
+    "name_zh": "菲律宾",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "PK": {
+    "iso_code_3": "PAK",
+    "name_en": "Pakistan",
+    "name_zh": "巴基斯坦",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "PL": {
+    "iso_code_3": "POL",
+    "name_en": "Poland",
+    "name_zh": "波兰",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "PR": {
+    "iso_code_3": "PRI",
+    "name_en": "Puerto Rico",
+    "name_zh": "波多黎各",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "PT": {
+    "iso_code_3": "PRT",
+    "name_en": "Portugal",
+    "name_zh": "葡萄牙",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "RO": {
+    "iso_code_3": "ROU",
+    "name_en": "Romania",
+    "name_zh": "罗马尼亚",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "RS": {
+    "iso_code_3": "SRB",
+    "name_en": "Serbia",
+    "name_zh": "塞尔维亚",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "RU": {
+    "iso_code_3": "RUS",
+    "name_en": "Russian Federation",
+    "name_zh": "俄罗斯",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "SA": {
+    "iso_code_3": "SAU",
+    "name_en": "Saudi Arabia",
+    "name_zh": "沙特阿拉伯",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "SB": {
+    "iso_code_3": "SLB",
+    "name_en": "Solomon Islands",
+    "name_zh": "所罗门群岛",
+    "continent": "Oceania",
+    "subregion": "Oceania"
+  },
+  "SE": {
+    "iso_code_3": "SWE",
+    "name_en": "Sweden",
+    "name_zh": "瑞典",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "SI": {
+    "iso_code_3": "SVN",
+    "name_en": "Slovenia",
+    "name_zh": "斯洛文尼亚",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "SK": {
+    "iso_code_3": "SVK",
+    "name_en": "Slovakia",
+    "name_zh": "斯洛伐克",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "TH": {
+    "iso_code_3": "THA",
+    "name_en": "Thailand",
+    "name_zh": "泰国",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "TJ": {
+    "iso_code_3": "TJK",
+    "name_en": "Tajikistan",
+    "name_zh": "塔吉克斯坦",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "TR": {
+    "iso_code_3": "TUR",
+    "name_en": "Türkiye",
+    "name_zh": "土耳其",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "TW": {
+    "iso_code_3": "TWN",
+    "name_en": "Taiwan",
+    "name_zh": "台湾",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "UA": {
+    "iso_code_3": "UKR",
+    "name_en": "Ukraine",
+    "name_zh": "乌克兰",
+    "continent": "Europe",
+    "subregion": "Europe"
+  },
+  "UG": {
+    "iso_code_3": "UGA",
+    "name_en": "Uganda",
+    "name_zh": "乌干达",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "US": {
+    "iso_code_3": "USA",
+    "name_en": "United States",
+    "name_zh": "美国",
+    "continent": "North America",
+    "subregion": "North America"
+  },
+  "UZ": {
+    "iso_code_3": "UZB",
+    "name_en": "Uzbekistan",
+    "name_zh": "乌兹别克斯坦",
+    "continent": "Asia",
+    "subregion": "Asia"
+  },
+  "VE": {
+    "iso_code_3": "VEN",
+    "name_en": "Venezuela",
+    "name_zh": "委内瑞拉",
+    "continent": "South America",
+    "subregion": "South America"
+  },
+  "ZA": {
+    "iso_code_3": "ZAF",
+    "name_en": "South Africa",
+    "name_zh": "南非",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "ZM": {
+    "iso_code_3": "ZMB",
+    "name_en": "Zambia",
+    "name_zh": "赞比亚",
+    "continent": "Africa",
+    "subregion": "Africa"
+  },
+  "ZW": {
+    "iso_code_3": "ZWE",
+    "name_en": "Zimbabwe",
+    "name_zh": "津巴布韦",
+    "continent": "Africa",
+    "subregion": "Africa"
+  }
+}
