@@ -17,8 +17,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const API_BASE = '/api/v1';
 const MAP_DATA_LIMIT = 5000;
-const CLUSTER_MAX_ZOOM = 12;
-const INDIVIDUAL_POINT_MIN_ZOOM = 11;
+// Supercluster keeps clustering while the requested zoom is <= CLUSTER_MAX_ZOOM and
+// MapLibre switches to the raw point tree from CLUSTER_MAX_ZOOM + 1 onwards, so the
+// cluster layers are kept visible one level longer than clustering itself. That way
+// there is no zoom level at which a deposit belongs to neither the cluster layer nor
+// the individual-point layer (the old `minzoom: 11` circle layer left every
+// not-yet-clustered deposit invisible between zoom ~8 and 11).
+const CLUSTER_MAX_ZOOM = 10;
+const CLUSTER_LAYER_MAX_ZOOM = CLUSTER_MAX_ZOOM + 1;
+const POINT_LABEL_MIN_ZOOM = 11;
 const CLUSTER_RADIUS = 45;
 
 const BASEMAP_TILES: Record<string, { tiles: string[]; attribution: string }> = {
@@ -222,18 +229,16 @@ function addCopperLayers(map: Map) {
     },
   });
 
-  // A separate, non-clustered source guarantees individual deposits are
-  // rendered once the map reaches the cluster expansion zoom.
-  map.addSource('copper-deposits-points', {
-    type: 'geojson',
-    data: { type: 'FeatureCollection', features: [] },
-  });
-
+  // Individual deposits live in the SAME clustered source. A clustered source
+  // returns both cluster features (with `point_count`) and plain point features,
+  // so `!has point_count` renders every deposit that is not currently inside a
+  // cluster — at any zoom. Without that, an isolated deposit disappears from the
+  // map for as long as it is not part of a cluster.
   map.addLayer({
     id: 'copper-deposits-circle',
     type: 'circle',
-    source: 'copper-deposits-points',
-    minzoom: INDIVIDUAL_POINT_MIN_ZOOM,
+    source: 'copper-deposits-geojson',
+    filter: ['!', ['has', 'point_count']],
     paint: {
       'circle-radius': [
         'interpolate',
@@ -258,7 +263,7 @@ function addCopperLayers(map: Map) {
     type: 'circle',
     source: 'copper-deposits-geojson',
     filter: ['has', 'point_count'],
-    maxzoom: INDIVIDUAL_POINT_MIN_ZOOM,
+    maxzoom: CLUSTER_LAYER_MAX_ZOOM,
     paint: {
       'circle-radius': clusterRadiusByMetric('count'),
       'circle-color': clusterDominantTypeColor(),
@@ -272,7 +277,7 @@ function addCopperLayers(map: Map) {
     type: 'symbol',
     source: 'copper-deposits-geojson',
     filter: ['has', 'point_count'],
-    maxzoom: INDIVIDUAL_POINT_MIN_ZOOM,
+    maxzoom: CLUSTER_LAYER_MAX_ZOOM,
     layout: {
       'text-field': clusterLabelByMetric('count'),
       'text-font': ['Open Sans Semibold'],
@@ -284,8 +289,9 @@ function addCopperLayers(map: Map) {
   map.addLayer({
     id: 'copper-deposit-labels',
     type: 'symbol',
-    source: 'copper-deposits-points',
-    minzoom: INDIVIDUAL_POINT_MIN_ZOOM,
+    source: 'copper-deposits-geojson',
+    filter: ['!', ['has', 'point_count']],
+    minzoom: POINT_LABEL_MIN_ZOOM,
     layout: {
       'text-field': ['get', 'name'],
       'text-font': ['Noto Sans Regular'],
@@ -315,7 +321,12 @@ export function MapContainer() {
     const p = new URLSearchParams();
     p.set('mineral', filters.mineral);
     p.set('size', String(MAP_DATA_LIMIT));
-    if (bboxRef.current) p.set('bbox', bboxRef.current.join(','));
+    // NOTE: deliberately NOT narrowed to the current viewport. A viewport query
+    // replaces the whole source with a handful of rows on every pan/zoom, which
+    // makes markers vanish as soon as the (tiny) padded bbox contains no deposit,
+    // and re-fetches constantly. The atlas dataset is small and the API caps
+    // `size` at MAP_DATA_LIMIT, so loading the full filtered set is cheap and keeps
+    // the map stable. Revisit if the dataset outgrows a single request.
     if (filters.countryIsos.length) p.set('country', filters.countryIsos.join(','));
     if (filters.statuses.length) p.set('status', filters.statuses.join(','));
     if (filters.depositTypePaths.length) p.set('deposit_type', filters.depositTypePaths.join(','));
@@ -330,8 +341,7 @@ export function MapContainer() {
   const loadDeposits = useCallback(async () => {
     if (!mapRef.current) return;
     const src = mapRef.current.getSource('copper-deposits-geojson') as GeoJSONSource | undefined;
-    const pointSrc = mapRef.current.getSource('copper-deposits-points') as GeoJSONSource | undefined;
-    if (!src || !pointSrc) return;
+    if (!src) return;
     const url = buildApiUrl();
     if (url === lastFetchRef.current) return;
 
@@ -350,7 +360,6 @@ export function MapContainer() {
         features: (data.features || []).filter((f: any) => f.geometry?.coordinates),
       };
       src.setData(collection);
-      pointSrc.setData(collection);
     } catch (error) {
       if ((error as Error).name !== 'AbortError') lastFetchRef.current = '';
     }
