@@ -1,0 +1,53 @@
+﻿name,country_iso,latitude,longitude,kept_source,kept_source_id,skipped_source,skipped_source_id
+Copper Mountain,CA,49.34027778,-120.5552778,seed_v2/seed.csv,copper-mountain,USGS_MRDS_Porphyry_copper_deposit.csv,96
+Galore Creek,CA,57.125,-131.45,seed_v2/seed.csv,galore-creek,USGS_MRDS_Porphyry_copper_deposit.csv,101
+Red Chris,CA,57.7,-129.8052778,seed_v2/seed.csv,red-chris,USGS_MRDS_Porphyry_copper_deposit.csv,135
+Cerro Casale,CL,-27.78333333,-69.23333333,seed_v2/seed.csv,cerro-casale,USGS_MRDS_Porphyry_copper_deposit.csv,161
+Cerro Colorado,CL,-20.04472222,-69.25972222,seed_v2/seed.csv,cerro-colorado,USGS_MRDS_Porphyry_copper_deposit.csv,162
+Chuquicamata,CL,-22.275,-68.9,seed_v2/seed.csv,chuquicamata,USGS_MRDS_Porphyry_copper_deposit.csv,164
+Collahuasi,CL,-20.96305556,-68.70833333,seed_v2/seed.csv,collahuasi,USGS_MRDS_Porphyry_copper_deposit.csv,165
+El Abra,CL,-21.92055556,-68.8325,seed_v2/seed.csv,el-abra,USGS_MRDS_Porphyry_copper_deposit.csv,169
+El Teniente,CL,-34.08861111,-70.4625,seed_v2/seed.csv,el-teniente,USGS_MRDS_Porphyry_copper_deposit.csv,173
+Escondida,CL,-24.265,-69.07166667,seed_v2/seed.csv,escondida,USGS_MRDS_Porphyry_copper_deposit.csv,174
+Spence,CL,-22.83944444,-69.30277778,seed_v2/seed.csv,spence,USGS_MRDS_Porphyry_copper_deposit.csv,197
+Dexing,CN,29.01888889,117.7297222,seed_v2/seed.csv,dexing,USGS_MRDS_Porphyry_copper_deposit.csv,210
+Pulang,CN,28.03333333,99.83333333,seed_v2/seed.csv,pulang,USGS_MRDS_Porphyry_copper_deposit.csv,229
+Qulong,CN,29.6,91.58333333,seed_v2/seed.csv,qulong,USGS_MRDS_Porphyry_copper_deposit.csv,230
+Tongkuangyu,CN,35.5,111.7,seed_v2/seed.csv,tongkuangyu,USGS_MRDS_Porphyry_copper_deposit.csv,238
+Yulong,CN,31.4,97.73333333,seed_v2/seed.csv,yulong,USGS_MRDS_Porphyry_copper_deposit.csv,245
+Malanjkhand,IN,22.01666667,80.71666667,seed_v2/seed.csv,malanjkhand,USGS_MRDS_Porphyry_copper_deposit.csv,291
+Batu Hijau,ID,-8.965277778,116.8725,seed_v2/seed.csv,batu-hijau,USGS_MRDS_Porphyry_copper_deposit.csv,293
+Grasberg,ID,-3.816666667,137.2333333,seed_v2/seed.csv,grasberg,USGS_MRDS_Porphyry_copper_deposit.csv,296
+Kounrad,KZ,46.98972222,74.98722222,seed_v2/seed.csv,kounrad,USGS_MRDS_Porphyry_copper_deposit.csv,332
+Phu Kham,LA,18.91666667,102.9333333,seed_v2/seed.csv,phu-kham,USGS_MRDS_Porphyry_copper_deposit.csv,344
+Cananea,MX,30.95416667,-110.3166667,seed_v2/seed.csv,cananea,USGS_MRDS_Porphyry_copper_deposit.csv,356
+El Arco,MX,28.03333333,-113.5666667,seed_v2/seed.csv,el-arco,USGS_MRDS_Porphyry_copper_deposit.csv,360
+La Caridad,MX,30.31805556,-109.5566667,seed_v2/seed.csv,la-caridad,USGS_MRDS_Porphyry_copper_deposit.csv,363
+Oyu Tolgoi,MN,43.0,106.8666667,seed_v2/seed.csv,oyu-tolgoi,USGS_MRDS_Porphyry_copper_deposit.csv,389
+Tsagaan-Suvarga,MN,43.86666667,108.3333333,seed_v2/seed.csv,tsagaan-suvarga,USGS_MRDS_Porphyry_copper_deposit.csv,394
+Reko Diq,PK,29.12277778,62.07888889,seed_v2/seed.csv,reko-diq,USGS_MRDS_Porphyry_copper_deposit.csv,404
+Frieda River,PG,-4.7,141.7833333,seed_v2/seed.csv,frieda-river,USGS_MRDS_Porphyry_copper_deposit.csv,416
+Ok Tedi,PG,-5.2,141.1333333,seed_v2/seed.csv,ok-tedi,USGS_MRDS_Porphyry_copper_deposit.csv,421
+Panguna,PG,-6.316666667,155.5,seed_v2/seed.csv,panguna,USGS_MRDS_Porphyry_copper_deposit.csv,422
+Cerro Corona,PE,-6.761666667,-78.60583333,seed_v2/seed.csv,cerro-corona,USGS_MRDS_Porphyry_copper_deposit.csv,439
+Cuajone,PE,-17.04555556,-70.70722222,seed_v2/seed.csv,cuajone,USGS_MRDS_Porphyry_copper_deposit.csv,448
+Quellaveco,PE,-17.10805556,-70.61583333,seed_v2/seed.csv,quellaveco,USGS_MRDS_Porphyry_copper_deposit.csv,465
+Toquepala,PE,-17.245,-70.61388889,seed_v2/seed.csv,toquepala,USGS_MRDS_Porphyry_copper_deposit.csv,471
+Tampakan,PH,6.475,125.05,seed_v2/seed.csv,tampakan,USGS_MRDS_Porphyry_copper_deposit.csv,514
+Aitik,SE,67.0725,20.9575,seed_v2/seed.csv,aitik,USGS_MRDS_Porphyry_copper_deposit.csv,569
+Bagdad,US,34.58583333,-113.2119444,seed_v2/seed.csv,bagdad,USGS_MRDS_Porphyry_copper_deposit.csv,601
+Resolution,US,33.3,-111.0833333,seed_v2/seed.csv,resolution,USGS_MRDS_Porphyry_copper_deposit.csv,625
+Safford,US,32.93333333,-109.6,seed_v2/seed.csv,safford,USGS_MRDS_Porphyry_copper_deposit.csv,627
+Silver Bell,US,32.4,-111.5,seed_v2/seed.csv,silver-bell,USGS_MRDS_Porphyry_copper_deposit.csv,632
+Yerington,US,38.98,-119.2,seed_v2/seed.csv,yerington,USGS_MRDS_Porphyry_copper_deposit.csv,668
+Kansanshi,ZM,-12.0833333333333,26.4166666666667,seed_v2/seed.csv,kansanshi,USGS_MRDS_Sed_copper_deposit.csv,46
+Nchanga,ZM,-12.525,27.8666666666667,seed_v2/seed.csv,nchanga,USGS_MRDS_Sed_copper_deposit.csv,57
+Udokan,RU,56.5833333333333,118.5,seed_v2/seed.csv,udokan,USGS_MRDS_Sed_copper_deposit.csv,124
+Aitik,SE,67.1166666666667,21.0,seed_v2/seed.csv,aitik,USGS_MRDS_Sed_copper_deposit.csv,276
+White Pine,US,46.7666666666667,-89.5666666666667,seed_v2/seed.csv,white-pine,USGS_MRDS_Sed_copper_deposit.csv,510
+Bagacay,PH,11.795,125.268333333333,USGS_MRDS_Sed_copper_deposit.csv,254,USGS_MRDS_VMS_deposit.csv,605
+Neves-Corvo,PT,37.5738888888889,-7.97222222222222,seed_v2/seed.csv,neves-corvo,USGS_MRDS_VMS_deposit.csv,665
+Rio Tinto,ES,37.7041666666667,-6.58444444444444,seed_v2/seed.csv,rio-tinto,USGS_MRDS_VMS_deposit.csv,953
+Sulat,PH,11.7602777777778,125.335,USGS_MRDS_Porphyry_copper_deposit.csv,512,USGS_MRDS_VMS_deposit.csv,1001
+Eureca,CU,20.1169444444444,-76.7,USGS_MRDS_Porphyry_copper_deposit.csv,261,USGS_MRDS_VMS_deposit.csv,1171
+El Cobre,CU,20.0447222222222,-75.9441666666667,USGS_MRDS_Porphyry_copper_deposit.csv,260,USGS_MRDS_VMS_deposit.csv,1183
