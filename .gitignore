@@ -60,3 +60,5 @@ data/tmp_gh/
 test-results/
 playwright-report/
 work/
+
+/package-lock.json
